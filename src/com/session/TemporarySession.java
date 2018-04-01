@@ -5,6 +5,6 @@ package com.session;
  * @author andor
  *
  */
-public class TemporarySession implements Session {
+public class TemporarySession extends SessionBase {
 
 }
