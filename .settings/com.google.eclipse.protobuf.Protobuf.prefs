@@ -1,0 +1,3 @@
+compiler.enableProjectSettings=true
+compiler.javaOutputDirectory=src-com-proto-gen
+eclipse.preferences.version=1
