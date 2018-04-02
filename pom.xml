@@ -9,7 +9,7 @@
     <url>henosisknot.com</url>
     <description>Chatbot for henosisknot.com</description>
     <artifactId>Chatbot-Henosisknot</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <organization>
         <name>Henosisknot.com</name>
