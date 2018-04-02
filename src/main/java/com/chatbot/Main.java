@@ -12,7 +12,7 @@ public class Main {
 
 	private static void start(){
 		UIInstance.getInstance();
-//		TemporarySession ts = new TemporarySession();
-//		 ts.insertMessage(MessageHelpers.buildMessage(1, "test text", 1));
+		TemporarySession ts = new TemporarySession();
+		ts.insertMessage(MessageHelpers.buildMessage(1, "test text", 1));
 	}
 }
