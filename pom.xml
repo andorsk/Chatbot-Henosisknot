@@ -32,6 +32,9 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
+        <!-- nlp versions -->
+        <stanfordnlp.version>3.9.1</stanfordnlp.version>
+
     </properties>
 
 
@@ -42,6 +45,13 @@
             <artifactId>protobuf-java</artifactId>
             <version>${protobuf.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+            <version>${stanfordnlp.version}</version>
+        </dependency>
+
 
 
     </dependencies>
