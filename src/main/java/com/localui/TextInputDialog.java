@@ -25,12 +25,16 @@ public class TextInputDialog extends JTextArea {
         setText(default_text);
         setListeners();
 	}	
-	
+
+	public void clear(){
+		this.setText(null);
+	}
+
 	private void setListeners(){
 		this.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				if (e.getButton() == MouseEvent.BUTTON1 && mUntouched) {
-					setText("");
+					clear();
 					mUntouched = false;
 				} 
 			}

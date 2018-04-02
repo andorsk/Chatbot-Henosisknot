@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import com.proto.gen.MessageOuterClass;
 
-public class SessionBase implements SessionInterface{
+public class SessionBase extends SessionInterface{
 	LinkedList<MessageOuterClass.Message> dialog = new LinkedList<MessageOuterClass.Message>();
 
 	@Override

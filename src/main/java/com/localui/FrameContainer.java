@@ -11,29 +11,34 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- * Singleton Container
+ * Frame container is a container JFrame.
  */
+
 public class FrameContainer extends JFrame {
 	
 	int mWidth, mHeight;
 	private static final long serialVersionUID = 4179673315950936919L;
 	static GraphicsConfiguration gc;
+	private ChatDialog mChatDialog;
 
 	public FrameContainer(){
 		new FrameContainer("Frame Container");
 	}
 
 	public FrameContainer(String s){
-		new FrameContainer(100, 100, s);
+		this(100, 100, s);
 	}
 	
 	public FrameContainer(int width, int height, String s){
 		super(gc);
-		
 		this.mWidth = width;
 		this.mHeight = height;
 		setTitle(s);
 		init();
+    }
+
+	public ChatDialog getDialogBox(){
+		return this.mChatDialog;
 	}
 
 	private void init(){
@@ -45,7 +50,10 @@ public class FrameContainer extends JFrame {
 		getContentPane().setBackground(Color.WHITE);
 		
 		//Add input dialogs
-		addPanel(new ChatDialog(200,200));
+		ChatDialog cd = new ChatDialog(200,200);
+		addPanel(cd);
+		this.mChatDialog = cd;
+
 		setResizable(true);
 		pack();
 		setVisible(true);
