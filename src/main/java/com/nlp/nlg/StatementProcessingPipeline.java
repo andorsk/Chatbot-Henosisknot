@@ -35,7 +35,7 @@ public class StatementProcessingPipeline {
                 System.out.println("Default");
         }
 
-        pe.runParse(input);
+        pe.parse(input);
     }
 
     public static String generateResponse(){

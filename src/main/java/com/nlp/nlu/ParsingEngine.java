@@ -1,5 +1,6 @@
 package com.nlp.nlu;
 
+import edu.stanford.nlp.pipeline.*;
 
 public class ParsingEngine {
 
@@ -13,8 +14,8 @@ public class ParsingEngine {
         this.mParser = parser;
     }
 
-    public void runParse(String text){
-        this.mParser.parse(text);
+    public CoreDocument parse(String text){
+        return this.mParser.parse(text);
     }
 
     public ParsingEngine(){
