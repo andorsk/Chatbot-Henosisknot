@@ -1,8 +1,10 @@
 package com.nlp;
 
 
+import edu.stanford.nlp.pipeline.CoreDocument;
+
 public interface ParsingInterface {
 
-    public abstract void parse(String text);
+    public abstract CoreDocument parse(String text);
 
 }
