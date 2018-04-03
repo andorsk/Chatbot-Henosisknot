@@ -1,11 +1,11 @@
 package com.nlp;
 
 import com.config.StateTracker;
+import com.nlp.nlu.IntroductionParser;
+import com.nlp.nlu.ParsingEngine;
 import com.proto.gen.MessageOuterClass;
 import com.utilities.StringPreprocessors;
 import edu.stanford.nlp.simple.Sentence;
-
-import java.util.List;
 
 public class StatementProcessingPipeline {
 
@@ -35,5 +35,9 @@ public class StatementProcessingPipeline {
         }
 
         pe.runParse(input);
+    }
+
+    public static String generateResponse(){
+        return "";
     }
 }

@@ -1,6 +1,6 @@
 package com.nlp;
 
-public class ResponseGenerator {
+public class SentenceConstructionEngine {
 
     public static String generateResponseString(String input){
         return "";
