@@ -11,7 +11,7 @@ public class SemanticParsingTest extends TestCase {
         super(name);
     }
 
-    public void SentenceParseTest() {
+    public void SentenceNERTest() {
         ParsingEngine pe = new ParsingEngine();
         pe.setParsingType(new IntroductionParser("tokenize,ssplit,pos,lemma,ner"));
         CoreDocument doc = pe.parse("My name is Tom Martell. How are you Henosisknot.com?");

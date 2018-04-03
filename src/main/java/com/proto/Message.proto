@@ -10,8 +10,20 @@ message Message {
 	uint64 time_recieved = 5;
 	repeated string receivers_username = 6;
 	repeated int32 receivers_userids = 7;
-	bool read = 8; 
+	bool read = 8;
 	ServiceType service_type = 9;
+	string conversation_id = 10;
+}
+
+message MessageQueue {
+    repeated Message queue = 1;
+}
+
+message Converation {
+    uint64 start_time = 1;
+    string id = 2;
+    repeated string participants = 3;
+    repeated int64 participantids = 4;
 }
 
 enum ServiceType {
