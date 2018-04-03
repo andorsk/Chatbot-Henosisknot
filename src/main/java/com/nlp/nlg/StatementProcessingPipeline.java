@@ -1,4 +1,4 @@
-package com.nlp;
+package com.nlp.nlg;
 
 import com.config.StateTracker;
 import com.nlp.nlu.IntroductionParser;
@@ -16,6 +16,7 @@ public class StatementProcessingPipeline {
     }
 
     public static void parse(String input){
+
         StateTracker.conversationPhaseEnum state = StateTracker.currentState;
         ParsingEngine pe = new ParsingEngine();
 

@@ -1,4 +1,4 @@
-package com.nlp;
+package com.nlp.nlg;
 
 public class ResponseEngine {
 }

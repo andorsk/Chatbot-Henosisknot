@@ -1,4 +1,4 @@
-package com.nlp;
+package com.nlp.nlu;
 
 public abstract class ParseEngineType implements ParsingInterface {
 }

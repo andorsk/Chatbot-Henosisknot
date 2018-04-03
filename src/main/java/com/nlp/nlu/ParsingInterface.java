@@ -1,4 +1,4 @@
-package com.nlp;
+package com.nlp.nlu;
 
 
 import edu.stanford.nlp.pipeline.CoreDocument;
