@@ -33,7 +33,7 @@ java -jar <path-to-Chatbot-Henosisknot-0.1.0.jar>
 
 ### Architecture
 
-![Architecture](https://github.com/andorsk/Chatbot-Henosisknot/blob/master/chatbot.png)
+![Architecture](https://github.com/andorsk/Chatbot-Henosisknot/blob/master/chatbot.jpg?raw=true)
 
 ### Resources for Further Learning
 Check out http://meta-guide.com/bibliography/100-best-theses-in-ai-nlp-conversational-agents for links on more resources on NLP QA Agents.
