@@ -16,4 +16,5 @@ message Message {
 
 enum ServiceType {
 	TEXT = 0; 
-} 
+}
+

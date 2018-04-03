@@ -9,7 +9,8 @@ public class StringPreprocessors {
     //Remove consecutive whitespaces
     public static String cleanWhiteSpaces(String str){
         str = StringPreprocessors.cleanWhiteSpaces(str);
-        return str.replace("  ", " ");
+        str = str.replace("  ", " ");
+        return str;
     }
 }
 
