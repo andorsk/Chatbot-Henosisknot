@@ -31,6 +31,9 @@ java -jar <path-to-Chatbot-Henosisknot-0.1.0.jar>
 
 ** (Note:) This is a simple demo application. It is untested across architectures or alternate environments. **
 
+### Presentation
+https://docs.google.com/presentation/d/1aFKP6F4bJowuPEdZo4se6ZYTFuWVr0qsWwc5lEjqnYQ/edit?usp=sharing
+
 ### Architecture
 
 ![Architecture](https://github.com/andorsk/Chatbot-Henosisknot/blob/master/chatbot.jpg?raw=true)
