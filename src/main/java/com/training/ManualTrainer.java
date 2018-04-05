@@ -1,5 +1,7 @@
 package com.training;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -14,6 +16,7 @@ import org.json.simple.JSONObject;
  * Manual Trainer You Program Q/A Responses.
  */
 public class ManualTrainer extends TrainerType {
+    private HashMap<String, ArrayList<String>> mQAmap = new HashMap<String, ArrayList<String>>();
 
     @Override
     public void train(){
@@ -21,17 +24,14 @@ public class ManualTrainer extends TrainerType {
         boolean chatturn = false;
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
-        LinkedList<QAPair> QAPairs = new LinkedList<QAPair>();
 
         System.out.println("Q:");
-        String question = reader.next();
-        long questiontime = System.currentTimeMillis();
+        String question = reader.nextLine();
 
 
         while(!terminate){
             System.out.println("A:");
-            String answer = reader.next();
-            long answertime = System.currentTimeMillis();
+            String answer = reader.nextLine();
 
             if(answer.equals("terminate")){
                 terminate = true;
@@ -41,46 +41,25 @@ public class ManualTrainer extends TrainerType {
             int turn = (chatturn) ? 1 : 0; //keep track of which turn.
             int opp_turn = (!chatturn) ? 1 : 0;
 
-            QAPair qaPair = new QAPair(MessageHelpers.buildMessage(questiontime,  question, turn), MessageHelpers.buildMessage(answertime,  answer, opp_turn));
-            QAPairs.add(qaPair);
+            ArrayList<String> responses = new ArrayList<String>();
+            if(mQAmap.containsKey(question)) {
+                responses = mQAmap.get(question);
+            }
+            responses.add(answer);
+
+            mQAmap.put(question, responses);
+
             question = answer;
-            questiontime = answertime;
             chatturn = !chatturn;
-
         }
-        reader.close();
 
+        reader.close();
         JSONObject js = new JSONObject();
-        js.put("QA", QAPairs);
+        js.put("Strict", mQAmap);
+
         IOUtil.appendJSONToFile(js, PrimaryConfig.PREDEFINED_STATEMENTS_LOC);
     }
 
-
-    private class QAPair extends Pair<MessageOuterClass.Message, MessageOuterClass.Message>{
-
-        private MessageOuterClass.Message mQuestion;
-        private MessageOuterClass.Message mAnswer;
-        /**
-         * Creates a new pair
-         *
-         * @param key   The key for this pair
-         * @param value The value to use for this pair
-         */
-        public QAPair(MessageOuterClass.Message key, MessageOuterClass.Message value) {
-            super(key, value);
-            this.mQuestion = key;
-            this.mAnswer = value;
-        }
-
-        public MessageOuterClass.Message getQuestion(){
-            return this.mQuestion;
-        }
-
-        public MessageOuterClass.Message getAnswer(){
-            return this.mAnswer;
-        }
-
-    }
 
 }
 

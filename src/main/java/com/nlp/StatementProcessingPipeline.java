@@ -1,4 +1,4 @@
-package com.nlp.nlg;
+package com.nlp;
 
 import com.config.StateTracker;
 import com.nlp.nlu.IntroductionParser;
@@ -9,13 +9,21 @@ import edu.stanford.nlp.simple.Sentence;
 
 public class StatementProcessingPipeline {
 
-    public static void process(MessageOuterClass.Message message){
-        String text = message.getText();
-        text = StringPreprocessors.cleanWhiteSpaces(text);
-        Sentence sent = new Sentence(text);
+    public StatementProcessingPipeline(){
+
     }
 
-    public static void parse(String input){
+    private void init(){
+
+    }
+
+    public void process(MessageOuterClass.Message message){
+        String text = message.getText();
+        text = StringPreprocessors.cleanWhiteSpaces(text);
+        parse(text);
+    }
+
+    public void parse(String input){
 
         StateTracker.conversationPhaseEnum state = StateTracker.currentState;
         ParsingEngine pe = new ParsingEngine();
@@ -38,7 +46,7 @@ public class StatementProcessingPipeline {
         pe.parse(input);
     }
 
-    public static String generateResponse(){
+    public String generateResponse(){
         return "";
     }
 }

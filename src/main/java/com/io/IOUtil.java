@@ -1,18 +1,23 @@
 package com.io;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import java.io.IOException;
 
 public class IOUtil {
 
     public static JSONArray readJSONFile(String file){
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader(file));
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            if (br.readLine() == null) {
+                return null;
+            }
+            Object obj = parser.parse(fr);
             JSONArray jsonObject = (JSONArray) obj;
             return jsonObject;
 
@@ -23,8 +28,22 @@ public class IOUtil {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return null;
+    }
+
+    public static void appendJSONToFile(JSONObject obj, String fileloc){
+        JSONArray arr = readJSONFile(fileloc);
+        if(arr == null){
+            arr = new JSONArray();
+        }
+        arr.add(obj);
+
+        try (FileWriter file = new FileWriter(fileloc)) {
+            file.write(arr.toJSONString());
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -187,6 +187,16 @@ public final class MessageOuterClass {
      * <code>optional .com.proto.gen.ServiceType service_type = 9;</code>
      */
     com.proto.gen.MessageOuterClass.ServiceType getServiceType();
+
+    /**
+     * <code>optional string conversation_id = 10;</code>
+     */
+    java.lang.String getConversationId();
+    /**
+     * <code>optional string conversation_id = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getConversationIdBytes();
   }
   /**
    * Protobuf type {@code com.proto.gen.Message}
@@ -209,6 +219,7 @@ public final class MessageOuterClass {
       receiversUserids_ = java.util.Collections.emptyList();
       read_ = false;
       serviceType_ = 0;
+      conversationId_ = "";
     }
 
     @java.lang.Override
@@ -302,6 +313,12 @@ public final class MessageOuterClass {
               int rawValue = input.readEnum();
 
               serviceType_ = rawValue;
+              break;
+            }
+            case 82: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              conversationId_ = s;
               break;
             }
           }
@@ -506,6 +523,40 @@ public final class MessageOuterClass {
       return result == null ? com.proto.gen.MessageOuterClass.ServiceType.UNRECOGNIZED : result;
     }
 
+    public static final int CONVERSATION_ID_FIELD_NUMBER = 10;
+    private volatile java.lang.Object conversationId_;
+    /**
+     * <code>optional string conversation_id = 10;</code>
+     */
+    public java.lang.String getConversationId() {
+      java.lang.Object ref = conversationId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        conversationId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string conversation_id = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConversationIdBytes() {
+      java.lang.Object ref = conversationId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        conversationId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -549,6 +600,9 @@ public final class MessageOuterClass {
       }
       if (serviceType_ != com.proto.gen.MessageOuterClass.ServiceType.TEXT.getNumber()) {
         output.writeEnum(9, serviceType_);
+      }
+      if (!getConversationIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, conversationId_);
       }
     }
 
@@ -605,6 +659,9 @@ public final class MessageOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(9, serviceType_);
       }
+      if (!getConversationIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, conversationId_);
+      }
       memoizedSize = size;
       return size;
     }
@@ -638,6 +695,8 @@ public final class MessageOuterClass {
       result = result && (getRead()
           == other.getRead());
       result = result && serviceType_ == other.serviceType_;
+      result = result && getConversationId()
+          .equals(other.getConversationId());
       return result;
     }
 
@@ -673,6 +732,8 @@ public final class MessageOuterClass {
           getRead());
       hash = (37 * hash) + SERVICE_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + serviceType_;
+      hash = (37 * hash) + CONVERSATION_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getConversationId().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -809,6 +870,8 @@ public final class MessageOuterClass {
 
         serviceType_ = 0;
 
+        conversationId_ = "";
+
         return this;
       }
 
@@ -850,6 +913,7 @@ public final class MessageOuterClass {
         result.receiversUserids_ = receiversUserids_;
         result.read_ = read_;
         result.serviceType_ = serviceType_;
+        result.conversationId_ = conversationId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -934,6 +998,10 @@ public final class MessageOuterClass {
         }
         if (other.serviceType_ != 0) {
           setServiceTypeValue(other.getServiceTypeValue());
+        }
+        if (!other.getConversationId().isEmpty()) {
+          conversationId_ = other.conversationId_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -1407,6 +1475,75 @@ public final class MessageOuterClass {
         onChanged();
         return this;
       }
+
+      private java.lang.Object conversationId_ = "";
+      /**
+       * <code>optional string conversation_id = 10;</code>
+       */
+      public java.lang.String getConversationId() {
+        java.lang.Object ref = conversationId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          conversationId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string conversation_id = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConversationIdBytes() {
+        java.lang.Object ref = conversationId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          conversationId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string conversation_id = 10;</code>
+       */
+      public Builder setConversationId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        conversationId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string conversation_id = 10;</code>
+       */
+      public Builder clearConversationId() {
+        
+        conversationId_ = getDefaultInstance().getConversationId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string conversation_id = 10;</code>
+       */
+      public Builder setConversationIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        conversationId_ = value;
+        onChanged();
+        return this;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -1456,11 +1593,1689 @@ public final class MessageOuterClass {
 
   }
 
+  public interface MessageQueueOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.proto.gen.MessageQueue)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .com.proto.gen.Message queue = 1;</code>
+     */
+    java.util.List<com.proto.gen.MessageOuterClass.Message> 
+        getQueueList();
+    /**
+     * <code>repeated .com.proto.gen.Message queue = 1;</code>
+     */
+    com.proto.gen.MessageOuterClass.Message getQueue(int index);
+    /**
+     * <code>repeated .com.proto.gen.Message queue = 1;</code>
+     */
+    int getQueueCount();
+    /**
+     * <code>repeated .com.proto.gen.Message queue = 1;</code>
+     */
+    java.util.List<? extends com.proto.gen.MessageOuterClass.MessageOrBuilder> 
+        getQueueOrBuilderList();
+    /**
+     * <code>repeated .com.proto.gen.Message queue = 1;</code>
+     */
+    com.proto.gen.MessageOuterClass.MessageOrBuilder getQueueOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code com.proto.gen.MessageQueue}
+   */
+  public  static final class MessageQueue extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.proto.gen.MessageQueue)
+      MessageQueueOrBuilder {
+    // Use MessageQueue.newBuilder() to construct.
+    private MessageQueue(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private MessageQueue() {
+      queue_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private MessageQueue(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                queue_ = new java.util.ArrayList<com.proto.gen.MessageOuterClass.Message>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              queue_.add(
+                  input.readMessage(com.proto.gen.MessageOuterClass.Message.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          queue_ = java.util.Collections.unmodifiableList(queue_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_MessageQueue_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_MessageQueue_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.proto.gen.MessageOuterClass.MessageQueue.class, com.proto.gen.MessageOuterClass.MessageQueue.Builder.class);
+    }
+
+    public static final int QUEUE_FIELD_NUMBER = 1;
+    private java.util.List<com.proto.gen.MessageOuterClass.Message> queue_;
+    /**
+     * <code>repeated .com.proto.gen.Message queue = 1;</code>
+     */
+    public java.util.List<com.proto.gen.MessageOuterClass.Message> getQueueList() {
+      return queue_;
+    }
+    /**
+     * <code>repeated .com.proto.gen.Message queue = 1;</code>
+     */
+    public java.util.List<? extends com.proto.gen.MessageOuterClass.MessageOrBuilder> 
+        getQueueOrBuilderList() {
+      return queue_;
+    }
+    /**
+     * <code>repeated .com.proto.gen.Message queue = 1;</code>
+     */
+    public int getQueueCount() {
+      return queue_.size();
+    }
+    /**
+     * <code>repeated .com.proto.gen.Message queue = 1;</code>
+     */
+    public com.proto.gen.MessageOuterClass.Message getQueue(int index) {
+      return queue_.get(index);
+    }
+    /**
+     * <code>repeated .com.proto.gen.Message queue = 1;</code>
+     */
+    public com.proto.gen.MessageOuterClass.MessageOrBuilder getQueueOrBuilder(
+        int index) {
+      return queue_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < queue_.size(); i++) {
+        output.writeMessage(1, queue_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < queue_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, queue_.get(i));
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.proto.gen.MessageOuterClass.MessageQueue)) {
+        return super.equals(obj);
+      }
+      com.proto.gen.MessageOuterClass.MessageQueue other = (com.proto.gen.MessageOuterClass.MessageQueue) obj;
+
+      boolean result = true;
+      result = result && getQueueList()
+          .equals(other.getQueueList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (getQueueCount() > 0) {
+        hash = (37 * hash) + QUEUE_FIELD_NUMBER;
+        hash = (53 * hash) + getQueueList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.proto.gen.MessageOuterClass.MessageQueue parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.proto.gen.MessageOuterClass.MessageQueue parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.MessageQueue parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.proto.gen.MessageOuterClass.MessageQueue parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.MessageQueue parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.proto.gen.MessageOuterClass.MessageQueue parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.MessageQueue parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.proto.gen.MessageOuterClass.MessageQueue parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.MessageQueue parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.proto.gen.MessageOuterClass.MessageQueue parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.proto.gen.MessageOuterClass.MessageQueue prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.proto.gen.MessageQueue}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.proto.gen.MessageQueue)
+        com.proto.gen.MessageOuterClass.MessageQueueOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_MessageQueue_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_MessageQueue_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.proto.gen.MessageOuterClass.MessageQueue.class, com.proto.gen.MessageOuterClass.MessageQueue.Builder.class);
+      }
+
+      // Construct using com.proto.gen.MessageOuterClass.MessageQueue.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getQueueFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        if (queueBuilder_ == null) {
+          queue_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          queueBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_MessageQueue_descriptor;
+      }
+
+      public com.proto.gen.MessageOuterClass.MessageQueue getDefaultInstanceForType() {
+        return com.proto.gen.MessageOuterClass.MessageQueue.getDefaultInstance();
+      }
+
+      public com.proto.gen.MessageOuterClass.MessageQueue build() {
+        com.proto.gen.MessageOuterClass.MessageQueue result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.proto.gen.MessageOuterClass.MessageQueue buildPartial() {
+        com.proto.gen.MessageOuterClass.MessageQueue result = new com.proto.gen.MessageOuterClass.MessageQueue(this);
+        int from_bitField0_ = bitField0_;
+        if (queueBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            queue_ = java.util.Collections.unmodifiableList(queue_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.queue_ = queue_;
+        } else {
+          result.queue_ = queueBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.proto.gen.MessageOuterClass.MessageQueue) {
+          return mergeFrom((com.proto.gen.MessageOuterClass.MessageQueue)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.proto.gen.MessageOuterClass.MessageQueue other) {
+        if (other == com.proto.gen.MessageOuterClass.MessageQueue.getDefaultInstance()) return this;
+        if (queueBuilder_ == null) {
+          if (!other.queue_.isEmpty()) {
+            if (queue_.isEmpty()) {
+              queue_ = other.queue_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureQueueIsMutable();
+              queue_.addAll(other.queue_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.queue_.isEmpty()) {
+            if (queueBuilder_.isEmpty()) {
+              queueBuilder_.dispose();
+              queueBuilder_ = null;
+              queue_ = other.queue_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              queueBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getQueueFieldBuilder() : null;
+            } else {
+              queueBuilder_.addAllMessages(other.queue_);
+            }
+          }
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.proto.gen.MessageOuterClass.MessageQueue parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.proto.gen.MessageOuterClass.MessageQueue) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.proto.gen.MessageOuterClass.Message> queue_ =
+        java.util.Collections.emptyList();
+      private void ensureQueueIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          queue_ = new java.util.ArrayList<com.proto.gen.MessageOuterClass.Message>(queue_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.proto.gen.MessageOuterClass.Message, com.proto.gen.MessageOuterClass.Message.Builder, com.proto.gen.MessageOuterClass.MessageOrBuilder> queueBuilder_;
+
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public java.util.List<com.proto.gen.MessageOuterClass.Message> getQueueList() {
+        if (queueBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(queue_);
+        } else {
+          return queueBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public int getQueueCount() {
+        if (queueBuilder_ == null) {
+          return queue_.size();
+        } else {
+          return queueBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public com.proto.gen.MessageOuterClass.Message getQueue(int index) {
+        if (queueBuilder_ == null) {
+          return queue_.get(index);
+        } else {
+          return queueBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public Builder setQueue(
+          int index, com.proto.gen.MessageOuterClass.Message value) {
+        if (queueBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureQueueIsMutable();
+          queue_.set(index, value);
+          onChanged();
+        } else {
+          queueBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public Builder setQueue(
+          int index, com.proto.gen.MessageOuterClass.Message.Builder builderForValue) {
+        if (queueBuilder_ == null) {
+          ensureQueueIsMutable();
+          queue_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          queueBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public Builder addQueue(com.proto.gen.MessageOuterClass.Message value) {
+        if (queueBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureQueueIsMutable();
+          queue_.add(value);
+          onChanged();
+        } else {
+          queueBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public Builder addQueue(
+          int index, com.proto.gen.MessageOuterClass.Message value) {
+        if (queueBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureQueueIsMutable();
+          queue_.add(index, value);
+          onChanged();
+        } else {
+          queueBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public Builder addQueue(
+          com.proto.gen.MessageOuterClass.Message.Builder builderForValue) {
+        if (queueBuilder_ == null) {
+          ensureQueueIsMutable();
+          queue_.add(builderForValue.build());
+          onChanged();
+        } else {
+          queueBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public Builder addQueue(
+          int index, com.proto.gen.MessageOuterClass.Message.Builder builderForValue) {
+        if (queueBuilder_ == null) {
+          ensureQueueIsMutable();
+          queue_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          queueBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public Builder addAllQueue(
+          java.lang.Iterable<? extends com.proto.gen.MessageOuterClass.Message> values) {
+        if (queueBuilder_ == null) {
+          ensureQueueIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, queue_);
+          onChanged();
+        } else {
+          queueBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public Builder clearQueue() {
+        if (queueBuilder_ == null) {
+          queue_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          queueBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public Builder removeQueue(int index) {
+        if (queueBuilder_ == null) {
+          ensureQueueIsMutable();
+          queue_.remove(index);
+          onChanged();
+        } else {
+          queueBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public com.proto.gen.MessageOuterClass.Message.Builder getQueueBuilder(
+          int index) {
+        return getQueueFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public com.proto.gen.MessageOuterClass.MessageOrBuilder getQueueOrBuilder(
+          int index) {
+        if (queueBuilder_ == null) {
+          return queue_.get(index);  } else {
+          return queueBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public java.util.List<? extends com.proto.gen.MessageOuterClass.MessageOrBuilder> 
+           getQueueOrBuilderList() {
+        if (queueBuilder_ != null) {
+          return queueBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(queue_);
+        }
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public com.proto.gen.MessageOuterClass.Message.Builder addQueueBuilder() {
+        return getQueueFieldBuilder().addBuilder(
+            com.proto.gen.MessageOuterClass.Message.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public com.proto.gen.MessageOuterClass.Message.Builder addQueueBuilder(
+          int index) {
+        return getQueueFieldBuilder().addBuilder(
+            index, com.proto.gen.MessageOuterClass.Message.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message queue = 1;</code>
+       */
+      public java.util.List<com.proto.gen.MessageOuterClass.Message.Builder> 
+           getQueueBuilderList() {
+        return getQueueFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.proto.gen.MessageOuterClass.Message, com.proto.gen.MessageOuterClass.Message.Builder, com.proto.gen.MessageOuterClass.MessageOrBuilder> 
+          getQueueFieldBuilder() {
+        if (queueBuilder_ == null) {
+          queueBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.proto.gen.MessageOuterClass.Message, com.proto.gen.MessageOuterClass.Message.Builder, com.proto.gen.MessageOuterClass.MessageOrBuilder>(
+                  queue_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          queue_ = null;
+        }
+        return queueBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.proto.gen.MessageQueue)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.proto.gen.MessageQueue)
+    private static final com.proto.gen.MessageOuterClass.MessageQueue DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.proto.gen.MessageOuterClass.MessageQueue();
+    }
+
+    public static com.proto.gen.MessageOuterClass.MessageQueue getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<MessageQueue>
+        PARSER = new com.google.protobuf.AbstractParser<MessageQueue>() {
+      public MessageQueue parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new MessageQueue(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<MessageQueue> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<MessageQueue> getParserForType() {
+      return PARSER;
+    }
+
+    public com.proto.gen.MessageOuterClass.MessageQueue getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ConverationOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.proto.gen.Converation)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional uint64 start_time = 1;</code>
+     */
+    long getStartTime();
+
+    /**
+     * <code>optional string id = 2;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>optional string id = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>repeated string participants = 3;</code>
+     */
+    java.util.List<java.lang.String>
+        getParticipantsList();
+    /**
+     * <code>repeated string participants = 3;</code>
+     */
+    int getParticipantsCount();
+    /**
+     * <code>repeated string participants = 3;</code>
+     */
+    java.lang.String getParticipants(int index);
+    /**
+     * <code>repeated string participants = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getParticipantsBytes(int index);
+
+    /**
+     * <code>repeated int64 participantids = 4;</code>
+     */
+    java.util.List<java.lang.Long> getParticipantidsList();
+    /**
+     * <code>repeated int64 participantids = 4;</code>
+     */
+    int getParticipantidsCount();
+    /**
+     * <code>repeated int64 participantids = 4;</code>
+     */
+    long getParticipantids(int index);
+  }
+  /**
+   * Protobuf type {@code com.proto.gen.Converation}
+   */
+  public  static final class Converation extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.proto.gen.Converation)
+      ConverationOrBuilder {
+    // Use Converation.newBuilder() to construct.
+    private Converation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Converation() {
+      startTime_ = 0L;
+      id_ = "";
+      participants_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      participantids_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private Converation(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              startTime_ = input.readUInt64();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                participants_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              participants_.add(s);
+              break;
+            }
+            case 32: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                participantids_ = new java.util.ArrayList<java.lang.Long>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              participantids_.add(input.readInt64());
+              break;
+            }
+            case 34: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008) && input.getBytesUntilLimit() > 0) {
+                participantids_ = new java.util.ArrayList<java.lang.Long>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                participantids_.add(input.readInt64());
+              }
+              input.popLimit(limit);
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          participants_ = participants_.getUnmodifiableView();
+        }
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          participantids_ = java.util.Collections.unmodifiableList(participantids_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Converation_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Converation_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.proto.gen.MessageOuterClass.Converation.class, com.proto.gen.MessageOuterClass.Converation.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int START_TIME_FIELD_NUMBER = 1;
+    private long startTime_;
+    /**
+     * <code>optional uint64 start_time = 1;</code>
+     */
+    public long getStartTime() {
+      return startTime_;
+    }
+
+    public static final int ID_FIELD_NUMBER = 2;
+    private volatile java.lang.Object id_;
+    /**
+     * <code>optional string id = 2;</code>
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string id = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PARTICIPANTS_FIELD_NUMBER = 3;
+    private com.google.protobuf.LazyStringList participants_;
+    /**
+     * <code>repeated string participants = 3;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getParticipantsList() {
+      return participants_;
+    }
+    /**
+     * <code>repeated string participants = 3;</code>
+     */
+    public int getParticipantsCount() {
+      return participants_.size();
+    }
+    /**
+     * <code>repeated string participants = 3;</code>
+     */
+    public java.lang.String getParticipants(int index) {
+      return participants_.get(index);
+    }
+    /**
+     * <code>repeated string participants = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getParticipantsBytes(int index) {
+      return participants_.getByteString(index);
+    }
+
+    public static final int PARTICIPANTIDS_FIELD_NUMBER = 4;
+    private java.util.List<java.lang.Long> participantids_;
+    /**
+     * <code>repeated int64 participantids = 4;</code>
+     */
+    public java.util.List<java.lang.Long>
+        getParticipantidsList() {
+      return participantids_;
+    }
+    /**
+     * <code>repeated int64 participantids = 4;</code>
+     */
+    public int getParticipantidsCount() {
+      return participantids_.size();
+    }
+    /**
+     * <code>repeated int64 participantids = 4;</code>
+     */
+    public long getParticipantids(int index) {
+      return participantids_.get(index);
+    }
+    private int participantidsMemoizedSerializedSize = -1;
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (startTime_ != 0L) {
+        output.writeUInt64(1, startTime_);
+      }
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, id_);
+      }
+      for (int i = 0; i < participants_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, participants_.getRaw(i));
+      }
+      if (getParticipantidsList().size() > 0) {
+        output.writeUInt32NoTag(34);
+        output.writeUInt32NoTag(participantidsMemoizedSerializedSize);
+      }
+      for (int i = 0; i < participantids_.size(); i++) {
+        output.writeInt64NoTag(participantids_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (startTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, startTime_);
+      }
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, id_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < participants_.size(); i++) {
+          dataSize += computeStringSizeNoTag(participants_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getParticipantsList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < participantids_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt64SizeNoTag(participantids_.get(i));
+        }
+        size += dataSize;
+        if (!getParticipantidsList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        participantidsMemoizedSerializedSize = dataSize;
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.proto.gen.MessageOuterClass.Converation)) {
+        return super.equals(obj);
+      }
+      com.proto.gen.MessageOuterClass.Converation other = (com.proto.gen.MessageOuterClass.Converation) obj;
+
+      boolean result = true;
+      result = result && (getStartTime()
+          == other.getStartTime());
+      result = result && getId()
+          .equals(other.getId());
+      result = result && getParticipantsList()
+          .equals(other.getParticipantsList());
+      result = result && getParticipantidsList()
+          .equals(other.getParticipantidsList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + START_TIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getStartTime());
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
+      if (getParticipantsCount() > 0) {
+        hash = (37 * hash) + PARTICIPANTS_FIELD_NUMBER;
+        hash = (53 * hash) + getParticipantsList().hashCode();
+      }
+      if (getParticipantidsCount() > 0) {
+        hash = (37 * hash) + PARTICIPANTIDS_FIELD_NUMBER;
+        hash = (53 * hash) + getParticipantidsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.Converation parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.Converation parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.Converation parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.proto.gen.MessageOuterClass.Converation parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.proto.gen.MessageOuterClass.Converation prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.proto.gen.Converation}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.proto.gen.Converation)
+        com.proto.gen.MessageOuterClass.ConverationOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Converation_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Converation_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.proto.gen.MessageOuterClass.Converation.class, com.proto.gen.MessageOuterClass.Converation.Builder.class);
+      }
+
+      // Construct using com.proto.gen.MessageOuterClass.Converation.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        startTime_ = 0L;
+
+        id_ = "";
+
+        participants_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        participantids_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Converation_descriptor;
+      }
+
+      public com.proto.gen.MessageOuterClass.Converation getDefaultInstanceForType() {
+        return com.proto.gen.MessageOuterClass.Converation.getDefaultInstance();
+      }
+
+      public com.proto.gen.MessageOuterClass.Converation build() {
+        com.proto.gen.MessageOuterClass.Converation result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.proto.gen.MessageOuterClass.Converation buildPartial() {
+        com.proto.gen.MessageOuterClass.Converation result = new com.proto.gen.MessageOuterClass.Converation(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.startTime_ = startTime_;
+        result.id_ = id_;
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          participants_ = participants_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.participants_ = participants_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          participantids_ = java.util.Collections.unmodifiableList(participantids_);
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.participantids_ = participantids_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.proto.gen.MessageOuterClass.Converation) {
+          return mergeFrom((com.proto.gen.MessageOuterClass.Converation)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.proto.gen.MessageOuterClass.Converation other) {
+        if (other == com.proto.gen.MessageOuterClass.Converation.getDefaultInstance()) return this;
+        if (other.getStartTime() != 0L) {
+          setStartTime(other.getStartTime());
+        }
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
+        }
+        if (!other.participants_.isEmpty()) {
+          if (participants_.isEmpty()) {
+            participants_ = other.participants_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            ensureParticipantsIsMutable();
+            participants_.addAll(other.participants_);
+          }
+          onChanged();
+        }
+        if (!other.participantids_.isEmpty()) {
+          if (participantids_.isEmpty()) {
+            participantids_ = other.participantids_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+          } else {
+            ensureParticipantidsIsMutable();
+            participantids_.addAll(other.participantids_);
+          }
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.proto.gen.MessageOuterClass.Converation parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.proto.gen.MessageOuterClass.Converation) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private long startTime_ ;
+      /**
+       * <code>optional uint64 start_time = 1;</code>
+       */
+      public long getStartTime() {
+        return startTime_;
+      }
+      /**
+       * <code>optional uint64 start_time = 1;</code>
+       */
+      public Builder setStartTime(long value) {
+        
+        startTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint64 start_time = 1;</code>
+       */
+      public Builder clearStartTime() {
+        
+        startTime_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object id_ = "";
+      /**
+       * <code>optional string id = 2;</code>
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string id = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string id = 2;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string id = 2;</code>
+       */
+      public Builder clearId() {
+        
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string id = 2;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringList participants_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureParticipantsIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          participants_ = new com.google.protobuf.LazyStringArrayList(participants_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+      /**
+       * <code>repeated string participants = 3;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getParticipantsList() {
+        return participants_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string participants = 3;</code>
+       */
+      public int getParticipantsCount() {
+        return participants_.size();
+      }
+      /**
+       * <code>repeated string participants = 3;</code>
+       */
+      public java.lang.String getParticipants(int index) {
+        return participants_.get(index);
+      }
+      /**
+       * <code>repeated string participants = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getParticipantsBytes(int index) {
+        return participants_.getByteString(index);
+      }
+      /**
+       * <code>repeated string participants = 3;</code>
+       */
+      public Builder setParticipants(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureParticipantsIsMutable();
+        participants_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string participants = 3;</code>
+       */
+      public Builder addParticipants(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureParticipantsIsMutable();
+        participants_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string participants = 3;</code>
+       */
+      public Builder addAllParticipants(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureParticipantsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, participants_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string participants = 3;</code>
+       */
+      public Builder clearParticipants() {
+        participants_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string participants = 3;</code>
+       */
+      public Builder addParticipantsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureParticipantsIsMutable();
+        participants_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<java.lang.Long> participantids_ = java.util.Collections.emptyList();
+      private void ensureParticipantidsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          participantids_ = new java.util.ArrayList<java.lang.Long>(participantids_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+      /**
+       * <code>repeated int64 participantids = 4;</code>
+       */
+      public java.util.List<java.lang.Long>
+          getParticipantidsList() {
+        return java.util.Collections.unmodifiableList(participantids_);
+      }
+      /**
+       * <code>repeated int64 participantids = 4;</code>
+       */
+      public int getParticipantidsCount() {
+        return participantids_.size();
+      }
+      /**
+       * <code>repeated int64 participantids = 4;</code>
+       */
+      public long getParticipantids(int index) {
+        return participantids_.get(index);
+      }
+      /**
+       * <code>repeated int64 participantids = 4;</code>
+       */
+      public Builder setParticipantids(
+          int index, long value) {
+        ensureParticipantidsIsMutable();
+        participantids_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int64 participantids = 4;</code>
+       */
+      public Builder addParticipantids(long value) {
+        ensureParticipantidsIsMutable();
+        participantids_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int64 participantids = 4;</code>
+       */
+      public Builder addAllParticipantids(
+          java.lang.Iterable<? extends java.lang.Long> values) {
+        ensureParticipantidsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, participantids_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int64 participantids = 4;</code>
+       */
+      public Builder clearParticipantids() {
+        participantids_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.proto.gen.Converation)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.proto.gen.Converation)
+    private static final com.proto.gen.MessageOuterClass.Converation DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.proto.gen.MessageOuterClass.Converation();
+    }
+
+    public static com.proto.gen.MessageOuterClass.Converation getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Converation>
+        PARSER = new com.google.protobuf.AbstractParser<Converation>() {
+      public Converation parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Converation(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Converation> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Converation> getParserForType() {
+      return PARSER;
+    }
+
+    public com.proto.gen.MessageOuterClass.Converation getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_proto_gen_Message_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_proto_gen_Message_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_proto_gen_MessageQueue_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_proto_gen_MessageQueue_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_proto_gen_Converation_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_proto_gen_Converation_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1470,14 +3285,18 @@ public final class MessageOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rMessage.proto\022\rcom.proto.gen\"\354\001\n\007Messa" +
+      "\n\rMessage.proto\022\rcom.proto.gen\"\205\002\n\007Messa" +
       "ge\022\025\n\rcreation_time\030\001 \001(\004\022\014\n\004text\030\002 \001(\t\022" +
       "\027\n\017sender_username\030\003 \001(\t\022\025\n\rsender_useri" +
       "d\030\004 \001(\005\022\025\n\rtime_recieved\030\005 \001(\004\022\032\n\022receiv" +
       "ers_username\030\006 \003(\t\022\031\n\021receivers_userids\030" +
       "\007 \003(\005\022\014\n\004read\030\010 \001(\010\0220\n\014service_type\030\t \001(" +
-      "\0162\032.com.proto.gen.ServiceType*\027\n\013Service" +
-      "Type\022\010\n\004TEXT\020\000b\006proto3"
+      "\0162\032.com.proto.gen.ServiceType\022\027\n\017convers" +
+      "ation_id\030\n \001(\t\"5\n\014MessageQueue\022%\n\005queue\030" +
+      "\001 \003(\0132\026.com.proto.gen.Message\"[\n\013Convera" +
+      "tion\022\022\n\nstart_time\030\001 \001(\004\022\n\n\002id\030\002 \001(\t\022\024\n\014",
+      "participants\030\003 \003(\t\022\026\n\016participantids\030\004 \003" +
+      "(\003*\027\n\013ServiceType\022\010\n\004TEXT\020\000b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1496,7 +3315,19 @@ public final class MessageOuterClass {
     internal_static_com_proto_gen_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_proto_gen_Message_descriptor,
-        new java.lang.String[] { "CreationTime", "Text", "SenderUsername", "SenderUserid", "TimeRecieved", "ReceiversUsername", "ReceiversUserids", "Read", "ServiceType", });
+        new java.lang.String[] { "CreationTime", "Text", "SenderUsername", "SenderUserid", "TimeRecieved", "ReceiversUsername", "ReceiversUserids", "Read", "ServiceType", "ConversationId", });
+    internal_static_com_proto_gen_MessageQueue_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_com_proto_gen_MessageQueue_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_proto_gen_MessageQueue_descriptor,
+        new java.lang.String[] { "Queue", });
+    internal_static_com_proto_gen_Converation_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_com_proto_gen_Converation_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_proto_gen_Converation_descriptor,
+        new java.lang.String[] { "StartTime", "Id", "Participants", "Participantids", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
