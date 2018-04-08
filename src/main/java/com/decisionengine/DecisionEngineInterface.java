@@ -1,5 +1,7 @@
 package com.decisionengine;
 
+import edu.stanford.nlp.pipeline.CoreDocument;
+
 public interface DecisionEngineInterface {
-    public String process(String str);
+    public String process(CoreDocument doc);
 }

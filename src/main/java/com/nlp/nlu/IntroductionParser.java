@@ -1,6 +1,10 @@
 package com.nlp.nlu;
 
+import com.config.PrimaryConfig;
 import edu.stanford.nlp.pipeline.*;
+import edu.stanford.nlp.simple.Document;
+import edu.stanford.nlp.util.CoreMap;
+
 import java.util.*;
 
 public class IntroductionParser extends ParseEngineType {
@@ -31,6 +35,7 @@ public class IntroductionParser extends ParseEngineType {
 
         // set a property for an annotator, in this case the coref annotator is being set to use the neural algorithm
         props.setProperty("coref.algorithm", "neural");
+        props.put("regexner.mapping", PrimaryConfig.PREDEFINED_STATEMENTS_LOC);
 
         // build pipeline
         mPipeline = new StanfordCoreNLP(props);

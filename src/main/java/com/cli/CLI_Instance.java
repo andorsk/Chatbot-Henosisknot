@@ -9,6 +9,7 @@ import com.proto.gen.MessageOuterClass;
 public class CLI_Instance {
 
     protected StatementProcessingPipeline mPipeline;
+    
     private static void main(String args[]){
     }
 
