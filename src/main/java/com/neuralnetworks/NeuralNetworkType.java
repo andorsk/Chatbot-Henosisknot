@@ -1,4 +1,5 @@
 package com.neuralnetworks;
 
-public class NeuralNetworkType {
+public abstract class NeuralNetworkType implements NeuralNetworkInterface {
+
 }
