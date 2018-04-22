@@ -10,15 +10,25 @@ import java.util.*;
 public class IntroductionParser extends ParseEngineType {
 
     private StanfordCoreNLP mPipeline;
+    private volatile boolean isReady = false;
+
+    public StanfordCoreNLP getCurrentPipeline(){
+        return mPipeline;
+    }
 
     public IntroductionParser(String s){
         System.out.println("Intializing pipeline in Introduction Parser");
         initPipeline(s);
     }
 
+    public boolean isReady(){
+        return this.isReady;
+    }
+
     public IntroductionParser(){
         System.out.println("Intializing pipeline in Introduction Parser");
         initPipeline();
+        isReady = true;
     }
 
     private void initPipeline() {

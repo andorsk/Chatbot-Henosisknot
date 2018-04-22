@@ -6,6 +6,7 @@ import edu.stanford.nlp.simple.Document;
 
 public interface ParsingInterface {
 
+    public boolean isReady();
     public abstract CoreDocument parse(String text);
 
 }

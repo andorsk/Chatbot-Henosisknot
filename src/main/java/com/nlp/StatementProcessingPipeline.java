@@ -2,32 +2,45 @@ package com.nlp;
 
 import com.config.StateTracker;
 import com.nlp.nlu.IntroductionParser;
+import com.nlp.nlu.ParseEngineType;
 import com.nlp.nlu.ParsingEngine;
 import com.proto.gen.MessageOuterClass;
 import com.utilities.StringPreprocessors;
 import edu.stanford.nlp.pipeline.CoreDocument;
-import edu.stanford.nlp.simple.Document;
-import edu.stanford.nlp.simple.Sentence;
-import play.api.libs.iteratee.Parsing;
+
+import java.util.HashMap;
 
 
-public class StatementProcessingPipeline  {
+public class StatementProcessingPipeline {
     ParsingEngine mParsingEngine;
+    HashMap<String, ParseEngineType> engines = new HashMap<String, ParseEngineType>();
 
     public StatementProcessingPipeline(){
 
     }
 
+    public ParsingEngine getParsingEngine(){
+        return this.mParsingEngine;
+    }
+
+    //Initalize all the engines. Set the introduction parser initially.
     public void start(){
         System.out.println("Starting up parsers");
         this.mParsingEngine = new ParsingEngine();
+        Thread initThread = new Thread(new Initalizer(this));
+        initThread.start();
     }
 
-    public void process(MessageOuterClass.Message message){
+    private void initEngines(){
+        engines.put("introduction", new IntroductionParser("tokenize,ssplit,pos,lemma,ner"));//tokenize,ssplit,pos,lemma,ner,regexner
+    }
+
+    public String process(MessageOuterClass.Message message){
         String text = message.getText();
         text = StringPreprocessors.cleanWhiteSpaces(text);
         CoreDocument doc = parse(text);
         match(doc);
+        return generateResponse();
     }
 
     /**
@@ -45,7 +58,7 @@ public class StatementProcessingPipeline  {
         switch(state) {
             case INTRODUCTION:
                 System.out.println("Introduction");
-                pe.setParsingType(new IntroductionParser("tokenize,ssplit,pos,lemma,ner,regexner"));
+                pe.setParsingType(engines.get("introduction"));
                 break;
             case DIALOG:
                 System.out.println("Dialog");
@@ -69,6 +82,25 @@ public class StatementProcessingPipeline  {
     }
 
     public String generateResponse(){
-        return "";
+        return "This is a response";
+    }
+
+    /**
+     * Sets up the engines in the background because it takes a while.
+     */
+    private class Initalizer implements Runnable {
+        StatementProcessingPipeline mSPP;
+
+
+        public Initalizer(StatementProcessingPipeline sp){
+         mSPP = sp;
+        }
+
+        @Override
+        public void run() {
+            mSPP.initEngines();
+            mSPP.mParsingEngine.setParsingType(engines.get("introduction"));
+        }
     }
 }
+
