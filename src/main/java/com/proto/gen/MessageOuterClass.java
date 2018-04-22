@@ -15,6 +15,211 @@ public final class MessageOuterClass {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   /**
+   * Protobuf enum {@code com.proto.gen.MessageQualifier}
+   */
+  public enum MessageQualifier
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>UTTERANCE = 0;</code>
+     */
+    UTTERANCE(0),
+    /**
+     * <code>RESPONSE = 1;</code>
+     */
+    RESPONSE(1),
+    /**
+     * <code>FOLLOW_UP = 2;</code>
+     */
+    FOLLOW_UP(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UTTERANCE = 0;</code>
+     */
+    public static final int UTTERANCE_VALUE = 0;
+    /**
+     * <code>RESPONSE = 1;</code>
+     */
+    public static final int RESPONSE_VALUE = 1;
+    /**
+     * <code>FOLLOW_UP = 2;</code>
+     */
+    public static final int FOLLOW_UP_VALUE = 2;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static MessageQualifier valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static MessageQualifier forNumber(int value) {
+      switch (value) {
+        case 0: return UTTERANCE;
+        case 1: return RESPONSE;
+        case 2: return FOLLOW_UP;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<MessageQualifier>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        MessageQualifier> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<MessageQualifier>() {
+            public MessageQualifier findValueByNumber(int number) {
+              return MessageQualifier.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.proto.gen.MessageOuterClass.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final MessageQualifier[] VALUES = values();
+
+    public static MessageQualifier valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private MessageQualifier(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:com.proto.gen.MessageQualifier)
+  }
+
+  /**
+   * Protobuf enum {@code com.proto.gen.MessageType}
+   */
+  public enum MessageType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>RECIEVE = 0;</code>
+     */
+    RECIEVE(0),
+    /**
+     * <code>POST = 1;</code>
+     */
+    POST(1),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>RECIEVE = 0;</code>
+     */
+    public static final int RECIEVE_VALUE = 0;
+    /**
+     * <code>POST = 1;</code>
+     */
+    public static final int POST_VALUE = 1;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static MessageType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static MessageType forNumber(int value) {
+      switch (value) {
+        case 0: return RECIEVE;
+        case 1: return POST;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<MessageType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        MessageType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<MessageType>() {
+            public MessageType findValueByNumber(int number) {
+              return MessageType.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.proto.gen.MessageOuterClass.getDescriptor().getEnumTypes().get(1);
+    }
+
+    private static final MessageType[] VALUES = values();
+
+    public static MessageType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private MessageType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:com.proto.gen.MessageType)
+  }
+
+  /**
    * Protobuf enum {@code com.proto.gen.ServiceType}
    */
   public enum ServiceType
@@ -77,7 +282,7 @@ public final class MessageOuterClass {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.proto.gen.MessageOuterClass.getDescriptor().getEnumTypes().get(0);
+      return com.proto.gen.MessageOuterClass.getDescriptor().getEnumTypes().get(2);
     }
 
     private static final ServiceType[] VALUES = values();
@@ -197,6 +402,24 @@ public final class MessageOuterClass {
      */
     com.google.protobuf.ByteString
         getConversationIdBytes();
+
+    /**
+     * <code>optional .com.proto.gen.MessageType message_type = 11;</code>
+     */
+    int getMessageTypeValue();
+    /**
+     * <code>optional .com.proto.gen.MessageType message_type = 11;</code>
+     */
+    com.proto.gen.MessageOuterClass.MessageType getMessageType();
+
+    /**
+     * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
+     */
+    int getMessageQualifierValue();
+    /**
+     * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
+     */
+    com.proto.gen.MessageOuterClass.MessageQualifier getMessageQualifier();
   }
   /**
    * Protobuf type {@code com.proto.gen.Message}
@@ -220,6 +443,8 @@ public final class MessageOuterClass {
       read_ = false;
       serviceType_ = 0;
       conversationId_ = "";
+      messageType_ = 0;
+      messageQualifier_ = 0;
     }
 
     @java.lang.Override
@@ -319,6 +544,18 @@ public final class MessageOuterClass {
               java.lang.String s = input.readStringRequireUtf8();
 
               conversationId_ = s;
+              break;
+            }
+            case 88: {
+              int rawValue = input.readEnum();
+
+              messageType_ = rawValue;
+              break;
+            }
+            case 96: {
+              int rawValue = input.readEnum();
+
+              messageQualifier_ = rawValue;
               break;
             }
           }
@@ -557,6 +794,38 @@ public final class MessageOuterClass {
       }
     }
 
+    public static final int MESSAGE_TYPE_FIELD_NUMBER = 11;
+    private int messageType_;
+    /**
+     * <code>optional .com.proto.gen.MessageType message_type = 11;</code>
+     */
+    public int getMessageTypeValue() {
+      return messageType_;
+    }
+    /**
+     * <code>optional .com.proto.gen.MessageType message_type = 11;</code>
+     */
+    public com.proto.gen.MessageOuterClass.MessageType getMessageType() {
+      com.proto.gen.MessageOuterClass.MessageType result = com.proto.gen.MessageOuterClass.MessageType.valueOf(messageType_);
+      return result == null ? com.proto.gen.MessageOuterClass.MessageType.UNRECOGNIZED : result;
+    }
+
+    public static final int MESSAGE_QUALIFIER_FIELD_NUMBER = 12;
+    private int messageQualifier_;
+    /**
+     * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
+     */
+    public int getMessageQualifierValue() {
+      return messageQualifier_;
+    }
+    /**
+     * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
+     */
+    public com.proto.gen.MessageOuterClass.MessageQualifier getMessageQualifier() {
+      com.proto.gen.MessageOuterClass.MessageQualifier result = com.proto.gen.MessageOuterClass.MessageQualifier.valueOf(messageQualifier_);
+      return result == null ? com.proto.gen.MessageOuterClass.MessageQualifier.UNRECOGNIZED : result;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -603,6 +872,12 @@ public final class MessageOuterClass {
       }
       if (!getConversationIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 10, conversationId_);
+      }
+      if (messageType_ != com.proto.gen.MessageOuterClass.MessageType.RECIEVE.getNumber()) {
+        output.writeEnum(11, messageType_);
+      }
+      if (messageQualifier_ != com.proto.gen.MessageOuterClass.MessageQualifier.UTTERANCE.getNumber()) {
+        output.writeEnum(12, messageQualifier_);
       }
     }
 
@@ -662,6 +937,14 @@ public final class MessageOuterClass {
       if (!getConversationIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, conversationId_);
       }
+      if (messageType_ != com.proto.gen.MessageOuterClass.MessageType.RECIEVE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(11, messageType_);
+      }
+      if (messageQualifier_ != com.proto.gen.MessageOuterClass.MessageQualifier.UTTERANCE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(12, messageQualifier_);
+      }
       memoizedSize = size;
       return size;
     }
@@ -697,6 +980,8 @@ public final class MessageOuterClass {
       result = result && serviceType_ == other.serviceType_;
       result = result && getConversationId()
           .equals(other.getConversationId());
+      result = result && messageType_ == other.messageType_;
+      result = result && messageQualifier_ == other.messageQualifier_;
       return result;
     }
 
@@ -734,6 +1019,10 @@ public final class MessageOuterClass {
       hash = (53 * hash) + serviceType_;
       hash = (37 * hash) + CONVERSATION_ID_FIELD_NUMBER;
       hash = (53 * hash) + getConversationId().hashCode();
+      hash = (37 * hash) + MESSAGE_TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + messageType_;
+      hash = (37 * hash) + MESSAGE_QUALIFIER_FIELD_NUMBER;
+      hash = (53 * hash) + messageQualifier_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -872,6 +1161,10 @@ public final class MessageOuterClass {
 
         conversationId_ = "";
 
+        messageType_ = 0;
+
+        messageQualifier_ = 0;
+
         return this;
       }
 
@@ -914,6 +1207,8 @@ public final class MessageOuterClass {
         result.read_ = read_;
         result.serviceType_ = serviceType_;
         result.conversationId_ = conversationId_;
+        result.messageType_ = messageType_;
+        result.messageQualifier_ = messageQualifier_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1002,6 +1297,12 @@ public final class MessageOuterClass {
         if (!other.getConversationId().isEmpty()) {
           conversationId_ = other.conversationId_;
           onChanged();
+        }
+        if (other.messageType_ != 0) {
+          setMessageTypeValue(other.getMessageTypeValue());
+        }
+        if (other.messageQualifier_ != 0) {
+          setMessageQualifierValue(other.getMessageQualifierValue());
         }
         onChanged();
         return this;
@@ -1541,6 +1842,94 @@ public final class MessageOuterClass {
   checkByteStringIsUtf8(value);
         
         conversationId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int messageType_ = 0;
+      /**
+       * <code>optional .com.proto.gen.MessageType message_type = 11;</code>
+       */
+      public int getMessageTypeValue() {
+        return messageType_;
+      }
+      /**
+       * <code>optional .com.proto.gen.MessageType message_type = 11;</code>
+       */
+      public Builder setMessageTypeValue(int value) {
+        messageType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .com.proto.gen.MessageType message_type = 11;</code>
+       */
+      public com.proto.gen.MessageOuterClass.MessageType getMessageType() {
+        com.proto.gen.MessageOuterClass.MessageType result = com.proto.gen.MessageOuterClass.MessageType.valueOf(messageType_);
+        return result == null ? com.proto.gen.MessageOuterClass.MessageType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>optional .com.proto.gen.MessageType message_type = 11;</code>
+       */
+      public Builder setMessageType(com.proto.gen.MessageOuterClass.MessageType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        messageType_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .com.proto.gen.MessageType message_type = 11;</code>
+       */
+      public Builder clearMessageType() {
+        
+        messageType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int messageQualifier_ = 0;
+      /**
+       * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
+       */
+      public int getMessageQualifierValue() {
+        return messageQualifier_;
+      }
+      /**
+       * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
+       */
+      public Builder setMessageQualifierValue(int value) {
+        messageQualifier_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
+       */
+      public com.proto.gen.MessageOuterClass.MessageQualifier getMessageQualifier() {
+        com.proto.gen.MessageOuterClass.MessageQualifier result = com.proto.gen.MessageOuterClass.MessageQualifier.valueOf(messageQualifier_);
+        return result == null ? com.proto.gen.MessageOuterClass.MessageQualifier.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
+       */
+      public Builder setMessageQualifier(com.proto.gen.MessageOuterClass.MessageQualifier value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        messageQualifier_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
+       */
+      public Builder clearMessageQualifier() {
+        
+        messageQualifier_ = 0;
         onChanged();
         return this;
       }
@@ -2378,6 +2767,30 @@ public final class MessageOuterClass {
      * <code>repeated int64 participantids = 4;</code>
      */
     long getParticipantids(int index);
+
+    /**
+     * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+     */
+    java.util.List<com.proto.gen.MessageOuterClass.Message> 
+        getDialogList();
+    /**
+     * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+     */
+    com.proto.gen.MessageOuterClass.Message getDialog(int index);
+    /**
+     * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+     */
+    int getDialogCount();
+    /**
+     * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+     */
+    java.util.List<? extends com.proto.gen.MessageOuterClass.MessageOrBuilder> 
+        getDialogOrBuilderList();
+    /**
+     * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+     */
+    com.proto.gen.MessageOuterClass.MessageOrBuilder getDialogOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code com.proto.gen.Converation}
@@ -2395,6 +2808,7 @@ public final class MessageOuterClass {
       id_ = "";
       participants_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       participantids_ = java.util.Collections.emptyList();
+      dialog_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -2463,6 +2877,15 @@ public final class MessageOuterClass {
               input.popLimit(limit);
               break;
             }
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                dialog_ = new java.util.ArrayList<com.proto.gen.MessageOuterClass.Message>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              dialog_.add(
+                  input.readMessage(com.proto.gen.MessageOuterClass.Message.parser(), extensionRegistry));
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2476,6 +2899,9 @@ public final class MessageOuterClass {
         }
         if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
           participantids_ = java.util.Collections.unmodifiableList(participantids_);
+        }
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          dialog_ = java.util.Collections.unmodifiableList(dialog_);
         }
         makeExtensionsImmutable();
       }
@@ -2588,6 +3014,41 @@ public final class MessageOuterClass {
     }
     private int participantidsMemoizedSerializedSize = -1;
 
+    public static final int DIALOG_FIELD_NUMBER = 5;
+    private java.util.List<com.proto.gen.MessageOuterClass.Message> dialog_;
+    /**
+     * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+     */
+    public java.util.List<com.proto.gen.MessageOuterClass.Message> getDialogList() {
+      return dialog_;
+    }
+    /**
+     * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+     */
+    public java.util.List<? extends com.proto.gen.MessageOuterClass.MessageOrBuilder> 
+        getDialogOrBuilderList() {
+      return dialog_;
+    }
+    /**
+     * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+     */
+    public int getDialogCount() {
+      return dialog_.size();
+    }
+    /**
+     * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+     */
+    public com.proto.gen.MessageOuterClass.Message getDialog(int index) {
+      return dialog_.get(index);
+    }
+    /**
+     * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+     */
+    public com.proto.gen.MessageOuterClass.MessageOrBuilder getDialogOrBuilder(
+        int index) {
+      return dialog_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -2616,6 +3077,9 @@ public final class MessageOuterClass {
       }
       for (int i = 0; i < participantids_.size(); i++) {
         output.writeInt64NoTag(participantids_.get(i));
+      }
+      for (int i = 0; i < dialog_.size(); i++) {
+        output.writeMessage(5, dialog_.get(i));
       }
     }
 
@@ -2653,6 +3117,10 @@ public final class MessageOuterClass {
         }
         participantidsMemoizedSerializedSize = dataSize;
       }
+      for (int i = 0; i < dialog_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, dialog_.get(i));
+      }
       memoizedSize = size;
       return size;
     }
@@ -2677,6 +3145,8 @@ public final class MessageOuterClass {
           .equals(other.getParticipantsList());
       result = result && getParticipantidsList()
           .equals(other.getParticipantidsList());
+      result = result && getDialogList()
+          .equals(other.getDialogList());
       return result;
     }
 
@@ -2699,6 +3169,10 @@ public final class MessageOuterClass {
       if (getParticipantidsCount() > 0) {
         hash = (37 * hash) + PARTICIPANTIDS_FIELD_NUMBER;
         hash = (53 * hash) + getParticipantidsList().hashCode();
+      }
+      if (getDialogCount() > 0) {
+        hash = (37 * hash) + DIALOG_FIELD_NUMBER;
+        hash = (53 * hash) + getDialogList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -2814,6 +3288,7 @@ public final class MessageOuterClass {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getDialogFieldBuilder();
         }
       }
       public Builder clear() {
@@ -2826,6 +3301,12 @@ public final class MessageOuterClass {
         bitField0_ = (bitField0_ & ~0x00000004);
         participantids_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000008);
+        if (dialogBuilder_ == null) {
+          dialog_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+        } else {
+          dialogBuilder_.clear();
+        }
         return this;
       }
 
@@ -2862,6 +3343,15 @@ public final class MessageOuterClass {
           bitField0_ = (bitField0_ & ~0x00000008);
         }
         result.participantids_ = participantids_;
+        if (dialogBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010)) {
+            dialog_ = java.util.Collections.unmodifiableList(dialog_);
+            bitField0_ = (bitField0_ & ~0x00000010);
+          }
+          result.dialog_ = dialog_;
+        } else {
+          result.dialog_ = dialogBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2930,6 +3420,32 @@ public final class MessageOuterClass {
             participantids_.addAll(other.participantids_);
           }
           onChanged();
+        }
+        if (dialogBuilder_ == null) {
+          if (!other.dialog_.isEmpty()) {
+            if (dialog_.isEmpty()) {
+              dialog_ = other.dialog_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+            } else {
+              ensureDialogIsMutable();
+              dialog_.addAll(other.dialog_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.dialog_.isEmpty()) {
+            if (dialogBuilder_.isEmpty()) {
+              dialogBuilder_.dispose();
+              dialogBuilder_ = null;
+              dialog_ = other.dialog_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+              dialogBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getDialogFieldBuilder() : null;
+            } else {
+              dialogBuilder_.addAllMessages(other.dialog_);
+            }
+          }
         }
         onChanged();
         return this;
@@ -3212,6 +3728,246 @@ public final class MessageOuterClass {
         onChanged();
         return this;
       }
+
+      private java.util.List<com.proto.gen.MessageOuterClass.Message> dialog_ =
+        java.util.Collections.emptyList();
+      private void ensureDialogIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          dialog_ = new java.util.ArrayList<com.proto.gen.MessageOuterClass.Message>(dialog_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.proto.gen.MessageOuterClass.Message, com.proto.gen.MessageOuterClass.Message.Builder, com.proto.gen.MessageOuterClass.MessageOrBuilder> dialogBuilder_;
+
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public java.util.List<com.proto.gen.MessageOuterClass.Message> getDialogList() {
+        if (dialogBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(dialog_);
+        } else {
+          return dialogBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public int getDialogCount() {
+        if (dialogBuilder_ == null) {
+          return dialog_.size();
+        } else {
+          return dialogBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public com.proto.gen.MessageOuterClass.Message getDialog(int index) {
+        if (dialogBuilder_ == null) {
+          return dialog_.get(index);
+        } else {
+          return dialogBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public Builder setDialog(
+          int index, com.proto.gen.MessageOuterClass.Message value) {
+        if (dialogBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDialogIsMutable();
+          dialog_.set(index, value);
+          onChanged();
+        } else {
+          dialogBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public Builder setDialog(
+          int index, com.proto.gen.MessageOuterClass.Message.Builder builderForValue) {
+        if (dialogBuilder_ == null) {
+          ensureDialogIsMutable();
+          dialog_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          dialogBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public Builder addDialog(com.proto.gen.MessageOuterClass.Message value) {
+        if (dialogBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDialogIsMutable();
+          dialog_.add(value);
+          onChanged();
+        } else {
+          dialogBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public Builder addDialog(
+          int index, com.proto.gen.MessageOuterClass.Message value) {
+        if (dialogBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDialogIsMutable();
+          dialog_.add(index, value);
+          onChanged();
+        } else {
+          dialogBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public Builder addDialog(
+          com.proto.gen.MessageOuterClass.Message.Builder builderForValue) {
+        if (dialogBuilder_ == null) {
+          ensureDialogIsMutable();
+          dialog_.add(builderForValue.build());
+          onChanged();
+        } else {
+          dialogBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public Builder addDialog(
+          int index, com.proto.gen.MessageOuterClass.Message.Builder builderForValue) {
+        if (dialogBuilder_ == null) {
+          ensureDialogIsMutable();
+          dialog_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          dialogBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public Builder addAllDialog(
+          java.lang.Iterable<? extends com.proto.gen.MessageOuterClass.Message> values) {
+        if (dialogBuilder_ == null) {
+          ensureDialogIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, dialog_);
+          onChanged();
+        } else {
+          dialogBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public Builder clearDialog() {
+        if (dialogBuilder_ == null) {
+          dialog_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+          onChanged();
+        } else {
+          dialogBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public Builder removeDialog(int index) {
+        if (dialogBuilder_ == null) {
+          ensureDialogIsMutable();
+          dialog_.remove(index);
+          onChanged();
+        } else {
+          dialogBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public com.proto.gen.MessageOuterClass.Message.Builder getDialogBuilder(
+          int index) {
+        return getDialogFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public com.proto.gen.MessageOuterClass.MessageOrBuilder getDialogOrBuilder(
+          int index) {
+        if (dialogBuilder_ == null) {
+          return dialog_.get(index);  } else {
+          return dialogBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public java.util.List<? extends com.proto.gen.MessageOuterClass.MessageOrBuilder> 
+           getDialogOrBuilderList() {
+        if (dialogBuilder_ != null) {
+          return dialogBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(dialog_);
+        }
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public com.proto.gen.MessageOuterClass.Message.Builder addDialogBuilder() {
+        return getDialogFieldBuilder().addBuilder(
+            com.proto.gen.MessageOuterClass.Message.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public com.proto.gen.MessageOuterClass.Message.Builder addDialogBuilder(
+          int index) {
+        return getDialogFieldBuilder().addBuilder(
+            index, com.proto.gen.MessageOuterClass.Message.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.proto.gen.Message dialog = 5;</code>
+       */
+      public java.util.List<com.proto.gen.MessageOuterClass.Message.Builder> 
+           getDialogBuilderList() {
+        return getDialogFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.proto.gen.MessageOuterClass.Message, com.proto.gen.MessageOuterClass.Message.Builder, com.proto.gen.MessageOuterClass.MessageOrBuilder> 
+          getDialogFieldBuilder() {
+        if (dialogBuilder_ == null) {
+          dialogBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.proto.gen.MessageOuterClass.Message, com.proto.gen.MessageOuterClass.Message.Builder, com.proto.gen.MessageOuterClass.MessageOrBuilder>(
+                  dialog_,
+                  ((bitField0_ & 0x00000010) == 0x00000010),
+                  getParentForChildren(),
+                  isClean());
+          dialog_ = null;
+        }
+        return dialogBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -3261,6 +4017,711 @@ public final class MessageOuterClass {
 
   }
 
+  public interface UtterenceMatchOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.proto.gen.UtterenceMatch)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated float utterance = 1;</code>
+     */
+    java.util.List<java.lang.Float> getUtteranceList();
+    /**
+     * <code>repeated float utterance = 1;</code>
+     */
+    int getUtteranceCount();
+    /**
+     * <code>repeated float utterance = 1;</code>
+     */
+    float getUtterance(int index);
+
+    /**
+     * <code>repeated float response = 2;</code>
+     */
+    java.util.List<java.lang.Float> getResponseList();
+    /**
+     * <code>repeated float response = 2;</code>
+     */
+    int getResponseCount();
+    /**
+     * <code>repeated float response = 2;</code>
+     */
+    float getResponse(int index);
+  }
+  /**
+   * Protobuf type {@code com.proto.gen.UtterenceMatch}
+   */
+  public  static final class UtterenceMatch extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.proto.gen.UtterenceMatch)
+      UtterenceMatchOrBuilder {
+    // Use UtterenceMatch.newBuilder() to construct.
+    private UtterenceMatch(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UtterenceMatch() {
+      utterance_ = java.util.Collections.emptyList();
+      response_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private UtterenceMatch(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 13: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                utterance_ = new java.util.ArrayList<java.lang.Float>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              utterance_.add(input.readFloat());
+              break;
+            }
+            case 10: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001) && input.getBytesUntilLimit() > 0) {
+                utterance_ = new java.util.ArrayList<java.lang.Float>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                utterance_.add(input.readFloat());
+              }
+              input.popLimit(limit);
+              break;
+            }
+            case 21: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                response_ = new java.util.ArrayList<java.lang.Float>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              response_.add(input.readFloat());
+              break;
+            }
+            case 18: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002) && input.getBytesUntilLimit() > 0) {
+                response_ = new java.util.ArrayList<java.lang.Float>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                response_.add(input.readFloat());
+              }
+              input.popLimit(limit);
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          utterance_ = java.util.Collections.unmodifiableList(utterance_);
+        }
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          response_ = java.util.Collections.unmodifiableList(response_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_UtterenceMatch_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_UtterenceMatch_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.proto.gen.MessageOuterClass.UtterenceMatch.class, com.proto.gen.MessageOuterClass.UtterenceMatch.Builder.class);
+    }
+
+    public static final int UTTERANCE_FIELD_NUMBER = 1;
+    private java.util.List<java.lang.Float> utterance_;
+    /**
+     * <code>repeated float utterance = 1;</code>
+     */
+    public java.util.List<java.lang.Float>
+        getUtteranceList() {
+      return utterance_;
+    }
+    /**
+     * <code>repeated float utterance = 1;</code>
+     */
+    public int getUtteranceCount() {
+      return utterance_.size();
+    }
+    /**
+     * <code>repeated float utterance = 1;</code>
+     */
+    public float getUtterance(int index) {
+      return utterance_.get(index);
+    }
+    private int utteranceMemoizedSerializedSize = -1;
+
+    public static final int RESPONSE_FIELD_NUMBER = 2;
+    private java.util.List<java.lang.Float> response_;
+    /**
+     * <code>repeated float response = 2;</code>
+     */
+    public java.util.List<java.lang.Float>
+        getResponseList() {
+      return response_;
+    }
+    /**
+     * <code>repeated float response = 2;</code>
+     */
+    public int getResponseCount() {
+      return response_.size();
+    }
+    /**
+     * <code>repeated float response = 2;</code>
+     */
+    public float getResponse(int index) {
+      return response_.get(index);
+    }
+    private int responseMemoizedSerializedSize = -1;
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (getUtteranceList().size() > 0) {
+        output.writeUInt32NoTag(10);
+        output.writeUInt32NoTag(utteranceMemoizedSerializedSize);
+      }
+      for (int i = 0; i < utterance_.size(); i++) {
+        output.writeFloatNoTag(utterance_.get(i));
+      }
+      if (getResponseList().size() > 0) {
+        output.writeUInt32NoTag(18);
+        output.writeUInt32NoTag(responseMemoizedSerializedSize);
+      }
+      for (int i = 0; i < response_.size(); i++) {
+        output.writeFloatNoTag(response_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        dataSize = 4 * getUtteranceList().size();
+        size += dataSize;
+        if (!getUtteranceList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        utteranceMemoizedSerializedSize = dataSize;
+      }
+      {
+        int dataSize = 0;
+        dataSize = 4 * getResponseList().size();
+        size += dataSize;
+        if (!getResponseList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        responseMemoizedSerializedSize = dataSize;
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.proto.gen.MessageOuterClass.UtterenceMatch)) {
+        return super.equals(obj);
+      }
+      com.proto.gen.MessageOuterClass.UtterenceMatch other = (com.proto.gen.MessageOuterClass.UtterenceMatch) obj;
+
+      boolean result = true;
+      result = result && getUtteranceList()
+          .equals(other.getUtteranceList());
+      result = result && getResponseList()
+          .equals(other.getResponseList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      if (getUtteranceCount() > 0) {
+        hash = (37 * hash) + UTTERANCE_FIELD_NUMBER;
+        hash = (53 * hash) + getUtteranceList().hashCode();
+      }
+      if (getResponseCount() > 0) {
+        hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
+        hash = (53 * hash) + getResponseList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.proto.gen.MessageOuterClass.UtterenceMatch parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.proto.gen.MessageOuterClass.UtterenceMatch parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.UtterenceMatch parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.proto.gen.MessageOuterClass.UtterenceMatch parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.UtterenceMatch parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.proto.gen.MessageOuterClass.UtterenceMatch parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.UtterenceMatch parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.proto.gen.MessageOuterClass.UtterenceMatch parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.proto.gen.MessageOuterClass.UtterenceMatch parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.proto.gen.MessageOuterClass.UtterenceMatch parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.proto.gen.MessageOuterClass.UtterenceMatch prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.proto.gen.UtterenceMatch}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.proto.gen.UtterenceMatch)
+        com.proto.gen.MessageOuterClass.UtterenceMatchOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_UtterenceMatch_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_UtterenceMatch_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.proto.gen.MessageOuterClass.UtterenceMatch.class, com.proto.gen.MessageOuterClass.UtterenceMatch.Builder.class);
+      }
+
+      // Construct using com.proto.gen.MessageOuterClass.UtterenceMatch.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        utterance_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        response_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_UtterenceMatch_descriptor;
+      }
+
+      public com.proto.gen.MessageOuterClass.UtterenceMatch getDefaultInstanceForType() {
+        return com.proto.gen.MessageOuterClass.UtterenceMatch.getDefaultInstance();
+      }
+
+      public com.proto.gen.MessageOuterClass.UtterenceMatch build() {
+        com.proto.gen.MessageOuterClass.UtterenceMatch result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.proto.gen.MessageOuterClass.UtterenceMatch buildPartial() {
+        com.proto.gen.MessageOuterClass.UtterenceMatch result = new com.proto.gen.MessageOuterClass.UtterenceMatch(this);
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          utterance_ = java.util.Collections.unmodifiableList(utterance_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.utterance_ = utterance_;
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          response_ = java.util.Collections.unmodifiableList(response_);
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.response_ = response_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.proto.gen.MessageOuterClass.UtterenceMatch) {
+          return mergeFrom((com.proto.gen.MessageOuterClass.UtterenceMatch)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.proto.gen.MessageOuterClass.UtterenceMatch other) {
+        if (other == com.proto.gen.MessageOuterClass.UtterenceMatch.getDefaultInstance()) return this;
+        if (!other.utterance_.isEmpty()) {
+          if (utterance_.isEmpty()) {
+            utterance_ = other.utterance_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureUtteranceIsMutable();
+            utterance_.addAll(other.utterance_);
+          }
+          onChanged();
+        }
+        if (!other.response_.isEmpty()) {
+          if (response_.isEmpty()) {
+            response_ = other.response_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureResponseIsMutable();
+            response_.addAll(other.response_);
+          }
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.proto.gen.MessageOuterClass.UtterenceMatch parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.proto.gen.MessageOuterClass.UtterenceMatch) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<java.lang.Float> utterance_ = java.util.Collections.emptyList();
+      private void ensureUtteranceIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          utterance_ = new java.util.ArrayList<java.lang.Float>(utterance_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <code>repeated float utterance = 1;</code>
+       */
+      public java.util.List<java.lang.Float>
+          getUtteranceList() {
+        return java.util.Collections.unmodifiableList(utterance_);
+      }
+      /**
+       * <code>repeated float utterance = 1;</code>
+       */
+      public int getUtteranceCount() {
+        return utterance_.size();
+      }
+      /**
+       * <code>repeated float utterance = 1;</code>
+       */
+      public float getUtterance(int index) {
+        return utterance_.get(index);
+      }
+      /**
+       * <code>repeated float utterance = 1;</code>
+       */
+      public Builder setUtterance(
+          int index, float value) {
+        ensureUtteranceIsMutable();
+        utterance_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated float utterance = 1;</code>
+       */
+      public Builder addUtterance(float value) {
+        ensureUtteranceIsMutable();
+        utterance_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated float utterance = 1;</code>
+       */
+      public Builder addAllUtterance(
+          java.lang.Iterable<? extends java.lang.Float> values) {
+        ensureUtteranceIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, utterance_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated float utterance = 1;</code>
+       */
+      public Builder clearUtterance() {
+        utterance_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<java.lang.Float> response_ = java.util.Collections.emptyList();
+      private void ensureResponseIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          response_ = new java.util.ArrayList<java.lang.Float>(response_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+      /**
+       * <code>repeated float response = 2;</code>
+       */
+      public java.util.List<java.lang.Float>
+          getResponseList() {
+        return java.util.Collections.unmodifiableList(response_);
+      }
+      /**
+       * <code>repeated float response = 2;</code>
+       */
+      public int getResponseCount() {
+        return response_.size();
+      }
+      /**
+       * <code>repeated float response = 2;</code>
+       */
+      public float getResponse(int index) {
+        return response_.get(index);
+      }
+      /**
+       * <code>repeated float response = 2;</code>
+       */
+      public Builder setResponse(
+          int index, float value) {
+        ensureResponseIsMutable();
+        response_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated float response = 2;</code>
+       */
+      public Builder addResponse(float value) {
+        ensureResponseIsMutable();
+        response_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated float response = 2;</code>
+       */
+      public Builder addAllResponse(
+          java.lang.Iterable<? extends java.lang.Float> values) {
+        ensureResponseIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, response_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated float response = 2;</code>
+       */
+      public Builder clearResponse() {
+        response_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.proto.gen.UtterenceMatch)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.proto.gen.UtterenceMatch)
+    private static final com.proto.gen.MessageOuterClass.UtterenceMatch DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.proto.gen.MessageOuterClass.UtterenceMatch();
+    }
+
+    public static com.proto.gen.MessageOuterClass.UtterenceMatch getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UtterenceMatch>
+        PARSER = new com.google.protobuf.AbstractParser<UtterenceMatch>() {
+      public UtterenceMatch parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new UtterenceMatch(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UtterenceMatch> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UtterenceMatch> getParserForType() {
+      return PARSER;
+    }
+
+    public com.proto.gen.MessageOuterClass.UtterenceMatch getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_proto_gen_Message_descriptor;
   private static final 
@@ -3276,6 +4737,11 @@ public final class MessageOuterClass {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_proto_gen_Converation_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_proto_gen_UtterenceMatch_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_proto_gen_UtterenceMatch_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3285,18 +4751,26 @@ public final class MessageOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rMessage.proto\022\rcom.proto.gen\"\205\002\n\007Messa" +
+      "\n\rMessage.proto\022\rcom.proto.gen\"\363\002\n\007Messa" +
       "ge\022\025\n\rcreation_time\030\001 \001(\004\022\014\n\004text\030\002 \001(\t\022" +
       "\027\n\017sender_username\030\003 \001(\t\022\025\n\rsender_useri" +
       "d\030\004 \001(\005\022\025\n\rtime_recieved\030\005 \001(\004\022\032\n\022receiv" +
       "ers_username\030\006 \003(\t\022\031\n\021receivers_userids\030" +
       "\007 \003(\005\022\014\n\004read\030\010 \001(\010\0220\n\014service_type\030\t \001(" +
       "\0162\032.com.proto.gen.ServiceType\022\027\n\017convers" +
-      "ation_id\030\n \001(\t\"5\n\014MessageQueue\022%\n\005queue\030" +
-      "\001 \003(\0132\026.com.proto.gen.Message\"[\n\013Convera" +
-      "tion\022\022\n\nstart_time\030\001 \001(\004\022\n\n\002id\030\002 \001(\t\022\024\n\014",
-      "participants\030\003 \003(\t\022\026\n\016participantids\030\004 \003" +
-      "(\003*\027\n\013ServiceType\022\010\n\004TEXT\020\000b\006proto3"
+      "ation_id\030\n \001(\t\0220\n\014message_type\030\013 \001(\0162\032.c" +
+      "om.proto.gen.MessageType\022:\n\021message_qual" +
+      "ifier\030\014 \001(\0162\037.com.proto.gen.MessageQuali",
+      "fier\"5\n\014MessageQueue\022%\n\005queue\030\001 \003(\0132\026.co" +
+      "m.proto.gen.Message\"\203\001\n\013Converation\022\022\n\ns" +
+      "tart_time\030\001 \001(\004\022\n\n\002id\030\002 \001(\t\022\024\n\014participa" +
+      "nts\030\003 \003(\t\022\026\n\016participantids\030\004 \003(\003\022&\n\006dia" +
+      "log\030\005 \003(\0132\026.com.proto.gen.Message\"5\n\016Utt" +
+      "erenceMatch\022\021\n\tutterance\030\001 \003(\002\022\020\n\010respon" +
+      "se\030\002 \003(\002*>\n\020MessageQualifier\022\r\n\tUTTERANC" +
+      "E\020\000\022\014\n\010RESPONSE\020\001\022\r\n\tFOLLOW_UP\020\002*$\n\013Mess" +
+      "ageType\022\013\n\007RECIEVE\020\000\022\010\n\004POST\020\001*\027\n\013Servic" +
+      "eType\022\010\n\004TEXT\020\000b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3315,7 +4789,7 @@ public final class MessageOuterClass {
     internal_static_com_proto_gen_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_proto_gen_Message_descriptor,
-        new java.lang.String[] { "CreationTime", "Text", "SenderUsername", "SenderUserid", "TimeRecieved", "ReceiversUsername", "ReceiversUserids", "Read", "ServiceType", "ConversationId", });
+        new java.lang.String[] { "CreationTime", "Text", "SenderUsername", "SenderUserid", "TimeRecieved", "ReceiversUsername", "ReceiversUserids", "Read", "ServiceType", "ConversationId", "MessageType", "MessageQualifier", });
     internal_static_com_proto_gen_MessageQueue_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_proto_gen_MessageQueue_fieldAccessorTable = new
@@ -3327,7 +4801,13 @@ public final class MessageOuterClass {
     internal_static_com_proto_gen_Converation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_proto_gen_Converation_descriptor,
-        new java.lang.String[] { "StartTime", "Id", "Participants", "Participantids", });
+        new java.lang.String[] { "StartTime", "Id", "Participants", "Participantids", "Dialog", });
+    internal_static_com_proto_gen_UtterenceMatch_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_com_proto_gen_UtterenceMatch_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_proto_gen_UtterenceMatch_descriptor,
+        new java.lang.String[] { "Utterance", "Response", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -1,6 +1,7 @@
 package com.decisionengine;
 
 import com.proto.gen.RuleOuterClass.*;
+import edu.stanford.nlp.ling.tokensregex.TokenSequencePattern;
 import edu.stanford.nlp.pipeline.TokensRegexAnnotator;
 import edu.stanford.nlp.naturalli.OpenIE;
 import edu.stanford.nlp.simple.Sentence;
@@ -44,7 +45,8 @@ public class RulesDE extends DecisionEngineType {
 
         static void generatePattern(Document doc){
 
-            }
+
+        }
 
         static void generateIE(Document doc){
             for(Sentence sent: doc.sentences()){
@@ -55,6 +57,10 @@ public class RulesDE extends DecisionEngineType {
                             triple.objectLemmaGloss());
                 }
             }
+        }
+
+        static boolean match(String str){
+            return false;
         }
     }
 

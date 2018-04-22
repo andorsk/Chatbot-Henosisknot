@@ -8,16 +8,19 @@ import com.utilities.StringPreprocessors;
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.simple.Document;
 import edu.stanford.nlp.simple.Sentence;
+import play.api.libs.iteratee.Parsing;
 
 
-public class StatementProcessingPipeline {
+public class StatementProcessingPipeline  {
+    ParsingEngine mParsingEngine;
 
     public StatementProcessingPipeline(){
 
     }
 
-    private void init(){
-
+    public void start(){
+        System.out.println("Starting up parsers");
+        this.mParsingEngine = new ParsingEngine();
     }
 
     public void process(MessageOuterClass.Message message){
@@ -36,7 +39,8 @@ public class StatementProcessingPipeline {
     public CoreDocument parse(String input){
 
         StateTracker.conversationPhaseEnum state = StateTracker.currentState;
-        ParsingEngine pe = new ParsingEngine();
+
+        ParsingEngine pe = this.mParsingEngine;
 
         switch(state) {
             case INTRODUCTION:

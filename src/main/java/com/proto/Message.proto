@@ -13,6 +13,15 @@ message Message {
 	bool read = 8;
 	ServiceType service_type = 9;
 	string conversation_id = 10;
+    MessageType message_type = 11;
+    MessageQualifier message_qualifier = 12;
+    string LatestSessionId = 13;
+}
+
+enum MessageQualifier{
+   UTTERANCE = 0;
+   RESPONSE = 1;
+   FOLLOW_UP = 2;
 }
 
 message MessageQueue {
@@ -24,6 +33,17 @@ message Converation {
     string id = 2;
     repeated string participants = 3;
     repeated int64 participantids = 4;
+    repeated Message dialog = 5;
+}
+
+message UtterenceMatch {
+	repeated float utterance  = 1;
+    repeated float response = 2;
+}
+
+enum MessageType {
+    RECIEVE = 0;
+    POST = 1;
 }
 
 enum ServiceType {
