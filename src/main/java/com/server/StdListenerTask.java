@@ -1,10 +1,14 @@
 package com.server;
 
+import com.proto.gen.MessageOuterClass;
+import com.session.SessionBase;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.security.NoSuchProviderException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,6 +21,8 @@ public class StdListenerTask implements Runnable {
 
     private Socket mSocket = null;
     private boolean mClose = false;
+    private SessionBase mAttachedSession = null;
+    private String mAttachedConversationID = null;
 
     public StdListenerTask(){
 
@@ -51,6 +57,33 @@ public class StdListenerTask implements Runnable {
             e.printStackTrace();
 
         }
+    }
+
+    public void attachCurrentSession(SessionBase session){
+        this.mAttachedSession = session;
+    }
+
+    /**
+     * Attaches the latest conversation id to the std listener task.
+     * @param session
+     * @throws NullPointerException
+     */
+    public void attachCurrentConversationId(SessionBase session) throws NullPointerException {
+
+        long earliestConversation = Long.MAX_VALUE;
+        MessageOuterClass.Converation conv = null;
+        for(String id : session.getConversationMap().keySet()){
+            if(session.getConversationMap().get(id).getStartTime() < earliestConversation){
+                conv = session.getConversationMap().get(id);
+            };
+        }
+        if(conv != null){
+            this.mAttachedConversationID = conv.getId();
+            System.out.println("Std in is attached to " + conv.getId() + " with participate ids " + conv.getParticipantidsList());
+        } else {
+            throw new NullPointerException("No conversation detected. Error attaching conversation id.");
+        }
+
     }
 
     private class InputWorker implements Runnable {

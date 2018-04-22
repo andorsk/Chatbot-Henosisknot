@@ -4,10 +4,12 @@ import com.api.MessageController;
 import com.api.MessagingProtocol;
 import com.nlp.StatementProcessingPipeline;
 import com.proto.gen.MessageOuterClass;
+import com.session.SessionBase;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,6 +21,7 @@ public class Server {
     protected ServerSocket mServerSocket;
     protected boolean mClose = false;
     protected StatementProcessingPipeline mSPP;
+    private ArrayList<SessionBase> mSessionList = new ArrayList<SessionBase>();
 
     /**
      * Start a threaded server
@@ -102,7 +105,9 @@ public class Server {
         return this.mClose;
     }
 
-
+    public void attachSession(SessionBase session){
+        mSessionList.add(session);
+    }
 
     /**
      *
