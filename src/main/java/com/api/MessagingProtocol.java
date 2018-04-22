@@ -1,5 +1,6 @@
 package com.api;
 
+import com.message.MessageHelpers;
 import com.proto.gen.MessageOuterClass;
 
 /**
@@ -10,14 +11,25 @@ import com.proto.gen.MessageOuterClass;
  *
  * This will be on a thread listening, and so will run in the background to process requests.
  */
-public class MessagingAPI {
+public class MessagingProtocol {
 
-    public static void recieve(MessageOuterClass.Message message){
-        //Send text to the Process Engine Thread
+    /**
+     * Receives a message. Returns a response.
+     * @param message
+     * @return
+     */
+    public static MessageOuterClass.Message receive(MessageOuterClass.Message message){
+
+        return null;
+    }
+
+    public static MessageOuterClass.Message respond(MessageOuterClass.Converation conversation){
+        return null;
     }
 
     //Post
-    public static void post(MessageOuterClass.Message message){
-
+    public static MessageOuterClass.Message post(MessageOuterClass.Message message){
+        return null;
     }
+
 }
