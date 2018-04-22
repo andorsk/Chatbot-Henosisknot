@@ -24,7 +24,7 @@ public class Server extends Sender {
     protected boolean mClose = false;
     protected StatementProcessingPipeline mSPP;
     private ArrayList<SessionBase> mSessionList = new ArrayList<SessionBase>();
-
+    private boolean mIsReady = false;
     /**
      * Start a threaded server
      * @param portnumber
@@ -39,6 +39,23 @@ public class Server extends Sender {
        System.out.println("Starting ChatBot Engine...");
        StatementProcessingPipeline spp = new StatementProcessingPipeline();
        spp.start();
+       this.mSPP = spp;
+
+       while(!spp.getParsingEngine().isReady()){
+           try {
+               System.out.print("#");
+               Thread.sleep(1000);
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }
+       }
+       mIsReady = true;
+       System.out.println("Server is ready");
+
+    }
+
+    public boolean isReady(){
+        return this.mIsReady;
     }
 
     public StatementProcessingPipeline getStatementProcessingPipeline(){
@@ -80,7 +97,7 @@ public class Server extends Sender {
                     }
                 }
 
-                threadPool.submit(new WorkerRunnable(clientSocket));
+                threadPool.submit(new WorkerRunnable(clientSocket, this));
             }
         } catch(RuntimeException e){
             throw new RuntimeException("Cannot read socket for client on port " + this.mPort, e);
@@ -142,10 +159,12 @@ public class Server extends Sender {
 
     private class WorkerRunnable implements Runnable{
         protected Socket clientSocket;
-        protected String msg = null;
+        protected String json = "";
+        protected Server mServer = null;
 
-        private WorkerRunnable(Socket clientSocket) {
+        private WorkerRunnable(Socket clientSocket, Server server) {
             this.clientSocket = clientSocket;
+            this.mServer = server;
         }
 
         @Override
@@ -157,7 +176,6 @@ public class Server extends Sender {
                 OutputStream out = clientSocket.getOutputStream();
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(input));
-                String json = "";
                 String line;
 
                 while((line = br.readLine()) != null){
@@ -166,7 +184,7 @@ public class Server extends Sender {
 
                 System.out.println("Received message: \n" + json);
 
-                MessageController.processInput(msg);
+                MessageController.processInput(json, mServer);
 
                 out.close();
                 input.close();

@@ -32,7 +32,8 @@ public class StatementProcessingPipeline {
     }
 
     private void initEngines(){
-        engines.put("introduction", new IntroductionParser("tokenize,ssplit,pos,lemma,ner"));//tokenize,ssplit,pos,lemma,ner,regexner
+        engines.put("introduction", new IntroductionParser("tokenize,ssplit"));//tokenize,ssplit,pos,lemma,ner,regexner
+        System.out.println("Introduction Engine ready");
     }
 
     public String process(MessageOuterClass.Message message){

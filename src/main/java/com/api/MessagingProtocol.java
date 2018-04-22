@@ -1,6 +1,7 @@
 package com.api;
 
 import com.message.MessageHelpers;
+import com.nlp.StatementProcessingPipeline;
 import com.proto.gen.MessageOuterClass;
 
 /**
@@ -18,17 +19,17 @@ public class MessagingProtocol {
      * @param message
      * @return
      */
-    public static MessageOuterClass.Message receive(MessageOuterClass.Message message){
-
-        return null;
+    public static String generateResponse(MessageOuterClass.Message message, StatementProcessingPipeline spp){
+        String response = spp.process(message);
+        return response;
     }
 
-    public static MessageOuterClass.Message respond(MessageOuterClass.Converation conversation){
-        return null;
+    public static void respond(MessageOuterClass.Message msg){
+        System.out.println("Responding and posting to " + msg.getConversationId() + " with text " + msg.getText());
     }
 
     //Post
-    public static MessageOuterClass.Message post(MessageOuterClass.Message message){
+    public static MessageOuterClass.Message post(String response){
         return null;
     }
 

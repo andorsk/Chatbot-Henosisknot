@@ -28,7 +28,6 @@ public class IntroductionParser extends ParseEngineType {
     public IntroductionParser(){
         System.out.println("Intializing pipeline in Introduction Parser");
         initPipeline();
-        isReady = true;
     }
 
     private void initPipeline() {
@@ -49,6 +48,7 @@ public class IntroductionParser extends ParseEngineType {
 
         // build pipeline
         mPipeline = new StanfordCoreNLP(props);
+        isReady = true;
     }
 
     @Override

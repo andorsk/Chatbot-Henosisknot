@@ -46,12 +46,6 @@ public class Main {
         client.attachSession(ts);
         server.attachSession(ts);
 
-        //wait for threads to start.
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         //Listen to console for input as well.
         StdListenerTask stdlistnertask = new StdListenerTask();
@@ -59,6 +53,16 @@ public class Main {
         Thread serverThread = new Thread(stdlistnertask);
         serverThread.start();
 
+        System.out.println("Waiting for server to be ready..");
+        while(!server.isReady()){
+            //wait for threads to start.
+            try {
+                System.out.println("waiting...");
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         client.sendMessage("Test Message sent from client");
 
     }
