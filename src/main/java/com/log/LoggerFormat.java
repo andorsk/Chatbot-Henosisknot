@@ -7,7 +7,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
-public class Logger {
+public class LoggerFormat {
 
     // this custom formatter formats parts of a log record to a single line
     class MyHtmlFormatter extends Formatter {
@@ -71,5 +71,5 @@ public class Logger {
             return "</table>\n</body>\n</html>";
         }
     }
-    
+
 }
