@@ -1,11 +1,14 @@
 package com.server;
 
 import com.proto.gen.MessageOuterClass;
+import com.session.SessionBase;
 import play.Logger;
+import play.api.mvc.Session;
 
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 
 public class Client {
@@ -16,6 +19,7 @@ public class Client {
     private PrintWriter mOut;
     private BufferedWriter mWriter;
     private BufferedReader mSysIn;
+    private ArrayList<SessionBase> mSessionList = new ArrayList<SessionBase>();
 
     public Client(String hostname, int portnumber) {
         init(hostname, portnumber);
@@ -28,6 +32,10 @@ public class Client {
 
     public Socket getClientSocketCopy() throws IOException {
         return new Socket(this.mHostName, this.mPort);
+    }
+
+    public void attachSession(SessionBase session){
+        mSessionList.add(session);
     }
 
 

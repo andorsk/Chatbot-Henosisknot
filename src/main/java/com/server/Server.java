@@ -1,6 +1,8 @@
 package com.server;
 
+import com.api.MessageController;
 import com.api.MessagingProtocol;
+import com.nlp.StatementProcessingPipeline;
 import com.proto.gen.MessageOuterClass;
 
 import java.io.*;
@@ -16,6 +18,7 @@ public class Server {
     protected Thread runningThread= null;
     protected ServerSocket mServerSocket;
     protected boolean mClose = false;
+    protected StatementProcessingPipeline mSPP;
 
     /**
      * Start a threaded server
@@ -23,6 +26,17 @@ public class Server {
      */
     public Server(int portnumber) {
         this.mPort = portnumber;
+        init();
+    }
+
+    public void init(){
+       System.out.println("Starting ChatBot Engine...");
+       StatementProcessingPipeline spp = new StatementProcessingPipeline();
+       spp.start();
+    }
+
+    public StatementProcessingPipeline getStatementProcessingPipeline(){
+        return this.mSPP;
     }
 
     public ServerSocket getSocket(){
@@ -126,6 +140,17 @@ public class Server {
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(input));
                 text = br.readLine();
+
+                MessageOuterClass.Message msg = MessageOuterClass.Message.newBuilder()
+                        .setText(text)
+                        .setCreationTime(System.currentTimeMillis())
+                        .setServiceType(MessageOuterClass.ServiceType.TEXT)
+                        .setMessageType(MessageOuterClass.MessageType.RECIEVE)
+                        .build();
+
+                System.out.println("Received message: \n" + msg.toString());
+
+                MessageController.processMessage(msg);
 
                 out.close();
                 input.close();
