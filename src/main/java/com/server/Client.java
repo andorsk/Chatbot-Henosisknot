@@ -1,17 +1,16 @@
 package com.server;
 
+import com.message.MessageHelpers;
 import com.proto.gen.MessageOuterClass;
 import com.session.SessionBase;
-import play.Logger;
-import play.api.mvc.Session;
+import javafx.util.Pair;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 
-public class Client {
+public class Client extends Sender {
 
     private int mPort;
     private String mHostName;
@@ -28,6 +27,7 @@ public class Client {
     private void init(String hostname, int mPort) {
         this.mHostName = hostname;
         this.mPort = mPort;
+        this.setSenderID(1);
     }
 
     public Socket getClientSocketCopy() throws IOException {
@@ -36,6 +36,15 @@ public class Client {
 
     public void attachSession(SessionBase session){
         mSessionList.add(session);
+    }
+
+    /**
+     * When we send a message, we need to get the conversation and session id associated
+     * @return
+     */
+    @Override
+    public Pair<String, String> getConversationId(){
+        return new Pair<>(this.mSessionList.get(0).getSessionUUID(),this.mSessionList.get(0).getConversationMap().keySet().iterator().next());
     }
 
 
@@ -47,7 +56,8 @@ public class Client {
                     PrintWriter out =
                             new PrintWriter(socket.getOutputStream(), true);
             ){
-                out.println(message);
+                MessageOuterClass.Message msg = MessageHelpers.prepareMessage(message, this);
+                out.println(msg.toString());
                 out.close();
 
             }

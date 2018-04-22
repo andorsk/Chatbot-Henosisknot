@@ -59,6 +59,7 @@ public class Main {
         Thread serverThread = new Thread(stdlistnertask);
         serverThread.start();
 
+        client.sendMessage("Test Message sent from client");
 
     }
 }

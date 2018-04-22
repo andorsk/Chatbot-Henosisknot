@@ -33,8 +33,7 @@ public class CLI_Instance {
             if(line.equals("exit")){
                 terminate = true;
             }
-            MessageOuterClass.Message message = MessageHelpers.buildMessage(System.currentTimeMillis(), line, 1);
-            mPipeline.process(message);
+           // mPipeline.process(message);
         }
 
         reader.close();

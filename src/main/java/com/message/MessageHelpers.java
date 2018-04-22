@@ -1,14 +1,17 @@
 package com.message;
 
 import com.proto.gen.MessageOuterClass;
+import com.server.Sender;
 
 public class MessageHelpers {
 
-	public static MessageOuterClass.Message buildMessage(long creation_time, String text, int userid){
-		MessageOuterClass.Message.Builder m = MessageOuterClass.Message.newBuilder();
-		m.setCreationTime(creation_time);
-		m.setText(text);
-		m.setSenderUserid(userid);
-		return m.build();
+	public static  MessageOuterClass.Message prepareMessage(String message, Sender sender){
+		return MessageOuterClass.Message.newBuilder()
+				.setConversationId(sender.getConversationId().getValue())
+				.setText(message)
+				.setCreationTime(System.currentTimeMillis())
+				.setSenderUserid(sender.getSenderID())
+				.build();
+
 	}
 }

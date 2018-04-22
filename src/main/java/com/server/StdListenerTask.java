@@ -1,14 +1,15 @@
 package com.server;
 
+import com.message.MessageHelpers;
 import com.proto.gen.MessageOuterClass;
 import com.session.SessionBase;
+import javafx.util.Pair;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.security.NoSuchProviderException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,7 +17,7 @@ import java.util.concurrent.Executors;
  * Std Listener allows user to directly type into console and receive feedback. It pushes a
  * request through the socket on the specified port directly rather than through wget.
  */
-public class StdListenerTask implements Runnable {
+public class StdListenerTask extends Sender implements Runnable {
     protected ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
     private Socket mSocket = null;
@@ -25,7 +26,7 @@ public class StdListenerTask implements Runnable {
     private String mAttachedConversationID = null;
 
     public StdListenerTask(){
-
+        this.setSenderID(1);
     }
 
     public StdListenerTask(Socket socket) {
@@ -47,7 +48,7 @@ public class StdListenerTask implements Runnable {
             reader = new BufferedReader(new InputStreamReader(System.in));
 
             while ((userInput = reader.readLine()) != null) {
-                threadPool.submit(new InputWorker(new Socket("localhost", 5555), userInput));
+                threadPool.submit(new InputWorker(new Socket("localhost", 5555), userInput, this));
             }
 
             reader.close();
@@ -61,6 +62,15 @@ public class StdListenerTask implements Runnable {
 
     public void attachCurrentSession(SessionBase session){
         this.mAttachedSession = session;
+    }
+
+    /**
+     * When we send a message, we need to get the conversation and session id associated
+     * @return
+     */
+    @Override
+    public Pair<String, String> getConversationId(){
+        return new Pair<>(this.mAttachedSession.getSessionUUID(),this.mAttachedSession.getConversationMap().keySet().iterator().next());
     }
 
     /**
@@ -89,16 +99,19 @@ public class StdListenerTask implements Runnable {
     private class InputWorker implements Runnable {
         private Socket mSocket;
         private String mText;
-        public InputWorker(Socket socket, String input){
+        private Sender mSender;
+        public InputWorker(Socket socket, String input, Sender sender){
             this.mSocket = socket;
             this.mText = input;
+            this.mSender = sender;
         }
 
         @Override
         public void run() {
             try {
                 PrintWriter pw  = new PrintWriter(this.mSocket.getOutputStream());
-                pw.println(mText);
+                MessageOuterClass.Message msg = MessageHelpers.prepareMessage(mText, mSender);
+                pw.println(msg.toString());
                 pw.close();
                 mSocket.close();
             } catch (IOException e) {

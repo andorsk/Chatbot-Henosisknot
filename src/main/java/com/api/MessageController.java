@@ -19,4 +19,12 @@ public class MessageController {
         }
     }
 
+    /**
+     * Takes a JSON message and converts it to protobuf format.
+     * @param json
+     */
+    public static void processInput(String json){
+        processMessage(MessageOuterClass.Message.newBuilder().setText(json).build());
+    }
+
 }

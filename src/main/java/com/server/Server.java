@@ -1,10 +1,12 @@
 package com.server;
 
 import com.api.MessageController;
-import com.api.MessagingProtocol;
+import com.message.MessageHelpers;
 import com.nlp.StatementProcessingPipeline;
 import com.proto.gen.MessageOuterClass;
 import com.session.SessionBase;
+import javafx.util.Pair;
+import play.libs.Json;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server {
+public class Server extends Sender {
     private int mPort;
     private boolean mOpen = false;
     protected ExecutorService threadPool = Executors.newFixedThreadPool(10);
@@ -29,6 +31,7 @@ public class Server {
      */
     public Server(int portnumber) {
         this.mPort = portnumber;
+        this.setSenderID(0);
         init();
     }
 
@@ -45,6 +48,16 @@ public class Server {
     public ServerSocket getSocket(){
         return this.mServerSocket;
     }
+
+    /**
+     * Needs to be updated. Gives the sesion and conversatoin id
+     * @return
+     */
+    public Pair<String, String> getConversationId(){
+        return new Pair<>(this.mSessionList.get(0).getSessionUUID(),this.mSessionList.get(0).getConversationMap().keySet().iterator().next());
+    }
+
+
     /**
      * Start the server and open a connection between client socket.
      */
@@ -129,7 +142,7 @@ public class Server {
 
     private class WorkerRunnable implements Runnable{
         protected Socket clientSocket;
-        protected String text = null;
+        protected String msg = null;
 
         private WorkerRunnable(Socket clientSocket) {
             this.clientSocket = clientSocket;
@@ -144,18 +157,16 @@ public class Server {
                 OutputStream out = clientSocket.getOutputStream();
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(input));
-                text = br.readLine();
+                String json = "";
+                String line;
 
-                MessageOuterClass.Message msg = MessageOuterClass.Message.newBuilder()
-                        .setText(text)
-                        .setCreationTime(System.currentTimeMillis())
-                        .setServiceType(MessageOuterClass.ServiceType.TEXT)
-                        .setMessageType(MessageOuterClass.MessageType.RECIEVE)
-                        .build();
+                while((line = br.readLine()) != null){
+                    json = json + line + "\n";
+                }
 
-                System.out.println("Received message: \n" + msg.toString());
+                System.out.println("Received message: \n" + json);
 
-                MessageController.processMessage(msg);
+                MessageController.processInput(msg);
 
                 out.close();
                 input.close();

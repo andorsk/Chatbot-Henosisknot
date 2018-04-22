@@ -14,12 +14,15 @@ public class SessionBase extends SessionInterface{
     HashMap<String, MessageOuterClass.Converation> conversationMap = new HashMap<String,MessageOuterClass.Converation>() ;
     HashSet<Integer> participants = new HashSet<Integer>();
     private long sessionStartTime;
-    private final String SessionUUID = UUID.randomUUID().toString();
+    private final String SESSION_UUID = UUID.randomUUID().toString();
 
     public HashMap<String, MessageOuterClass.Converation> getConversationMap(){
         return this.conversationMap;
     }
 
+    public String getSessionUUID(){
+        return this.SESSION_UUID;
+    }
     @Override
 	public void insertMessage(MessageOuterClass.Message m) {
 
