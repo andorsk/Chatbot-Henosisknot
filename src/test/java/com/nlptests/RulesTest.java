@@ -55,21 +55,20 @@ public class RulesTest extends SetupRulesEngine {
         regexList.add("[ner:PERSON]+ [pos:VBZ] /an?/ /artist|painter/");
         regexList.add("[ner:PERSON]+ [pos:VBZ] /an?/ /artist|painter/");
 
-        Assert.assertEquals(findMatchedRegex(regexList, "Picasso is an artist").size(), 2);
+        Assert.assertEquals(findMatchedRegex(regexList, "Picasso is an artist").size(), 1);
         Assert.assertEquals(findMatchedRegex(regexList, "Who there?").size(), 0);
         Assert.assertEquals(findMatchedRegex(regexList, "Fifty km").size(), 1);
     }
 
     @Test
     public void testRuleMatcherInFile(){
-
+        Assert.assertEquals(mRulesEngine.mMatcher.match("John has cancer").size(), 1);
+        Assert.assertEquals(mRulesEngine.mMatcher.match("Picasso is an artist").size(), 1);
+        Assert.assertEquals(mRulesEngine.mMatcher.match("Picasso is poop").size(), 0);
     }
 
     private List<SequenceMatchResult<CoreMap>> findMatchedRegex(Collection<String> regexlist, String sentence) {
-        List<SequenceMatchResult<CoreMap>> matched = this.mRulesEngine.mMatcher.getMatchListFromStringRegExList(regexlist, this.mParser.parse(sentence).tokens());
-        for(SequenceMatchResult<CoreMap> match : matched){
-            System.out.println("Match" + match.pattern() + ":" + match.score());
-        }
+        List<SequenceMatchResult<CoreMap>> matched = mRulesEngine.mMatcher.getMatchListFromStringRegExList(regexlist, this.mParser.parse(sentence).tokens());
         return matched;
     }
 

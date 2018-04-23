@@ -1,4 +1,4 @@
-package com.MessageTests;
+package com.messagetests;
 
 public class DecodeMessageTest {
 

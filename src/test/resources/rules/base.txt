@@ -1,18 +1,39 @@
 ENV.defaultStringPatternFlags = 2
-ENV.defaults["ruleType"] = "tokens"
 
 ner = { type: "CLASS", value: "edu.stanford.nlp.ling.CoreAnnotations$NamedEntityTagAnnotation" }
 tokens = { type: "CLASS", value: "edu.stanford.nlp.ling.CoreAnnotations$TokensAnnotation" }
 
+$Disease = (
+  /cancer/|
+  /allergy/|
+  /acne/|
+  /breast/ /cancer/
+)
+
 $HOST = (
-  /henosisknot/|
   /Andor/|
+  /Henosisknot/|
+  /henosisknot.com/|
   /Andor/ /Kesselman/
 )
 
 
+ENV.defaults["ruleType"] = "tokens"
+ENV.defaults["stage"] = 1
 {
-ruleType: "tokens“,
-pattern: (([{ner:PERSON}]) /was/ /born/ /on/ ([{ner:DATE}])),
-result: "DATE_OF_BIRTH“
+  pattern: ( $Disease ),
+  action: ( Annotate($0, ner, "DISEASE"))
+}
+
+ENV.defaults["stage"] = 2
+{
+  ruleType: "tokens",
+  pattern: ( ( [ { ner:PERSON } ]) /has/ ([ { ner:DISEASE } ]+) ),
+  result: Format("hasDisease(%s,%s)",$1.word, Join(" ",$2.word))
+}
+
+{
+  ruleType: "tokens",
+  pattern: ( [ner:PERSON]+ [pos:VBZ] /an?/ /artist|painter/ ),
+  result: Format("Yes. (%s,%s) is an artist",$1.word, Join(" ",$2.word))
 }

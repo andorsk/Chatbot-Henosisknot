@@ -4,12 +4,19 @@
 <suite name="TestRulesEngine">
 
     <!-- @BeforeTest -->
+    <test name="checkRules">
+        <classes>
+            <class name="com.rulestest.TestRulesFileFormat" />
+        </classes>
+    </test>
+    <!-- @AfterTest -->
+
+    <!-- @BeforeTest -->
     <test name="rulesTest">
         <classes>
             <class name="com.intializersfortest.SetupRulesEngine" />
             <class name="com.nlptests.RulesTest" />
             <class name="com.nlptests.SemanticParsingTest" />
-
         </classes>
     </test>
     <!-- @AfterTest -->
