@@ -1,0 +1,18 @@
+ENV.defaultStringPatternFlags = 2
+ENV.defaults["ruleType"] = "tokens"
+
+ner = { type: "CLASS", value: "edu.stanford.nlp.ling.CoreAnnotations$NamedEntityTagAnnotation" }
+tokens = { type: "CLASS", value: "edu.stanford.nlp.ling.CoreAnnotations$TokensAnnotation" }
+
+$HOST = (
+  /henosisknot/|
+  /Andor/|
+  /Andor/ /Kesselman/
+)
+
+
+{
+ruleType: "tokens“,
+pattern: (([{ner:PERSON}]) /was/ /born/ /on/ ([{ner:DATE}])),
+result: "DATE_OF_BIRTH“
+}

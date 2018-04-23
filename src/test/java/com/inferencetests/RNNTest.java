@@ -1,4 +1,4 @@
-package com.inference;
+package com.inferencetests;
 
 public class RNNTest {
 }
