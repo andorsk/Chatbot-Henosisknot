@@ -24,6 +24,10 @@ public class MessagingProtocol {
         return response;
     }
 
+    /**
+     * Convert the message into an response and prepare for post.
+     * @param msg
+     */
     public static void respond(MessageOuterClass.Message msg){
         System.out.println("Responding and posting to " + msg.getConversationId() + " with text " + msg.getText());
     }

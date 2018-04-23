@@ -16,12 +16,8 @@ public class MessageController {
         message = message.toBuilder().setMessageQualifier(MessageOuterClass.MessageQualifier.UTTERANCE).build();
 
         if(message.getMessageType() == MessageOuterClass.MessageType.RECIEVE && message.getMessageQualifier() == MessageOuterClass.MessageQualifier.UTTERANCE){
-
-            System.out.println("Processing...");
             StatementProcessingPipeline spp = server.getStatementProcessingPipeline();
             MessageOuterClass.Message response = MessageHelpers.prepareMessage(MessagingProtocol.generateResponse(message, spp) ,server);
-
-            System.out.println("Response is " + response);
             MessagingProtocol.respond(response);
         }
     }

@@ -37,8 +37,9 @@ message Converation {
 }
 
 message UtterenceMatch {
-	repeated float utterance  = 1;
-    repeated float response = 2;
+    string utterance = 1;
+    string response = 2;
+    float score  = 3;
 }
 
 enum MessageType {
