@@ -2,21 +2,28 @@ package com.rules;
 
 
 import com.decisionengine.DecisionEngineType;
-import edu.stanford.nlp.ling.tokensregex.TokenSequencePattern;
+import com.nlp.nlu.ParseEngineType;
 import edu.stanford.nlp.pipeline.CoreDocument;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RulesEngine extends DecisionEngineType {
 
     public MatcherType mMatcher;
+    public ParseEngineType mParser;
+
     public RulesEngine(){
         init();
     }
+    public RulesEngine(String ruleFile, ParseEngineType parser){
+        this.mParser = parser;
+        init(ruleFile);
+    }
 
     public void init(){
-        mMatcher = new Matcher1(com.config.PrimaryConfig.PREDEFINED_STATEMENTS_LOC);
+        init(com.config.PrimaryConfig.PREDEFINED_STATEMENTS_LOC);
+    }
+
+    public void init(String rulesFile){
+        this.mMatcher = new Matcher1(rulesFile, mParser);
     }
 
     @Override
