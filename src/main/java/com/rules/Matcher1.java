@@ -79,14 +79,24 @@ public class Matcher1 extends MatcherType {
     /**
      * Inits extractor only if it hasn't been initalized already.
      */
-    private void initExtractor() {
+    private void initExtractor() throws RuntimeException {
         if (mExtractor == null) {
-            CoreMapExpressionExtractor<MatchedExpression> extractor = CoreMapExpressionExtractor
-                    .createExtractorFromFiles(TokenSequencePattern.getNewEnv(), mRuleFile);
-            mExtractor = extractor;
+            try{
+                CoreMapExpressionExtractor<MatchedExpression> extractor = CoreMapExpressionExtractor
+                        .createExtractorFromFiles(TokenSequencePattern.getNewEnv(), mRuleFile);
+                mExtractor = extractor;
 
+            } catch(RuntimeException e){
+                System.out.println("Failed to read rules file at " + mRuleFile);
+            } catch (Exception e){
+                System.out.println("Unknown Exception"  + e.getMessage());
+                e.printStackTrace();
+            } finally {
+                return;
+            }
         }
     }
+
 
     /**
      * Takes a string and reports the first matched expression.

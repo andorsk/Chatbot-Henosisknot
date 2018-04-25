@@ -3,9 +3,12 @@ syntax="proto3";
 package com.proto.gen;
 
 message Rule {
-    int32 id = 1;
     string guid = 2;
-    string rule = 3;
+    string pattern = 3;
+    string positive_match = 4;
+    string negative_match = 5;
+    string result = 6;
+    string type = 7;
 }
 
 message Rules {
