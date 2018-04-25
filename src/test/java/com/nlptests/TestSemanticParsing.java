@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class SemanticParsingTest extends SetupRulesEngine {
+public class TestSemanticParsing extends SetupRulesEngine {
 
     @Test
     public void testSentenceNER() {

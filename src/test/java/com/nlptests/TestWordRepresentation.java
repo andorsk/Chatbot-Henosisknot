@@ -3,7 +3,7 @@ package com.nlptests;
 import com.nlp.wordrepresentation.wordofbags.WOB;
 import org.junit.Test;
 
-public class WordRepresentationTest {
+public class TestWordRepresentation {
 
     public void testWOB(){
 

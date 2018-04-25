@@ -11,12 +11,21 @@
     </test>
     <!-- @AfterTest -->
 
+
     <!-- @BeforeTest -->
     <test name="rulesTest">
         <classes>
-            <class name="com.intializersfortest.SetupRulesEngine" />
-            <class name="com.nlptests.RulesTest" />
-            <class name="com.nlptests.SemanticParsingTest" />
+            <class name="com.rulestest.TestMatchTriggers" />
+            <class name="com.rulestest.TestTokenRegExMatches" />
+        </classes>
+    </test>
+    <!-- @AfterTest -->
+
+    <!-- @BeforeTest -->
+    <test name="rulesEngineTest">
+        <classes>
+            <class name="com.pipelinetest.RulesTest" />
+            <class name="com.nlptests.TestSemanticParsing" />
         </classes>
     </test>
     <!-- @AfterTest -->

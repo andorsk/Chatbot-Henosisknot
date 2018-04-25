@@ -1,4 +1,4 @@
-package com.nlptests;
+package com.pipelinetest;
 
 import com.intializersfortest.SetupRulesEngine;
 import edu.stanford.nlp.ling.tokensregex.SequenceMatchResult;

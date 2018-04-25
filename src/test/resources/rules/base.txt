@@ -34,6 +34,6 @@ ENV.defaults["stage"] = 2
 
 {
   ruleType: "tokens",
-  pattern: ( [ner:PERSON]+ [pos:VBZ] /an?/ /artist|painter/ ),
-  result: Format("Yes. (%s,%s) is an artist",$1.word, Join(" ",$2.word))
+  pattern: ( ([ { ner:PERSON } ]+) ( [ {pos:VBZ} ] ) /an?/ ( /artist|painter/ ) ),
+  result: Format("Yes. %s is an %s ", $1.word, $3.word)
 }
