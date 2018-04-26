@@ -2,15 +2,31 @@ syntax="proto3";
 
 package com.proto.gen;
 
+// Rule must wrap sequence match rule specified here: https://nlp.stanford.edu/nlp/javadoc/javanlp-3.5.0/edu/stanford/nlp/ling/tokensregex/SequenceMatchRules.html
+// Please refer to this for further documentation. 
 message Rule {
-    string guid = 2;
-    string pattern = 3;
-    string positive_match = 4;
-    string negative_match = 5;
-    string result = 6;
-    string type = 7;
+    string guid = 1;
+    string pattern = 2;
+    string positive_match = 3;
+    string negative_match = 4;
+    string result = 5;
+    string ruleType = 6;
+    int32 stage = 7;
+    double weight = 8;
+    string action = 9;
+    string name = 10;
+    bool active = 11;
+    double priority = 12;
+    MATCHFINDTYPE matchFindType = 13;
+    bool matchWithResults = 14;
+    int32 matchedExpressionGroup = 15;
+
 }
 
+enum MATCHFINDTYPE {
+    FIND_NONOVERLAPPING = 0;
+    FIND_ALL = 1;
+}
 message Rules {
     repeated Rule rules = 1;
 }
