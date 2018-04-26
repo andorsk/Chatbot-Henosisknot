@@ -22,9 +22,12 @@ import jdk.nashorn.internal.parser.JSONParser;
 import org.json.simple.JSONObject;
 import sun.jvm.hotspot.utilities.ObjectReader;
 
+import javax.ws.rs.NotFoundException;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RulesHelpers {
     /**
@@ -137,23 +140,39 @@ public class RulesHelpers {
         }
     }
 
+    /**
+     * TODO: This must be revisited at some point! RegEx's assume the guid will always occur after pattern, which is not always true!
+     * Best method would be direct. 
+     * @param rule
+     * @return
+     */
     private static String createRulesString(Rule rule){
         Map<String, Object> map = new HashMap<String, Object>();
+
+        StringBuffer sb = new StringBuffer();
 
         for(Descriptors.FieldDescriptor d : rule.getAllFields().keySet()){
             Object v = rule.getField(d);
 
             if(d.equals("pattern")){
-                v = TokenSequencePattern.compile((String) v);
+                v = (TokenSequencePattern) TokenSequencePattern.compile((String) v);
             }
             map.put(d.getName(), v);
         }
 
         Gson gson = new Gson();
         String json = gson.toJson(map);
-        System.out.println("Converted to " + json);
-        return json;
+
+        //need a better way to do this. This is ugly.
+        Pattern p = Pattern.compile("(?<=\\\"pattern\":)(\")(.*?)");
+        Matcher m = p.matcher(json);
+        String s = m.replaceAll("");
+        p = Pattern.compile(".(?=\\,\\\"guid\\\":)");//should be forward lookup. need some work on regex.
+        m = p.matcher(s);
+        String t = m.replaceAll("");
+        return t;
     }
+
     /**
      * Take a rule and converts in into a sequence match rule.
      * Sequence match rules can be looked up here:
@@ -193,8 +212,7 @@ public class RulesHelpers {
                 }
 
 
-                attributes.put(d.getName(), tsp.Expression(ex
-                ));
+               // attributes.put(d.getName(), null);
                 map.put(d.getName(), v);
             }
             SequenceMatchRules.AnnotationExtractRuleCreator aer = new  SequenceMatchRules.AnnotationExtractRuleCreator();
