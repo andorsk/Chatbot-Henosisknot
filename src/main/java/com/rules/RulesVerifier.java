@@ -1,7 +1,6 @@
 package com.rules;
 
 import com.proto.gen.RuleOuterClass;
-import com.sun.deploy.security.ruleset.RuleParseException;
 
 import java.io.InvalidObjectException;
 
