@@ -124,25 +124,27 @@ public class RulesHelpers {
     }
 
 
-    public static void RuleToSequenceRulesParser(CoreMapExpressionExtractor extractor, Rules rules){
+    public static void updateExtractorRules(CoreMapExpressionExtractor extractor, Rules rules) throws TokenSequenceParseException, ParseException {
         TokenSequenceParser sp = new TokenSequenceParser();
-        StringBuffer sb = new StringBuffer();
-        try {
-            for(Rule r: rules.getRulesList()){
-                sb.append(createRulesString(r));
-            }
-            StringReader sr = new StringReader(sb.toString());
-            sp.updateExpressionExtractor(extractor,sr);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (TokenSequenceParseException e) {
-            e.printStackTrace();
+
+        for(Rule rule : rules.getRulesList()){
+            StringReader sr = new StringReader(createRulesString(rule));
+            sp.updateExpressionExtractor(extractor, sr);
+
         }
     }
 
+    public static void clearAndUpdateExtractorRule(CoreMapExpressionExtractor extractor, Rule rule) throws TokenSequenceParseException, ParseException {
+        TokenSequenceParser sp = new TokenSequenceParser();
+        StringReader sr = new StringReader(createRulesString(rule));
+        sp.updateExpressionExtractor(extractor, sr);
+    }
+
+
+
     /**
      * TODO: This must be revisited at some point! RegEx's assume the guid will always occur after pattern, which is not always true!
-     * Best method would be direct. 
+     * Best method would be direct.
      * @param rule
      * @return
      */

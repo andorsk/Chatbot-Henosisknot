@@ -1,34 +1,89 @@
 package com.rules;
 
 import com.proto.gen.RuleOuterClass;
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.tokensregex.CoreMapExpressionExtractor;
+import edu.stanford.nlp.ling.tokensregex.MatchedExpression;
+import edu.stanford.nlp.ling.tokensregex.parser.ParseException;
+import edu.stanford.nlp.ling.tokensregex.parser.TokenSequenceParseException;
+import edu.stanford.nlp.pipeline.CoreDocument;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import org.agrona.Verify;
 
 import java.io.InvalidObjectException;
 
 public class RulesVerifier {
+    CoreMapExpressionExtractor <MatchedExpression> mExtractor;
+    StanfordCoreNLP mPipeline;
+    RuleOuterClass.Rules mRules;
 
+    RulesVerifier(CoreMapExpressionExtractor <MatchedExpression> extractor, StanfordCoreNLP pipeline){
+            mExtractor = extractor;
+            mPipeline = pipeline;
+    }
+
+    RulesVerifier(CoreMapExpressionExtractor <MatchedExpression> extractor, StanfordCoreNLP pipeline, RuleOuterClass.Rules rules){
+        this(extractor, pipeline);
+        mRules = rules;
+    }
     /**
      * For each rule, they should have an expected match pair and an expected fail pair. This will check the
      * rules upon load and make sure they are working as expected.
      * @return
      */
-    public boolean checkRules(RuleOuterClass.Rules rules) throws InvalidObjectException {
+    public boolean verifyRules(RuleOuterClass.Rules rules) {
 
+        boolean allValidRules = true;
         for(RuleOuterClass.Rule rule : rules.getRulesList()){
-            if(!checkRule(rule)){
-                throw new InvalidObjectException("Error with rules. It doesn't seem to match with test");
-            };
+            try{
+                verifyRule(rule);
+            }catch(VerifyError e){
+                allValidRules = false;
+            }
         }
-        return true;
+        return allValidRules;
+    }
+
+    public boolean verifyRules(){
+        return verifyRules(mRules);
     }
 
 
     /**
-     * Check are rule and assert true statement is true and false statement is false.
+     * Verification of rules. Based on supplied
      * @param rule
      * @return
      */
-    public boolean checkRule(RuleOuterClass.Rule rule){
+    public boolean verifyRule(RuleOuterClass.Rule rule) throws VerifyError{
+        try {
+            RulesHelpers.clearAndUpdateExtractorRule(mExtractor, rule);
+            if(!testString(rule.getPositiveMatch(), true)) {
+                throw new VerifyError("Positive match failed for rule " + rule.getGuid());
+            };
+
+            if(!testString(rule.getNegativeMatch(), false)){
+                throw new VerifyError("Negative match failed for rule " + rule.getGuid());
+            };
+
+        } catch (TokenSequenceParseException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 
+    private boolean testString(String text, boolean match) throws VerifyError {
+        if(text == null || text.isEmpty()){
+            System.out.println("Warning. No verification pattern detected in one of your rules.");
+        }
+        int _b = match ? 1: 0;
+        CoreDocument document = new CoreDocument(text);
+        mPipeline.annotate(document);
+        if(mExtractor.extractExpressions(document.annotation().get(CoreAnnotations.SentencesAnnotation.class).get(0)).size() != _b){
+           return false;
+        };
+        return true;
+    }
 }
