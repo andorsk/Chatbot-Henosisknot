@@ -14,6 +14,8 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -22,7 +24,6 @@ import java.util.Properties;
 public class TestBasicRulesFromFile {
     StanfordCoreNLP mPipeline;
     CoreMapExpressionExtractor<MatchedExpression> mExtractor;
-
 
     @BeforeClass
     public void setUp() throws IOException {
@@ -35,6 +36,7 @@ public class TestBasicRulesFromFile {
 
         mPipeline = new StanfordCoreNLP(props);
 
+        System.out.println("Set up test basic from file");
 
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("rules/test/test.txt").getFile());
@@ -48,9 +50,9 @@ public class TestBasicRulesFromFile {
 
     @Test
     public void TestRuleFile1() {
-        testString("Which word should be matched", true);
+        testString("I was born on", true);
         testString("Shouldn't match", false);
-        testString("This is a match", true);
+        testString("This should match", true);
         testString("No", false);
     }
 
@@ -58,7 +60,8 @@ public class TestBasicRulesFromFile {
         int _b = match ? 1: 0;
         CoreDocument document = new CoreDocument(text);
         mPipeline.annotate(document);
-        Assert.assertEquals(mExtractor.extractExpressions(document.annotation()).size(), _b);
+        Assert.assertEquals(mExtractor.extractExpressions(document.annotation().get(CoreAnnotations.SentencesAnnotation.class).get(0)).size(), _b);
+        List<MatchedExpression> s = mExtractor.extractExpressions(document.annotation().get(CoreAnnotations.SentencesAnnotation.class).get(0));
     }
 
 }

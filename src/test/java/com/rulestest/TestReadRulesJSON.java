@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.util.UUID;
 
-public class TestReadJSON {
+public class TestReadRulesJSON {
 
     private String rulesPath;
 
@@ -24,17 +24,18 @@ public class TestReadJSON {
 
         RuleOuterClass.Rule r1 = RuleOuterClass.Rule.newBuilder()
                 .setGuid(UUID.randomUUID().toString())
-                .setPattern("/Pattern/ /This/")
+              //  .setPattern("/Pattern/ /This/")
                 .setPositiveMatch("Pattern This")
                 .setNegativeMatch("This doesn't work")
-                .setType("token")
+                .setRuleType("token")
                 .build();
         RuleOuterClass.Rule r2 = RuleOuterClass.Rule.newBuilder()
                 .setGuid(UUID.randomUUID().toString())
-                .setPattern("/Pattern/ /This/")
+                //
+                // .setPattern("/Pattern/ /This/")
                 .setPositiveMatch("Pattern This")
                 .setNegativeMatch("This doesn't work")
-                .setType("token")
+                .setRuleType("token")
                 .build();
 
         RuleOuterClass.Rules.Builder rb = RuleOuterClass.Rules.newBuilder();
