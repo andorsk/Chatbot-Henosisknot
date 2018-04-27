@@ -17,12 +17,12 @@ public class RulesVerifier {
     StanfordCoreNLP mPipeline;
     RuleOuterClass.Rules mRules;
 
-    RulesVerifier(CoreMapExpressionExtractor <MatchedExpression> extractor, StanfordCoreNLP pipeline){
+    public RulesVerifier(CoreMapExpressionExtractor <MatchedExpression> extractor, StanfordCoreNLP pipeline){
             mExtractor = extractor;
             mPipeline = pipeline;
     }
 
-    RulesVerifier(CoreMapExpressionExtractor <MatchedExpression> extractor, StanfordCoreNLP pipeline, RuleOuterClass.Rules rules){
+    public RulesVerifier(CoreMapExpressionExtractor <MatchedExpression> extractor, StanfordCoreNLP pipeline, RuleOuterClass.Rules rules){
         this(extractor, pipeline);
         mRules = rules;
     }
@@ -55,8 +55,8 @@ public class RulesVerifier {
      * @return
      */
     public boolean verifyRule(RuleOuterClass.Rule rule) throws VerifyError{
-        try {
-            RulesHelpers.clearAndUpdateExtractorRule(mExtractor, rule);
+      //  try {
+            //RulesHelpers.clearAndUpdateExtractorRule(mExtractor, rule);
             if(!testString(rule.getPositiveMatch(), true)) {
                 throw new VerifyError("Positive match failed for rule " + rule.getGuid());
             };
@@ -65,11 +65,11 @@ public class RulesVerifier {
                 throw new VerifyError("Negative match failed for rule " + rule.getGuid());
             };
 
-        } catch (TokenSequenceParseException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        } catch (TokenSequenceParseException e) {
+//            e.printStackTrace();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         return false;
     }
