@@ -127,12 +127,16 @@ public class RulesHelpers {
 
     public static void updateExtractorRules(CoreMapExpressionExtractor extractor, Rules rules) throws TokenSequenceParseException, ParseException {
         TokenSequenceParser sp = new TokenSequenceParser();
+        StringBuffer br = new StringBuffer();
+        br.append("ner = { type: \"CLASS\", value: \"com.annotation.ExtendedCoreAnnotation$EmbeddedRule\" }\n");
 
         for(Rule rule : rules.getRulesList()){
-            StringReader sr = new StringReader(createRulesString(rule));
-            sp.updateExpressionExtractor(extractor, sr);
-
+            br.append(createRulesString(rule));
         }
+
+        System.out.println("final string is " + br.toString());
+        sp.updateExpressionExtractor(extractor, new StringReader(br.toString()));
+
     }
 
     public static void clearAndUpdateExtractorRule(CoreMapExpressionExtractor extractor, Rule rule) throws TokenSequenceParseException, ParseException {
@@ -168,7 +172,7 @@ public class RulesHelpers {
             //action_encoding.append(action_string) ;
             map.put(d.getName(), v);
         }
-        action_encoding.append(" Annotate($$0, " + "pos" + ", "+ "quotemark "+ "Happy Token" + " quotemark " + ")");
+        action_encoding.append(" Annotate($0, " + "ner" + ", "+ "quotemark "+ "Happy Token" + " quotemark " + ")");
         action_encoding.append(" )");
         String action_string = action_encoding.toString().replace("\\/", "/");
 
@@ -176,13 +180,15 @@ public class RulesHelpers {
 
         map.put("action", action_string);
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Gson gson = new GsonBuilder().create();
         String json = gson.toJson(map);
 
 
         //need a better way to do this. This is ugly.
-        //Pattern p = Pattern.compile("(?<=\\\"pattern\":)(\")(.*?)");
-        Pattern p = Pattern.compile("(?<=pattern\":).*?([\"])");
+        Pattern p = Pattern.compile("(?<=\\\"pattern\":)(\")(.*?)");
+//        Pattern p = Pattern.compile("(?<=pattern\":).*?([\"])");
         Matcher m = p.matcher(json);
         String s = m.replaceAll("");
         p = Pattern.compile(".(?=\\,\\\"guid\\\":)");//should be forward lookup. need some work on regex.
@@ -190,7 +196,7 @@ public class RulesHelpers {
         String t = m.replaceAll("");
 
         //need a better way to do this. This is ugly.
-       // p = Pattern.compile("(?<=\\\"action\":)(\")(.*?)");
+        p = Pattern.compile("(?<=\\\"action\":)(\")(.*?)");
         p = Pattern.compile("(?<=action\":).*?([\"])");
         m = p.matcher(t);
         s = m.replaceAll("");
@@ -198,7 +204,7 @@ public class RulesHelpers {
         m = p.matcher(s);
         t = m.replaceAll("");
 
-      //  t = t.replaceAll("quotemark", "\"");
+        t = t.replaceAll("quotemark", "\"");
 
         System.out.println(t);
         return t;
