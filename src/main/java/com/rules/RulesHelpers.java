@@ -1,6 +1,7 @@
 package com.rules;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.protobuf.Descriptors;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
@@ -150,28 +151,56 @@ public class RulesHelpers {
      */
     private static String createRulesString(Rule rule){
         Map<String, Object> map = new HashMap<String, Object>();
-
-        StringBuffer sb = new StringBuffer();
+        StringBuffer action_encoding = new StringBuffer();
+        int count = 0;
+        action_encoding.append("( ");
 
         for(Descriptors.FieldDescriptor d : rule.getAllFields().keySet()){
+            count++;
             Object v = rule.getField(d);
 
-            if(d.equals("pattern")){
-                v = (TokenSequencePattern) TokenSequencePattern.compile((String) v);
+            if(d.equals("pattern")){ v = (TokenSequencePattern) TokenSequencePattern.compile((String) v); }
+
+            String action_string = " Annotate($$0, " + d.getName() + ", \"" + v.toString() + "\")";
+            if(count != rule.getAllFields().keySet().size()){
+                action_string = action_string + ",";
             }
+            //action_encoding.append(action_string) ;
             map.put(d.getName(), v);
         }
+        action_encoding.append(" Annotate($$0, " + "pos" + ", "+ "quotemark "+ "Happy Token" + " quotemark " + ")");
+        action_encoding.append(" )");
+        String action_string = action_encoding.toString().replace("\\/", "/");
 
-        Gson gson = new Gson();
+
+
+        map.put("action", action_string);
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(map);
 
+
         //need a better way to do this. This is ugly.
-        Pattern p = Pattern.compile("(?<=\\\"pattern\":)(\")(.*?)");
+        //Pattern p = Pattern.compile("(?<=\\\"pattern\":)(\")(.*?)");
+        Pattern p = Pattern.compile("(?<=pattern\":).*?([\"])");
         Matcher m = p.matcher(json);
         String s = m.replaceAll("");
         p = Pattern.compile(".(?=\\,\\\"guid\\\":)");//should be forward lookup. need some work on regex.
         m = p.matcher(s);
         String t = m.replaceAll("");
+
+        //need a better way to do this. This is ugly.
+       // p = Pattern.compile("(?<=\\\"action\":)(\")(.*?)");
+        p = Pattern.compile("(?<=action\":).*?([\"])");
+        m = p.matcher(t);
+        s = m.replaceAll("");
+        p = Pattern.compile(".(?=\\,\\\"positive_match\\\":)");//should be forward lookup. need some work on regex.
+        m = p.matcher(s);
+        t = m.replaceAll("");
+
+      //  t = t.replaceAll("quotemark", "\"");
+
+        System.out.println(t);
         return t;
     }
 

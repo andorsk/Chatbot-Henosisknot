@@ -14,20 +14,20 @@ public class FileHelpers {
      * @param existingFiles Since it is recursive passes existing file list.
      * @return
      */
-    public static List<String> listRecusivelyGetFilesWithExtension(String dir, String ext, ArrayList<String> existingFiles) {
+    public static List<File> listRecusivelyGetFilesWithExtension(File dir, String ext, ArrayList<File> existingFiles) {
 
         if (existingFiles == null || existingFiles.isEmpty()) {
-            existingFiles = new ArrayList<String>();
+            existingFiles = new ArrayList<File>();
         }
 
-        File[] files = new File(dir).listFiles();
+        File[] files = dir.listFiles();
         for (File file : files) {
             if (file.isDirectory()) {
-                listRecusivelyGetFilesWithExtension(file.toString(), ext, existingFiles);
+                listRecusivelyGetFilesWithExtension(file, ext, existingFiles);
             } else {
                 String extension = "." + FilenameUtils.getExtension("." + file.getName());
                 if (extension.equals(ext)) {
-                    existingFiles.add(file.getAbsolutePath());
+                    existingFiles.add(file);
                 }
             }
         }
@@ -40,7 +40,7 @@ public class FileHelpers {
      * @param ext
      * @return
      */
-    public static List<String> listRecusivelyGetFilesWithExtension(String dir, String ext) {
+    public static List<File> listRecusivelyGetFilesWithExtension(File dir, String ext) {
         return listRecusivelyGetFilesWithExtension(dir, ext, null);
     }
 }

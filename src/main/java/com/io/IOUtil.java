@@ -19,6 +19,12 @@ public class IOUtil {
         return new String(encoded, encoding);
     }
 
+    public static String readFile(String path)
+            throws IOException
+    {
+        return readFile(path, Charset.defaultCharset());
+    }
+
     public static JSONArray readJSONFile(String file){
         JSONParser parser = new JSONParser();
         try {

@@ -54,24 +54,17 @@ public class RulesVerifier {
      * @param rule
      * @return
      */
-    public boolean verifyRule(RuleOuterClass.Rule rule) throws VerifyError{
-      //  try {
-            //RulesHelpers.clearAndUpdateExtractorRule(mExtractor, rule);
+    public void verifyRule(RuleOuterClass.Rule rule) throws VerifyError{
+
             if(!testString(rule.getPositiveMatch(), true)) {
+                System.out.println("Positive match failed for rule " + rule.getGuid());
                 throw new VerifyError("Positive match failed for rule " + rule.getGuid());
             };
 
             if(!testString(rule.getNegativeMatch(), false)){
-                throw new VerifyError("Negative match failed for rule " + rule.getGuid());
+                System.out.println("Negative match failed for rule " + rule.getGuid() + ":" + rule.getPattern());
+                throw new VerifyError("Negative match failed for rule " + rule.getGuid() );
             };
-
-//        } catch (TokenSequenceParseException e) {
-//            e.printStackTrace();
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
-        return false;
     }
 
     private boolean testString(String text, boolean match) throws VerifyError {

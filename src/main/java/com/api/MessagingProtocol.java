@@ -37,4 +37,9 @@ public class MessagingProtocol {
         return null;
     }
 
+
+    public static void responseController(String message){}{
+
+    }
+
 }

@@ -14,71 +14,243 @@ public final class RuleOuterClass {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  /**
+   * Protobuf enum {@code com.proto.gen.MATCHFINDTYPE}
+   */
+  public enum MATCHFINDTYPE
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>FIND_NONOVERLAPPING = 0;</code>
+     */
+    FIND_NONOVERLAPPING(0),
+    /**
+     * <code>FIND_ALL = 1;</code>
+     */
+    FIND_ALL(1),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>FIND_NONOVERLAPPING = 0;</code>
+     */
+    public static final int FIND_NONOVERLAPPING_VALUE = 0;
+    /**
+     * <code>FIND_ALL = 1;</code>
+     */
+    public static final int FIND_ALL_VALUE = 1;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static MATCHFINDTYPE valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static MATCHFINDTYPE forNumber(int value) {
+      switch (value) {
+        case 0: return FIND_NONOVERLAPPING;
+        case 1: return FIND_ALL;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<MATCHFINDTYPE>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        MATCHFINDTYPE> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<MATCHFINDTYPE>() {
+            public MATCHFINDTYPE findValueByNumber(int number) {
+              return MATCHFINDTYPE.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.proto.gen.RuleOuterClass.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final MATCHFINDTYPE[] VALUES = values();
+
+    public static MATCHFINDTYPE valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private MATCHFINDTYPE(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:com.proto.gen.MATCHFINDTYPE)
+  }
+
   public interface RuleOrBuilder extends
       // @@protoc_insertion_point(interface_extends:com.proto.gen.Rule)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string guid = 2;</code>
+     * <code>optional string guid = 1;</code>
      */
     java.lang.String getGuid();
     /**
-     * <code>optional string guid = 2;</code>
+     * <code>optional string guid = 1;</code>
      */
     com.google.protobuf.ByteString
         getGuidBytes();
 
     /**
-     * <code>optional string pattern = 3;</code>
+     * <code>optional string pattern = 2;</code>
      */
     java.lang.String getPattern();
     /**
-     * <code>optional string pattern = 3;</code>
+     * <code>optional string pattern = 2;</code>
      */
     com.google.protobuf.ByteString
         getPatternBytes();
 
     /**
-     * <code>optional string positive_match = 4;</code>
+     * <code>optional string pattern_string = 16;</code>
+     */
+    java.lang.String getPatternString();
+    /**
+     * <code>optional string pattern_string = 16;</code>
+     */
+    com.google.protobuf.ByteString
+        getPatternStringBytes();
+
+    /**
+     * <code>optional string positive_match = 3;</code>
      */
     java.lang.String getPositiveMatch();
     /**
-     * <code>optional string positive_match = 4;</code>
+     * <code>optional string positive_match = 3;</code>
      */
     com.google.protobuf.ByteString
         getPositiveMatchBytes();
 
     /**
-     * <code>optional string negative_match = 5;</code>
+     * <code>optional string negative_match = 4;</code>
      */
     java.lang.String getNegativeMatch();
     /**
-     * <code>optional string negative_match = 5;</code>
+     * <code>optional string negative_match = 4;</code>
      */
     com.google.protobuf.ByteString
         getNegativeMatchBytes();
 
     /**
-     * <code>optional string result = 6;</code>
+     * <code>optional string result = 5;</code>
      */
     java.lang.String getResult();
     /**
-     * <code>optional string result = 6;</code>
+     * <code>optional string result = 5;</code>
      */
     com.google.protobuf.ByteString
         getResultBytes();
 
     /**
-     * <code>optional string type = 7;</code>
+     * <code>optional string ruleType = 6;</code>
      */
-    java.lang.String getType();
+    java.lang.String getRuleType();
     /**
-     * <code>optional string type = 7;</code>
+     * <code>optional string ruleType = 6;</code>
      */
     com.google.protobuf.ByteString
-        getTypeBytes();
+        getRuleTypeBytes();
+
+    /**
+     * <code>optional int32 stage = 7;</code>
+     */
+    int getStage();
+
+    /**
+     * <code>optional double weight = 8;</code>
+     */
+    double getWeight();
+
+    /**
+     * <code>optional string action = 9;</code>
+     */
+    java.lang.String getAction();
+    /**
+     * <code>optional string action = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getActionBytes();
+
+    /**
+     * <code>optional string name = 10;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>optional bool active = 11;</code>
+     */
+    boolean getActive();
+
+    /**
+     * <code>optional double priority = 12;</code>
+     */
+    double getPriority();
+
+    /**
+     * <code>optional .com.proto.gen.MATCHFINDTYPE matchFindType = 13;</code>
+     */
+    int getMatchFindTypeValue();
+    /**
+     * <code>optional .com.proto.gen.MATCHFINDTYPE matchFindType = 13;</code>
+     */
+    com.proto.gen.RuleOuterClass.MATCHFINDTYPE getMatchFindType();
+
+    /**
+     * <code>optional bool matchWithResults = 14;</code>
+     */
+    boolean getMatchWithResults();
+
+    /**
+     * <code>optional int32 matchedExpressionGroup = 15;</code>
+     */
+    int getMatchedExpressionGroup();
   }
   /**
+   * <pre>
+   * Rule must wrap sequence match rule specified here: https://nlp.stanford.edu/nlp/javadoc/javanlp-3.5.0/edu/stanford/nlp/ling/tokensregex/SequenceMatchRules.html
+   * Please refer to this for further documentation.
+   * </pre>
+   *
    * Protobuf type {@code com.proto.gen.Rule}
    */
   public  static final class Rule extends
@@ -92,10 +264,20 @@ public final class RuleOuterClass {
     private Rule() {
       guid_ = "";
       pattern_ = "";
+      patternString_ = "";
       positiveMatch_ = "";
       negativeMatch_ = "";
       result_ = "";
-      type_ = "";
+      ruleType_ = "";
+      stage_ = 0;
+      weight_ = 0D;
+      action_ = "";
+      name_ = "";
+      active_ = false;
+      priority_ = 0D;
+      matchFindType_ = 0;
+      matchWithResults_ = false;
+      matchedExpressionGroup_ = 0;
     }
 
     @java.lang.Override
@@ -123,40 +305,94 @@ public final class RuleOuterClass {
               }
               break;
             }
-            case 18: {
+            case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
               guid_ = s;
               break;
             }
-            case 26: {
+            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               pattern_ = s;
               break;
             }
-            case 34: {
+            case 26: {
               java.lang.String s = input.readStringRequireUtf8();
 
               positiveMatch_ = s;
               break;
             }
-            case 42: {
+            case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
               negativeMatch_ = s;
               break;
             }
-            case 50: {
+            case 42: {
               java.lang.String s = input.readStringRequireUtf8();
 
               result_ = s;
               break;
             }
-            case 58: {
+            case 50: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              type_ = s;
+              ruleType_ = s;
+              break;
+            }
+            case 56: {
+
+              stage_ = input.readInt32();
+              break;
+            }
+            case 65: {
+
+              weight_ = input.readDouble();
+              break;
+            }
+            case 74: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              action_ = s;
+              break;
+            }
+            case 82: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 88: {
+
+              active_ = input.readBool();
+              break;
+            }
+            case 97: {
+
+              priority_ = input.readDouble();
+              break;
+            }
+            case 104: {
+              int rawValue = input.readEnum();
+
+              matchFindType_ = rawValue;
+              break;
+            }
+            case 112: {
+
+              matchWithResults_ = input.readBool();
+              break;
+            }
+            case 120: {
+
+              matchedExpressionGroup_ = input.readInt32();
+              break;
+            }
+            case 130: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              patternString_ = s;
               break;
             }
           }
@@ -182,10 +418,10 @@ public final class RuleOuterClass {
               com.proto.gen.RuleOuterClass.Rule.class, com.proto.gen.RuleOuterClass.Rule.Builder.class);
     }
 
-    public static final int GUID_FIELD_NUMBER = 2;
+    public static final int GUID_FIELD_NUMBER = 1;
     private volatile java.lang.Object guid_;
     /**
-     * <code>optional string guid = 2;</code>
+     * <code>optional string guid = 1;</code>
      */
     public java.lang.String getGuid() {
       java.lang.Object ref = guid_;
@@ -200,7 +436,7 @@ public final class RuleOuterClass {
       }
     }
     /**
-     * <code>optional string guid = 2;</code>
+     * <code>optional string guid = 1;</code>
      */
     public com.google.protobuf.ByteString
         getGuidBytes() {
@@ -216,10 +452,10 @@ public final class RuleOuterClass {
       }
     }
 
-    public static final int PATTERN_FIELD_NUMBER = 3;
+    public static final int PATTERN_FIELD_NUMBER = 2;
     private volatile java.lang.Object pattern_;
     /**
-     * <code>optional string pattern = 3;</code>
+     * <code>optional string pattern = 2;</code>
      */
     public java.lang.String getPattern() {
       java.lang.Object ref = pattern_;
@@ -234,7 +470,7 @@ public final class RuleOuterClass {
       }
     }
     /**
-     * <code>optional string pattern = 3;</code>
+     * <code>optional string pattern = 2;</code>
      */
     public com.google.protobuf.ByteString
         getPatternBytes() {
@@ -250,10 +486,44 @@ public final class RuleOuterClass {
       }
     }
 
-    public static final int POSITIVE_MATCH_FIELD_NUMBER = 4;
+    public static final int PATTERN_STRING_FIELD_NUMBER = 16;
+    private volatile java.lang.Object patternString_;
+    /**
+     * <code>optional string pattern_string = 16;</code>
+     */
+    public java.lang.String getPatternString() {
+      java.lang.Object ref = patternString_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        patternString_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string pattern_string = 16;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPatternStringBytes() {
+      java.lang.Object ref = patternString_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        patternString_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int POSITIVE_MATCH_FIELD_NUMBER = 3;
     private volatile java.lang.Object positiveMatch_;
     /**
-     * <code>optional string positive_match = 4;</code>
+     * <code>optional string positive_match = 3;</code>
      */
     public java.lang.String getPositiveMatch() {
       java.lang.Object ref = positiveMatch_;
@@ -268,7 +538,7 @@ public final class RuleOuterClass {
       }
     }
     /**
-     * <code>optional string positive_match = 4;</code>
+     * <code>optional string positive_match = 3;</code>
      */
     public com.google.protobuf.ByteString
         getPositiveMatchBytes() {
@@ -284,10 +554,10 @@ public final class RuleOuterClass {
       }
     }
 
-    public static final int NEGATIVE_MATCH_FIELD_NUMBER = 5;
+    public static final int NEGATIVE_MATCH_FIELD_NUMBER = 4;
     private volatile java.lang.Object negativeMatch_;
     /**
-     * <code>optional string negative_match = 5;</code>
+     * <code>optional string negative_match = 4;</code>
      */
     public java.lang.String getNegativeMatch() {
       java.lang.Object ref = negativeMatch_;
@@ -302,7 +572,7 @@ public final class RuleOuterClass {
       }
     }
     /**
-     * <code>optional string negative_match = 5;</code>
+     * <code>optional string negative_match = 4;</code>
      */
     public com.google.protobuf.ByteString
         getNegativeMatchBytes() {
@@ -318,10 +588,10 @@ public final class RuleOuterClass {
       }
     }
 
-    public static final int RESULT_FIELD_NUMBER = 6;
+    public static final int RESULT_FIELD_NUMBER = 5;
     private volatile java.lang.Object result_;
     /**
-     * <code>optional string result = 6;</code>
+     * <code>optional string result = 5;</code>
      */
     public java.lang.String getResult() {
       java.lang.Object ref = result_;
@@ -336,7 +606,7 @@ public final class RuleOuterClass {
       }
     }
     /**
-     * <code>optional string result = 6;</code>
+     * <code>optional string result = 5;</code>
      */
     public com.google.protobuf.ByteString
         getResultBytes() {
@@ -352,38 +622,176 @@ public final class RuleOuterClass {
       }
     }
 
-    public static final int TYPE_FIELD_NUMBER = 7;
-    private volatile java.lang.Object type_;
+    public static final int RULETYPE_FIELD_NUMBER = 6;
+    private volatile java.lang.Object ruleType_;
     /**
-     * <code>optional string type = 7;</code>
+     * <code>optional string ruleType = 6;</code>
      */
-    public java.lang.String getType() {
-      java.lang.Object ref = type_;
+    public java.lang.String getRuleType() {
+      java.lang.Object ref = ruleType_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        type_ = s;
+        ruleType_ = s;
         return s;
       }
     }
     /**
-     * <code>optional string type = 7;</code>
+     * <code>optional string ruleType = 6;</code>
      */
     public com.google.protobuf.ByteString
-        getTypeBytes() {
-      java.lang.Object ref = type_;
+        getRuleTypeBytes() {
+      java.lang.Object ref = ruleType_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        type_ = b;
+        ruleType_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    public static final int STAGE_FIELD_NUMBER = 7;
+    private int stage_;
+    /**
+     * <code>optional int32 stage = 7;</code>
+     */
+    public int getStage() {
+      return stage_;
+    }
+
+    public static final int WEIGHT_FIELD_NUMBER = 8;
+    private double weight_;
+    /**
+     * <code>optional double weight = 8;</code>
+     */
+    public double getWeight() {
+      return weight_;
+    }
+
+    public static final int ACTION_FIELD_NUMBER = 9;
+    private volatile java.lang.Object action_;
+    /**
+     * <code>optional string action = 9;</code>
+     */
+    public java.lang.String getAction() {
+      java.lang.Object ref = action_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        action_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string action = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getActionBytes() {
+      java.lang.Object ref = action_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        action_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NAME_FIELD_NUMBER = 10;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>optional string name = 10;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string name = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ACTIVE_FIELD_NUMBER = 11;
+    private boolean active_;
+    /**
+     * <code>optional bool active = 11;</code>
+     */
+    public boolean getActive() {
+      return active_;
+    }
+
+    public static final int PRIORITY_FIELD_NUMBER = 12;
+    private double priority_;
+    /**
+     * <code>optional double priority = 12;</code>
+     */
+    public double getPriority() {
+      return priority_;
+    }
+
+    public static final int MATCHFINDTYPE_FIELD_NUMBER = 13;
+    private int matchFindType_;
+    /**
+     * <code>optional .com.proto.gen.MATCHFINDTYPE matchFindType = 13;</code>
+     */
+    public int getMatchFindTypeValue() {
+      return matchFindType_;
+    }
+    /**
+     * <code>optional .com.proto.gen.MATCHFINDTYPE matchFindType = 13;</code>
+     */
+    public com.proto.gen.RuleOuterClass.MATCHFINDTYPE getMatchFindType() {
+      com.proto.gen.RuleOuterClass.MATCHFINDTYPE result = com.proto.gen.RuleOuterClass.MATCHFINDTYPE.valueOf(matchFindType_);
+      return result == null ? com.proto.gen.RuleOuterClass.MATCHFINDTYPE.UNRECOGNIZED : result;
+    }
+
+    public static final int MATCHWITHRESULTS_FIELD_NUMBER = 14;
+    private boolean matchWithResults_;
+    /**
+     * <code>optional bool matchWithResults = 14;</code>
+     */
+    public boolean getMatchWithResults() {
+      return matchWithResults_;
+    }
+
+    public static final int MATCHEDEXPRESSIONGROUP_FIELD_NUMBER = 15;
+    private int matchedExpressionGroup_;
+    /**
+     * <code>optional int32 matchedExpressionGroup = 15;</code>
+     */
+    public int getMatchedExpressionGroup() {
+      return matchedExpressionGroup_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -399,22 +807,52 @@ public final class RuleOuterClass {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getGuidBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, guid_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, guid_);
       }
       if (!getPatternBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, pattern_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, pattern_);
       }
       if (!getPositiveMatchBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, positiveMatch_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, positiveMatch_);
       }
       if (!getNegativeMatchBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, negativeMatch_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, negativeMatch_);
       }
       if (!getResultBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, result_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, result_);
       }
-      if (!getTypeBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, type_);
+      if (!getRuleTypeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, ruleType_);
+      }
+      if (stage_ != 0) {
+        output.writeInt32(7, stage_);
+      }
+      if (weight_ != 0D) {
+        output.writeDouble(8, weight_);
+      }
+      if (!getActionBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, action_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, name_);
+      }
+      if (active_ != false) {
+        output.writeBool(11, active_);
+      }
+      if (priority_ != 0D) {
+        output.writeDouble(12, priority_);
+      }
+      if (matchFindType_ != com.proto.gen.RuleOuterClass.MATCHFINDTYPE.FIND_NONOVERLAPPING.getNumber()) {
+        output.writeEnum(13, matchFindType_);
+      }
+      if (matchWithResults_ != false) {
+        output.writeBool(14, matchWithResults_);
+      }
+      if (matchedExpressionGroup_ != 0) {
+        output.writeInt32(15, matchedExpressionGroup_);
+      }
+      if (!getPatternStringBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 16, patternString_);
       }
     }
 
@@ -424,22 +862,59 @@ public final class RuleOuterClass {
 
       size = 0;
       if (!getGuidBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, guid_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, guid_);
       }
       if (!getPatternBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, pattern_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, pattern_);
       }
       if (!getPositiveMatchBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, positiveMatch_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, positiveMatch_);
       }
       if (!getNegativeMatchBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, negativeMatch_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, negativeMatch_);
       }
       if (!getResultBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, result_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, result_);
       }
-      if (!getTypeBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, type_);
+      if (!getRuleTypeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, ruleType_);
+      }
+      if (stage_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, stage_);
+      }
+      if (weight_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(8, weight_);
+      }
+      if (!getActionBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, action_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, name_);
+      }
+      if (active_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(11, active_);
+      }
+      if (priority_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(12, priority_);
+      }
+      if (matchFindType_ != com.proto.gen.RuleOuterClass.MATCHFINDTYPE.FIND_NONOVERLAPPING.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(13, matchFindType_);
+      }
+      if (matchWithResults_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(14, matchWithResults_);
+      }
+      if (matchedExpressionGroup_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(15, matchedExpressionGroup_);
+      }
+      if (!getPatternStringBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(16, patternString_);
       }
       memoizedSize = size;
       return size;
@@ -461,14 +936,37 @@ public final class RuleOuterClass {
           .equals(other.getGuid());
       result = result && getPattern()
           .equals(other.getPattern());
+      result = result && getPatternString()
+          .equals(other.getPatternString());
       result = result && getPositiveMatch()
           .equals(other.getPositiveMatch());
       result = result && getNegativeMatch()
           .equals(other.getNegativeMatch());
       result = result && getResult()
           .equals(other.getResult());
-      result = result && getType()
-          .equals(other.getType());
+      result = result && getRuleType()
+          .equals(other.getRuleType());
+      result = result && (getStage()
+          == other.getStage());
+      result = result && (
+          java.lang.Double.doubleToLongBits(getWeight())
+          == java.lang.Double.doubleToLongBits(
+              other.getWeight()));
+      result = result && getAction()
+          .equals(other.getAction());
+      result = result && getName()
+          .equals(other.getName());
+      result = result && (getActive()
+          == other.getActive());
+      result = result && (
+          java.lang.Double.doubleToLongBits(getPriority())
+          == java.lang.Double.doubleToLongBits(
+              other.getPriority()));
+      result = result && matchFindType_ == other.matchFindType_;
+      result = result && (getMatchWithResults()
+          == other.getMatchWithResults());
+      result = result && (getMatchedExpressionGroup()
+          == other.getMatchedExpressionGroup());
       return result;
     }
 
@@ -483,14 +981,38 @@ public final class RuleOuterClass {
       hash = (53 * hash) + getGuid().hashCode();
       hash = (37 * hash) + PATTERN_FIELD_NUMBER;
       hash = (53 * hash) + getPattern().hashCode();
+      hash = (37 * hash) + PATTERN_STRING_FIELD_NUMBER;
+      hash = (53 * hash) + getPatternString().hashCode();
       hash = (37 * hash) + POSITIVE_MATCH_FIELD_NUMBER;
       hash = (53 * hash) + getPositiveMatch().hashCode();
       hash = (37 * hash) + NEGATIVE_MATCH_FIELD_NUMBER;
       hash = (53 * hash) + getNegativeMatch().hashCode();
       hash = (37 * hash) + RESULT_FIELD_NUMBER;
       hash = (53 * hash) + getResult().hashCode();
-      hash = (37 * hash) + TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getType().hashCode();
+      hash = (37 * hash) + RULETYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getRuleType().hashCode();
+      hash = (37 * hash) + STAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getStage();
+      hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getWeight()));
+      hash = (37 * hash) + ACTION_FIELD_NUMBER;
+      hash = (53 * hash) + getAction().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + ACTIVE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getActive());
+      hash = (37 * hash) + PRIORITY_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getPriority()));
+      hash = (37 * hash) + MATCHFINDTYPE_FIELD_NUMBER;
+      hash = (53 * hash) + matchFindType_;
+      hash = (37 * hash) + MATCHWITHRESULTS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getMatchWithResults());
+      hash = (37 * hash) + MATCHEDEXPRESSIONGROUP_FIELD_NUMBER;
+      hash = (53 * hash) + getMatchedExpressionGroup();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -574,6 +1096,11 @@ public final class RuleOuterClass {
       return builder;
     }
     /**
+     * <pre>
+     * Rule must wrap sequence match rule specified here: https://nlp.stanford.edu/nlp/javadoc/javanlp-3.5.0/edu/stanford/nlp/ling/tokensregex/SequenceMatchRules.html
+     * Please refer to this for further documentation.
+     * </pre>
+     *
      * Protobuf type {@code com.proto.gen.Rule}
      */
     public static final class Builder extends
@@ -613,13 +1140,33 @@ public final class RuleOuterClass {
 
         pattern_ = "";
 
+        patternString_ = "";
+
         positiveMatch_ = "";
 
         negativeMatch_ = "";
 
         result_ = "";
 
-        type_ = "";
+        ruleType_ = "";
+
+        stage_ = 0;
+
+        weight_ = 0D;
+
+        action_ = "";
+
+        name_ = "";
+
+        active_ = false;
+
+        priority_ = 0D;
+
+        matchFindType_ = 0;
+
+        matchWithResults_ = false;
+
+        matchedExpressionGroup_ = 0;
 
         return this;
       }
@@ -645,10 +1192,20 @@ public final class RuleOuterClass {
         com.proto.gen.RuleOuterClass.Rule result = new com.proto.gen.RuleOuterClass.Rule(this);
         result.guid_ = guid_;
         result.pattern_ = pattern_;
+        result.patternString_ = patternString_;
         result.positiveMatch_ = positiveMatch_;
         result.negativeMatch_ = negativeMatch_;
         result.result_ = result_;
-        result.type_ = type_;
+        result.ruleType_ = ruleType_;
+        result.stage_ = stage_;
+        result.weight_ = weight_;
+        result.action_ = action_;
+        result.name_ = name_;
+        result.active_ = active_;
+        result.priority_ = priority_;
+        result.matchFindType_ = matchFindType_;
+        result.matchWithResults_ = matchWithResults_;
+        result.matchedExpressionGroup_ = matchedExpressionGroup_;
         onBuilt();
         return result;
       }
@@ -698,6 +1255,10 @@ public final class RuleOuterClass {
           pattern_ = other.pattern_;
           onChanged();
         }
+        if (!other.getPatternString().isEmpty()) {
+          patternString_ = other.patternString_;
+          onChanged();
+        }
         if (!other.getPositiveMatch().isEmpty()) {
           positiveMatch_ = other.positiveMatch_;
           onChanged();
@@ -710,9 +1271,38 @@ public final class RuleOuterClass {
           result_ = other.result_;
           onChanged();
         }
-        if (!other.getType().isEmpty()) {
-          type_ = other.type_;
+        if (!other.getRuleType().isEmpty()) {
+          ruleType_ = other.ruleType_;
           onChanged();
+        }
+        if (other.getStage() != 0) {
+          setStage(other.getStage());
+        }
+        if (other.getWeight() != 0D) {
+          setWeight(other.getWeight());
+        }
+        if (!other.getAction().isEmpty()) {
+          action_ = other.action_;
+          onChanged();
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.getActive() != false) {
+          setActive(other.getActive());
+        }
+        if (other.getPriority() != 0D) {
+          setPriority(other.getPriority());
+        }
+        if (other.matchFindType_ != 0) {
+          setMatchFindTypeValue(other.getMatchFindTypeValue());
+        }
+        if (other.getMatchWithResults() != false) {
+          setMatchWithResults(other.getMatchWithResults());
+        }
+        if (other.getMatchedExpressionGroup() != 0) {
+          setMatchedExpressionGroup(other.getMatchedExpressionGroup());
         }
         onChanged();
         return this;
@@ -742,7 +1332,7 @@ public final class RuleOuterClass {
 
       private java.lang.Object guid_ = "";
       /**
-       * <code>optional string guid = 2;</code>
+       * <code>optional string guid = 1;</code>
        */
       public java.lang.String getGuid() {
         java.lang.Object ref = guid_;
@@ -757,7 +1347,7 @@ public final class RuleOuterClass {
         }
       }
       /**
-       * <code>optional string guid = 2;</code>
+       * <code>optional string guid = 1;</code>
        */
       public com.google.protobuf.ByteString
           getGuidBytes() {
@@ -773,7 +1363,7 @@ public final class RuleOuterClass {
         }
       }
       /**
-       * <code>optional string guid = 2;</code>
+       * <code>optional string guid = 1;</code>
        */
       public Builder setGuid(
           java.lang.String value) {
@@ -786,7 +1376,7 @@ public final class RuleOuterClass {
         return this;
       }
       /**
-       * <code>optional string guid = 2;</code>
+       * <code>optional string guid = 1;</code>
        */
       public Builder clearGuid() {
         
@@ -795,7 +1385,7 @@ public final class RuleOuterClass {
         return this;
       }
       /**
-       * <code>optional string guid = 2;</code>
+       * <code>optional string guid = 1;</code>
        */
       public Builder setGuidBytes(
           com.google.protobuf.ByteString value) {
@@ -811,7 +1401,7 @@ public final class RuleOuterClass {
 
       private java.lang.Object pattern_ = "";
       /**
-       * <code>optional string pattern = 3;</code>
+       * <code>optional string pattern = 2;</code>
        */
       public java.lang.String getPattern() {
         java.lang.Object ref = pattern_;
@@ -826,7 +1416,7 @@ public final class RuleOuterClass {
         }
       }
       /**
-       * <code>optional string pattern = 3;</code>
+       * <code>optional string pattern = 2;</code>
        */
       public com.google.protobuf.ByteString
           getPatternBytes() {
@@ -842,7 +1432,7 @@ public final class RuleOuterClass {
         }
       }
       /**
-       * <code>optional string pattern = 3;</code>
+       * <code>optional string pattern = 2;</code>
        */
       public Builder setPattern(
           java.lang.String value) {
@@ -855,7 +1445,7 @@ public final class RuleOuterClass {
         return this;
       }
       /**
-       * <code>optional string pattern = 3;</code>
+       * <code>optional string pattern = 2;</code>
        */
       public Builder clearPattern() {
         
@@ -864,7 +1454,7 @@ public final class RuleOuterClass {
         return this;
       }
       /**
-       * <code>optional string pattern = 3;</code>
+       * <code>optional string pattern = 2;</code>
        */
       public Builder setPatternBytes(
           com.google.protobuf.ByteString value) {
@@ -878,9 +1468,78 @@ public final class RuleOuterClass {
         return this;
       }
 
+      private java.lang.Object patternString_ = "";
+      /**
+       * <code>optional string pattern_string = 16;</code>
+       */
+      public java.lang.String getPatternString() {
+        java.lang.Object ref = patternString_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          patternString_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string pattern_string = 16;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPatternStringBytes() {
+        java.lang.Object ref = patternString_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          patternString_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string pattern_string = 16;</code>
+       */
+      public Builder setPatternString(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        patternString_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string pattern_string = 16;</code>
+       */
+      public Builder clearPatternString() {
+        
+        patternString_ = getDefaultInstance().getPatternString();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string pattern_string = 16;</code>
+       */
+      public Builder setPatternStringBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        patternString_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object positiveMatch_ = "";
       /**
-       * <code>optional string positive_match = 4;</code>
+       * <code>optional string positive_match = 3;</code>
        */
       public java.lang.String getPositiveMatch() {
         java.lang.Object ref = positiveMatch_;
@@ -895,7 +1554,7 @@ public final class RuleOuterClass {
         }
       }
       /**
-       * <code>optional string positive_match = 4;</code>
+       * <code>optional string positive_match = 3;</code>
        */
       public com.google.protobuf.ByteString
           getPositiveMatchBytes() {
@@ -911,7 +1570,7 @@ public final class RuleOuterClass {
         }
       }
       /**
-       * <code>optional string positive_match = 4;</code>
+       * <code>optional string positive_match = 3;</code>
        */
       public Builder setPositiveMatch(
           java.lang.String value) {
@@ -924,7 +1583,7 @@ public final class RuleOuterClass {
         return this;
       }
       /**
-       * <code>optional string positive_match = 4;</code>
+       * <code>optional string positive_match = 3;</code>
        */
       public Builder clearPositiveMatch() {
         
@@ -933,7 +1592,7 @@ public final class RuleOuterClass {
         return this;
       }
       /**
-       * <code>optional string positive_match = 4;</code>
+       * <code>optional string positive_match = 3;</code>
        */
       public Builder setPositiveMatchBytes(
           com.google.protobuf.ByteString value) {
@@ -949,7 +1608,7 @@ public final class RuleOuterClass {
 
       private java.lang.Object negativeMatch_ = "";
       /**
-       * <code>optional string negative_match = 5;</code>
+       * <code>optional string negative_match = 4;</code>
        */
       public java.lang.String getNegativeMatch() {
         java.lang.Object ref = negativeMatch_;
@@ -964,7 +1623,7 @@ public final class RuleOuterClass {
         }
       }
       /**
-       * <code>optional string negative_match = 5;</code>
+       * <code>optional string negative_match = 4;</code>
        */
       public com.google.protobuf.ByteString
           getNegativeMatchBytes() {
@@ -980,7 +1639,7 @@ public final class RuleOuterClass {
         }
       }
       /**
-       * <code>optional string negative_match = 5;</code>
+       * <code>optional string negative_match = 4;</code>
        */
       public Builder setNegativeMatch(
           java.lang.String value) {
@@ -993,7 +1652,7 @@ public final class RuleOuterClass {
         return this;
       }
       /**
-       * <code>optional string negative_match = 5;</code>
+       * <code>optional string negative_match = 4;</code>
        */
       public Builder clearNegativeMatch() {
         
@@ -1002,7 +1661,7 @@ public final class RuleOuterClass {
         return this;
       }
       /**
-       * <code>optional string negative_match = 5;</code>
+       * <code>optional string negative_match = 4;</code>
        */
       public Builder setNegativeMatchBytes(
           com.google.protobuf.ByteString value) {
@@ -1018,7 +1677,7 @@ public final class RuleOuterClass {
 
       private java.lang.Object result_ = "";
       /**
-       * <code>optional string result = 6;</code>
+       * <code>optional string result = 5;</code>
        */
       public java.lang.String getResult() {
         java.lang.Object ref = result_;
@@ -1033,7 +1692,7 @@ public final class RuleOuterClass {
         }
       }
       /**
-       * <code>optional string result = 6;</code>
+       * <code>optional string result = 5;</code>
        */
       public com.google.protobuf.ByteString
           getResultBytes() {
@@ -1049,7 +1708,7 @@ public final class RuleOuterClass {
         }
       }
       /**
-       * <code>optional string result = 6;</code>
+       * <code>optional string result = 5;</code>
        */
       public Builder setResult(
           java.lang.String value) {
@@ -1062,7 +1721,7 @@ public final class RuleOuterClass {
         return this;
       }
       /**
-       * <code>optional string result = 6;</code>
+       * <code>optional string result = 5;</code>
        */
       public Builder clearResult() {
         
@@ -1071,7 +1730,7 @@ public final class RuleOuterClass {
         return this;
       }
       /**
-       * <code>optional string result = 6;</code>
+       * <code>optional string result = 5;</code>
        */
       public Builder setResultBytes(
           com.google.protobuf.ByteString value) {
@@ -1085,71 +1744,409 @@ public final class RuleOuterClass {
         return this;
       }
 
-      private java.lang.Object type_ = "";
+      private java.lang.Object ruleType_ = "";
       /**
-       * <code>optional string type = 7;</code>
+       * <code>optional string ruleType = 6;</code>
        */
-      public java.lang.String getType() {
-        java.lang.Object ref = type_;
+      public java.lang.String getRuleType() {
+        java.lang.Object ref = ruleType_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          type_ = s;
+          ruleType_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>optional string type = 7;</code>
+       * <code>optional string ruleType = 6;</code>
        */
       public com.google.protobuf.ByteString
-          getTypeBytes() {
-        java.lang.Object ref = type_;
+          getRuleTypeBytes() {
+        java.lang.Object ref = ruleType_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          type_ = b;
+          ruleType_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>optional string type = 7;</code>
+       * <code>optional string ruleType = 6;</code>
        */
-      public Builder setType(
+      public Builder setRuleType(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        type_ = value;
+        ruleType_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string type = 7;</code>
+       * <code>optional string ruleType = 6;</code>
        */
-      public Builder clearType() {
+      public Builder clearRuleType() {
         
-        type_ = getDefaultInstance().getType();
+        ruleType_ = getDefaultInstance().getRuleType();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string type = 7;</code>
+       * <code>optional string ruleType = 6;</code>
        */
-      public Builder setTypeBytes(
+      public Builder setRuleTypeBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        type_ = value;
+        ruleType_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int stage_ ;
+      /**
+       * <code>optional int32 stage = 7;</code>
+       */
+      public int getStage() {
+        return stage_;
+      }
+      /**
+       * <code>optional int32 stage = 7;</code>
+       */
+      public Builder setStage(int value) {
+        
+        stage_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 stage = 7;</code>
+       */
+      public Builder clearStage() {
+        
+        stage_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private double weight_ ;
+      /**
+       * <code>optional double weight = 8;</code>
+       */
+      public double getWeight() {
+        return weight_;
+      }
+      /**
+       * <code>optional double weight = 8;</code>
+       */
+      public Builder setWeight(double value) {
+        
+        weight_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double weight = 8;</code>
+       */
+      public Builder clearWeight() {
+        
+        weight_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object action_ = "";
+      /**
+       * <code>optional string action = 9;</code>
+       */
+      public java.lang.String getAction() {
+        java.lang.Object ref = action_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          action_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string action = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getActionBytes() {
+        java.lang.Object ref = action_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          action_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string action = 9;</code>
+       */
+      public Builder setAction(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        action_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string action = 9;</code>
+       */
+      public Builder clearAction() {
+        
+        action_ = getDefaultInstance().getAction();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string action = 9;</code>
+       */
+      public Builder setActionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        action_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>optional string name = 10;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 10;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 10;</code>
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 10;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean active_ ;
+      /**
+       * <code>optional bool active = 11;</code>
+       */
+      public boolean getActive() {
+        return active_;
+      }
+      /**
+       * <code>optional bool active = 11;</code>
+       */
+      public Builder setActive(boolean value) {
+        
+        active_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool active = 11;</code>
+       */
+      public Builder clearActive() {
+        
+        active_ = false;
+        onChanged();
+        return this;
+      }
+
+      private double priority_ ;
+      /**
+       * <code>optional double priority = 12;</code>
+       */
+      public double getPriority() {
+        return priority_;
+      }
+      /**
+       * <code>optional double priority = 12;</code>
+       */
+      public Builder setPriority(double value) {
+        
+        priority_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double priority = 12;</code>
+       */
+      public Builder clearPriority() {
+        
+        priority_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private int matchFindType_ = 0;
+      /**
+       * <code>optional .com.proto.gen.MATCHFINDTYPE matchFindType = 13;</code>
+       */
+      public int getMatchFindTypeValue() {
+        return matchFindType_;
+      }
+      /**
+       * <code>optional .com.proto.gen.MATCHFINDTYPE matchFindType = 13;</code>
+       */
+      public Builder setMatchFindTypeValue(int value) {
+        matchFindType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .com.proto.gen.MATCHFINDTYPE matchFindType = 13;</code>
+       */
+      public com.proto.gen.RuleOuterClass.MATCHFINDTYPE getMatchFindType() {
+        com.proto.gen.RuleOuterClass.MATCHFINDTYPE result = com.proto.gen.RuleOuterClass.MATCHFINDTYPE.valueOf(matchFindType_);
+        return result == null ? com.proto.gen.RuleOuterClass.MATCHFINDTYPE.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>optional .com.proto.gen.MATCHFINDTYPE matchFindType = 13;</code>
+       */
+      public Builder setMatchFindType(com.proto.gen.RuleOuterClass.MATCHFINDTYPE value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        matchFindType_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .com.proto.gen.MATCHFINDTYPE matchFindType = 13;</code>
+       */
+      public Builder clearMatchFindType() {
+        
+        matchFindType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean matchWithResults_ ;
+      /**
+       * <code>optional bool matchWithResults = 14;</code>
+       */
+      public boolean getMatchWithResults() {
+        return matchWithResults_;
+      }
+      /**
+       * <code>optional bool matchWithResults = 14;</code>
+       */
+      public Builder setMatchWithResults(boolean value) {
+        
+        matchWithResults_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool matchWithResults = 14;</code>
+       */
+      public Builder clearMatchWithResults() {
+        
+        matchWithResults_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int matchedExpressionGroup_ ;
+      /**
+       * <code>optional int32 matchedExpressionGroup = 15;</code>
+       */
+      public int getMatchedExpressionGroup() {
+        return matchedExpressionGroup_;
+      }
+      /**
+       * <code>optional int32 matchedExpressionGroup = 15;</code>
+       */
+      public Builder setMatchedExpressionGroup(int value) {
+        
+        matchedExpressionGroup_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 matchedExpressionGroup = 15;</code>
+       */
+      public Builder clearMatchedExpressionGroup() {
+        
+        matchedExpressionGroup_ = 0;
         onChanged();
         return this;
       }
@@ -1956,11 +2953,19 @@ public final class RuleOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nRule.proto\022\rcom.proto.gen\"s\n\004Rule\022\014\n\004g" +
-      "uid\030\002 \001(\t\022\017\n\007pattern\030\003 \001(\t\022\026\n\016positive_m" +
-      "atch\030\004 \001(\t\022\026\n\016negative_match\030\005 \001(\t\022\016\n\006re" +
-      "sult\030\006 \001(\t\022\014\n\004type\030\007 \001(\t\"+\n\005Rules\022\"\n\005rul" +
-      "es\030\001 \003(\0132\023.com.proto.gen.Ruleb\006proto3"
+      "\n\nRule.proto\022\rcom.proto.gen\"\335\002\n\004Rule\022\014\n\004" +
+      "guid\030\001 \001(\t\022\017\n\007pattern\030\002 \001(\t\022\026\n\016pattern_s" +
+      "tring\030\020 \001(\t\022\026\n\016positive_match\030\003 \001(\t\022\026\n\016n" +
+      "egative_match\030\004 \001(\t\022\016\n\006result\030\005 \001(\t\022\020\n\010r" +
+      "uleType\030\006 \001(\t\022\r\n\005stage\030\007 \001(\005\022\016\n\006weight\030\010" +
+      " \001(\001\022\016\n\006action\030\t \001(\t\022\014\n\004name\030\n \001(\t\022\016\n\006ac" +
+      "tive\030\013 \001(\010\022\020\n\010priority\030\014 \001(\001\0223\n\rmatchFin" +
+      "dType\030\r \001(\0162\034.com.proto.gen.MATCHFINDTYP" +
+      "E\022\030\n\020matchWithResults\030\016 \001(\010\022\036\n\026matchedEx" +
+      "pressionGroup\030\017 \001(\005\"+\n\005Rules\022\"\n\005rules\030\001 ",
+      "\003(\0132\023.com.proto.gen.Rule*6\n\rMATCHFINDTYP" +
+      "E\022\027\n\023FIND_NONOVERLAPPING\020\000\022\014\n\010FIND_ALL\020\001" +
+      "b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1979,7 +2984,7 @@ public final class RuleOuterClass {
     internal_static_com_proto_gen_Rule_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_proto_gen_Rule_descriptor,
-        new java.lang.String[] { "Guid", "Pattern", "PositiveMatch", "NegativeMatch", "Result", "Type", });
+        new java.lang.String[] { "Guid", "Pattern", "PatternString", "PositiveMatch", "NegativeMatch", "Result", "RuleType", "Stage", "Weight", "Action", "Name", "Active", "Priority", "MatchFindType", "MatchWithResults", "MatchedExpressionGroup", });
     internal_static_com_proto_gen_Rules_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_proto_gen_Rules_fieldAccessorTable = new
