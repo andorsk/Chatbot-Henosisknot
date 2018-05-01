@@ -3,14 +3,35 @@ ENV.defaultStringPatternFlags = 2
 ner = { type: "CLASS", value: "edu.stanford.nlp.ling.CoreAnnotations$NamedEntityTagAnnotation" }
 tokens = { type: "CLASS", value: "edu.stanford.nlp.ling.CoreAnnotations$TokensAnnotation" }
 
+{
+  // ruleType is "text", "tokens", "composite", or "filter"
+  ruleType: "tokens",
+
+  // pattern to be matched
+  pattern: ( /I/ /was/ /born/ /on/ ),
+
+  // value associated with the expression for which the pattern was matched
+  // matched expressions are returned with "DATE_OF_BIRTH" as the value
+  // (as part of the MatchedExpression class)
+   result: "DATE_OF_BIRTH",
+   verify_true : "this",
+   verify_false: "no"
+}
+
 
 {
+  // ruleType is "text", "tokens", "composite", or "filter"
   ruleType: "tokens",
-  pattern: (Which word should be matched),
-  result: Yes
-}
-{
-  ruleType: "tokens",
-  pattern: (This is a match),
-  result: Yes
+
+  // pattern to be matched
+  pattern: (/This/ /should/ /match/ ),
+
+  // value associated with the expression for which the pattern was matched
+  // matched expressions are returned with "DATE_OF_BIRTH" as the value
+  // (as part of the MatchedExpression class)
+  result: "DATE_OF_BIRTH",
+
+  verify_true : "this",
+
+  verify_false: "no"
 }

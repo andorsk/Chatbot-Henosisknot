@@ -8,6 +8,7 @@ message Rule {
     string guid = 1;
     string pattern = 2;
     string pattern_string = 18;
+    string value = 19;
     string positive_match = 3;
     string negative_match = 4;
     string result = 5;
@@ -21,21 +22,22 @@ message Rule {
     MATCHFINDTYPE matchFindType = 13;
     bool matchWithResults = 14;
     int32 matchedExpressionGroup = 15;
-    RULETYPE extractOrAssignment = 16;
-    EXTRACTION_TYPE extractionType = 17;
+    bool isExtraction = 16;
+    bool isAssignment = 17;
+//    EXTRACTION_TYPE extractionType = 17;
 }
 
 enum RULETYPE {
     EXTRACTION = 0;
     ASSIGNMENT = 1;
 }
-
-enum EXTRACTION_TYPE {
-    TEXT = 0;
-    TOKEN = 1;
-    COMPOSITE = 2;
-    FILTER = 3;
-}
+//
+//enum EXTRACTION_TYPE {
+//    TEXT = 0;
+//    TOKEN = 1;
+//    COMPOSITE = 2;
+//    FILTER = 3;
+//}
 enum MATCHFINDTYPE {
     FIND_NONOVERLAPPING = 0;
     FIND_ALL = 1;

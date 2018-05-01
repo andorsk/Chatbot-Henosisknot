@@ -56,6 +56,9 @@ public class RulesVerifier {
      */
     public void verifyRule(RuleOuterClass.Rule rule) throws VerifyError{
 
+            if(!rule.getIsExtraction()){
+                return;
+            }
             if(!testString(rule.getPositiveMatch(), true)) {
                 System.out.println("Positive match failed for rule " + rule.getGuid());
                 throw new VerifyError("Positive match failed for rule " + rule.getGuid());

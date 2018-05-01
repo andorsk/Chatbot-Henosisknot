@@ -25,9 +25,10 @@ public class TestUtils {
     @Test
     public void TestListFilesWithExtension(){
         Path t = createFoldersWithFilesSample();
+        File f = new File(t.toString());
         if(t != null){
             //Get Files with ext.
-            Assert.assertEquals(FileHelpers.listRecusivelyGetFilesWithExtension(t.toString(), ".txt", null).size(), 7);
+            Assert.assertEquals(FileHelpers.listRecusivelyGetFilesWithExtension(f, ".txt", null).size(), 7);
             deleteTempFolderRecursive(t.toString());
         } else throw new NullPointerException();
 

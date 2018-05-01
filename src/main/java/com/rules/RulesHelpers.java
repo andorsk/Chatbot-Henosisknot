@@ -3,11 +3,11 @@ package com.rules;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.protobuf.Descriptors;
-import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 import com.io.IOUtil;
 import com.proto.gen.RuleOuterClass.Rule;
 import com.proto.gen.RuleOuterClass.Rules;
+import edu.stanford.nlp.io.StringOutputStream;
 import edu.stanford.nlp.ling.tokensregex.CoreMapExpressionExtractor;
 import edu.stanford.nlp.ling.tokensregex.MatchedExpression;
 import edu.stanford.nlp.ling.tokensregex.SequenceMatchRules;
@@ -17,13 +17,8 @@ import edu.stanford.nlp.ling.tokensregex.parser.TokenSequenceParseException;
 import edu.stanford.nlp.ling.tokensregex.parser.TokenSequenceParser;
 import edu.stanford.nlp.ling.tokensregex.types.Expression;
 import edu.stanford.nlp.ling.tokensregex.types.Expressions;
-import edu.stanford.nlp.ling.tokensregex.types.Value;
 import edu.stanford.nlp.util.ArrayMap;
-import jdk.nashorn.internal.parser.JSONParser;
-import org.json.simple.JSONObject;
-import sun.jvm.hotspot.utilities.ObjectReader;
 
-import javax.ws.rs.NotFoundException;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
@@ -128,10 +123,12 @@ public class RulesHelpers {
     public static void updateExtractorRules(CoreMapExpressionExtractor extractor, Rules rules) throws TokenSequenceParseException, ParseException {
         TokenSequenceParser sp = new TokenSequenceParser();
         StringBuffer br = new StringBuffer();
-        br.append("ner = { type: \"CLASS\", value: \"com.annotation.ExtendedCoreAnnotation$EmbeddedRule\" }\n");
-
         for(Rule rule : rules.getRulesList()){
-            br.append(createRulesString(rule));
+            try {
+                br.append(createRuleString(rule));
+            } catch (RulesException.RulesTypeMissingException e) {
+                e.printStackTrace();
+            }
         }
 
         System.out.println("final string is " + br.toString());
@@ -141,19 +138,52 @@ public class RulesHelpers {
 
     public static void clearAndUpdateExtractorRule(CoreMapExpressionExtractor extractor, Rule rule) throws TokenSequenceParseException, ParseException {
         TokenSequenceParser sp = new TokenSequenceParser();
-        StringReader sr = new StringReader(createRulesString(rule));
+        StringReader sr = null;
+        try {
+            sr = new StringReader(createRuleString(rule));
+        } catch (RulesException.RulesTypeMissingException e) {
+            e.printStackTrace();
+        }
         sp.updateExpressionExtractor(extractor, sr);
     }
 
 
+    private static String createAssignmentString(Rule rule){
+        if(!rule.getIsAssignment()){
+            return null;
+        }
+        String line = String.format("\n %s = { type: \"%s\" , value: \"%s\" \n}", "rule", rule.getRuleType(), rule.getValue());
+        return line;
+    }
+
+    private static String createRuleString(Rule rule) throws RulesException.RulesTypeMissingException {
+        String ret = null;
+
+        if(rule.getIsAssignment()){
+            ret = createAssignmentString(rule);
+        } else if(rule.getIsExtraction()){
+            ret = createExtractionRuleString(rule);
+        } else {
+            throw new RulesException.RulesTypeMissingException("Missing Rule Type: Extraction " + rule.getIsExtraction() + " Assignment " + rule.getIsAssignment());
+        }
+        return ret;
+    }
 
     /**
      * TODO: This must be revisited at some point! RegEx's assume the guid will always occur after pattern, which is not always true!
      * Best method would be direct.
+     *
+     * Action field gets encoded with annotation of the object that can be pulled later. This is done for
+     * easy access later.
+     *
+     * Alternative is to store guid as a guid tag and lookup rules after.
      * @param rule
      * @return
      */
-    private static String createRulesString(Rule rule){
+    private static String createExtractionRuleString(Rule rule){
+        if(!rule.getIsExtraction()){
+            return null;
+        }
         Map<String, Object> map = new HashMap<String, Object>();
         StringBuffer action_encoding = new StringBuffer();
         int count = 0;
@@ -169,10 +199,15 @@ public class RulesHelpers {
             if(count != rule.getAllFields().keySet().size()){
                 action_string = action_string + ",";
             }
-            //action_encoding.append(action_string) ;
             map.put(d.getName(), v);
         }
-        action_encoding.append(" Annotate($0, " + "ner" + ", "+ "quotemark "+ "Happy Token" + " quotemark " + ")");
+        try {
+
+            JsonFormat.Printer printer = com.google.protobuf.util.JsonFormat.printer();
+            action_encoding.append(" Annotate($0, " + "rule" + ", "+ "quotemark "+ printer.print(rule.toBuilder()) + " quotemark " + ")");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         action_encoding.append(" )");
         String action_string = action_encoding.toString().replace("\\/", "/");
 
@@ -197,7 +232,7 @@ public class RulesHelpers {
 
         //need a better way to do this. This is ugly.
         p = Pattern.compile("(?<=\\\"action\":)(\")(.*?)");
-        p = Pattern.compile("(?<=action\":).*?([\"])");
+        p = Pattern.compile("(?<=\"action\":).*?([\"])");
         m = p.matcher(t);
         s = m.replaceAll("");
         p = Pattern.compile(".(?=\\,\\\"positive_match\\\":)");//should be forward lookup. need some work on regex.

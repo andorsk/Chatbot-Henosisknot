@@ -1,18 +1,15 @@
 package com.rulestest;
 
-import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
 import com.proto.gen.RuleOuterClass;
 import com.rules.RulesHelpers;
 import com.rules.RulesVerifier;
-import edu.stanford.nlp.ling.CoreAnnotation;
+import com.rulesparser.RuleParser;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.tokensregex.CoreMapExpressionExtractor;
 import edu.stanford.nlp.ling.tokensregex.MatchedExpression;
-import edu.stanford.nlp.ling.tokensregex.SequenceMatchRules;
 import edu.stanford.nlp.ling.tokensregex.TokenSequencePattern;
 import edu.stanford.nlp.ling.tokensregex.parser.ParseException;
 import edu.stanford.nlp.ling.tokensregex.parser.TokenSequenceParseException;
-import edu.stanford.nlp.ling.tokensregex.types.Value;
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
@@ -28,16 +25,26 @@ import java.util.UUID;
 public class TestNewRulesLoader {
     StanfordCoreNLP mPipeline;
     CoreMapExpressionExtractor<MatchedExpression> mExtractor;
+    final String basePath = "/hi";
+
+    RuleOuterClass.Rule ruleDef = RuleOuterClass.Rule.newBuilder()
+            .setRuleType("CLASS")
+            .setValue("com.annotation.ExtendedCoreAnnotation$EmbeddedRule")
+            .setIsAssignment(true)
+            .setGuid(UUID.randomUUID().toString())
+            .setName("embedded_rule")
+            .build();
 
     RuleOuterClass.Rule r1 = RuleOuterClass.Rule.newBuilder()
             .setGuid(UUID.randomUUID().toString())
             .setPattern(" ( /This/ /should/ /match/ ) ")
-                .setPositiveMatch("This should match")
-                .setNegativeMatch("No match")
-                .setResult("This is the result")
-                .setRuleType("tokens") //set stage as well.
-                .setStage(0)
-                .build();
+            .setPositiveMatch("This should match")
+            .setNegativeMatch("No match")
+            .setResult("This is the result")
+            .setRuleType("tokens") //set stage as well.
+            .setIsExtraction(true)
+            .setStage(0)
+            .build();
 
     RuleOuterClass.Rule r2 = RuleOuterClass.Rule.newBuilder()
             .setGuid(UUID.randomUUID().toString())
@@ -45,6 +52,7 @@ public class TestNewRulesLoader {
             .setPositiveMatch("What is my name")
             .setNegativeMatch("This shouldn't match")
             .setResult("This is the result")
+            .setIsExtraction(true)
             .setRuleType("tokens") //set stage as well.
             .setStage(0)
             .build();
@@ -93,6 +101,7 @@ public class TestNewRulesLoader {
     public void TestSingleRule() {
 
         RuleOuterClass.Rules rules = RuleOuterClass.Rules.newBuilder()
+                .addRules(ruleDef)
                 .addRules(r1)
                 .build();
 
@@ -118,7 +127,6 @@ public class TestNewRulesLoader {
         testString("No. Not match", false);
         testString("This should match. This should not", true);
 
-
     }
 
 
@@ -126,6 +134,7 @@ public class TestNewRulesLoader {
     public void TestMultiRule() {
 
         RuleOuterClass.Rules rules = RuleOuterClass.Rules.newBuilder()
+                .addRules(ruleDef)
                 .addRules(r1)
                 .addRules(r2)
                 .build();
@@ -158,39 +167,57 @@ public class TestNewRulesLoader {
     @Test
     public void TestMultiRuleWithOverlap() {
 
-        r1 = RuleOuterClass.Rule.newBuilder()
+        RuleOuterClass.Rule r1 = RuleOuterClass.Rule.newBuilder()
                 .setGuid(UUID.randomUUID().toString())
                 .setPattern(" ( /This/ ) ")
                 .setPositiveMatch("This")
                 .setNegativeMatch("No match")
                 .setResult("This is result for 1")
                 .setRuleType("tokens") //set stage as well.
+                .setIsExtraction(true)
                 .setStage(0)
                 .build();
 
-        r2 = RuleOuterClass.Rule.newBuilder()
+        RuleOuterClass.Rule r2 = RuleOuterClass.Rule.newBuilder()
                 .setGuid(UUID.randomUUID().toString())
                 .setPattern(" ( /This/ /should/ /match/ ) ")
                 .setPositiveMatch("This should match")
-                .setNegativeMatch("This shouldn't match")
+                .setNegativeMatch("What is a match")
                 .setResult("This is the result for 2")
+                .setIsExtraction(true)
                 .setRuleType("tokens") //set stage as well.
                 .setStage(0)
                 .build();
 
-        r2 = RuleOuterClass.Rule.newBuilder()
+        RuleOuterClass.Rule r3 = RuleOuterClass.Rule.newBuilder()
                 .setGuid(UUID.randomUUID().toString())
                 .setPattern(" ( /This/ /should/ ) ")
                 .setPositiveMatch("This should")
                 .setNegativeMatch("Who should match")
                 .setResult("This is the result for 3")
+                .setIsExtraction(true)
                 .setRuleType("tokens") //set stage as well.
                 .setStage(0)
                 .build();
 
+
+        RuleOuterClass.Rule r4 = RuleOuterClass.Rule.newBuilder()
+                .setGuid(UUID.randomUUID().toString())
+                .setPattern(" ( /This/ /should/ /match/ ) ")
+                .setPositiveMatch("This should match")
+                .setNegativeMatch("What is a match")
+                .setResult("This is the result for 4")
+                .setRuleType("tokens") //set stage as well.
+                .setIsExtraction(true)
+                .setStage(0)
+                .build();
+
         RuleOuterClass.Rules rules = RuleOuterClass.Rules.newBuilder()
+                .addRules(ruleDef)
                 .addRules(r1)
                 .addRules(r2)
+                .addRules(r3)
+                .addRules(r4)
                 .build();
 
         // 2. Create custom extractor that bypasses the need to read from File
@@ -216,85 +243,95 @@ public class TestNewRulesLoader {
         getResultsString("This should match. This should not", "This is the result for 2");
         getResultsString("What is my name", null);
         getResultsString("What is my name. This should match", null);
+        getResultsString("This should", "This is the result for 3");
+
+    }
+
+    @Test
+    public void TestNERTagMatch() {
+
+        RuleOuterClass.Rule r1 = RuleOuterClass.Rule.newBuilder()
+                .setGuid(UUID.randomUUID().toString())
+                .setPattern("([ner: PERSON]+) /was|is/ /an?/ []{0,3} /painter|artist/ ")
+                .setPositiveMatch("John was an artist")
+                .setNegativeMatch("This was not an artist")
+                .setResult("John was in fact, an artist")
+                .setIsExtraction(true)
+                .setRuleType("tokens") //set stage as well.
+                .setStage(0)
+                .build();
 
 
+        RuleOuterClass.Rules rules = RuleOuterClass.Rules.newBuilder()
+                .addRules(ruleDef)
+                .addRules(r1)
+                .build();
+
+        testString("John was an artist", true);
+        testString("John could not paint for his life", false);
+    }
+
+
+    /**
+     * Test File Loader from direct file
+     */
+    @Test
+    public void TestRuleFileLoader() {
+        RuleParser rp = new RuleParser(basePath);
+        RuleOuterClass.Rules rls = rp.parseFiles();
+
+        CoreMapExpressionExtractor<MatchedExpression> extractor = new CoreMapExpressionExtractor<MatchedExpression>(TokenSequencePattern.getNewEnv());
+        try {
+            RulesHelpers.updateExtractorRules(extractor, rls);
+        } catch (TokenSequenceParseException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        testString("This should match", true);
+        testString("No. Not match", false);
+        testString("This should match. This should not", true);
     }
 
     /**
-     * Early performance test to see if there is any expected lag with loads of rules.
-     * Answer: There is and results start becoming unacceptable after 10000 rules. By 1000000
-     * it's basically unusable.
-     *
-     * Testing benchmark on rule list size 1
-     * 41ms
-     * Testing benchmark on rule list size 10
-     * 2ms
-     * Testing benchmark on rule list size 100
-     * 19ms
-     * Testing benchmark on rule list size 1000
-     * 189ms
-     * Testing benchmark on rule list size 10000
-     * 243ms
-     * Testing benchmark on rule list size 100000
-     * 6140ms
-     * Testing benchmark on rule list size 1000000
+     * Test Rules Directory from loader.
      */
-    @Test
-    @BenchmarkOptions(concurrency = 2, warmupRounds = 0, benchmarkRounds = 5)
-    public void TestMatchBenchmarkAcrossHighRuleSet(){
+    public void TestRuleDirectoryLoader() {
+        RuleParser rp = new RuleParser(basePath);
+        RuleOuterClass.Rules rls = rp.parseFiles();
 
-        RuleOuterClass.Rules.Builder rulesBuilder = RuleOuterClass.Rules.newBuilder();
-
-        //Write it to file.
-        final int[] NUM_OF_RULES_LIST = new int[]{1, 10, 100, 1000, 10000, 100000, 1000000, 100000000};
-
-        for(int i = 0; i < NUM_OF_RULES_LIST.length; i++){
-
-            System.out.println("Testing benchmark on rule list size " +  NUM_OF_RULES_LIST[i]);
-            for(int j = 0; j < NUM_OF_RULES_LIST[i]; j++){
-                rulesBuilder.addRules(RuleOuterClass.Rule.newBuilder()
-                        .setGuid(UUID.randomUUID().toString())
-                        .setPattern(" ( /Rule/ / " +  j + " / ) ")
-                        .setPositiveMatch("Rule " + j)
-                        .setNegativeMatch("Rule " + (j + 1))
-                        .setResult("This is the result")
-                        .setRuleType("tokens") //set stage as well.
-                        .setStage(0)
-                        .build());
-            }
-
-            try {
-                CoreDocument document = new CoreDocument("Rule " + NUM_OF_RULES_LIST[i]);
-                mPipeline.annotate(document);
-                CoreMapExpressionExtractor<MatchedExpression> extractor = new CoreMapExpressionExtractor<MatchedExpression> (TokenSequencePattern.getNewEnv()); //this might run in parallel
-                RulesHelpers.updateExtractorRules(extractor, rulesBuilder.build());
-
-                long time = System.currentTimeMillis();
-                extractor.extractExpressions(document.annotation().get(CoreAnnotations.SentencesAnnotation.class).get(0)).size();
-                System.out.println(System.currentTimeMillis()- time);
-
-            } catch (TokenSequenceParseException e) {
-                e.printStackTrace();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        CoreMapExpressionExtractor<MatchedExpression> extractor = new CoreMapExpressionExtractor<MatchedExpression>(TokenSequencePattern.getNewEnv());
+        try {
+            RulesHelpers.updateExtractorRules(extractor, rls);
+        } catch (TokenSequenceParseException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+
+        testString("This should match", true);
+        testString("No. Not match", false);
+        testString("This should match. This should not", true);
     }
 
-
+    //get the results string and check against expected.
     void getResultsString(String text, String expected) {
         CoreDocument document = new CoreDocument(text);
         mPipeline.annotate(document);
         List<MatchedExpression> me = mExtractor.extractExpressions(document.annotation().get(CoreAnnotations.SentencesAnnotation.class).get(0));
-        for(MatchedExpression m : me){
-            String res = m.getValue().toString();
-            System.out.println("res is " + res + " doc " + document.annotation().get(CoreAnnotations.SentencesAnnotation.class).get(0));
+        for (MatchedExpression m : me) {
+            String res = m.getValue().get().toString();
             Assert.assertEquals(res, expected);
         }
+        System.out.println("label is " + document.annotation().get(CoreAnnotations.TextAnnotation.class).toString());
+        System.out.println("me is " + me.toString());
+        System.out.println("Hiii");
     }
 
+    //Test if string actually matches.
     void testString(String text, boolean match) {
-        int _b = match ? 1: 0;
+        int _b = match ? 1 : 0;
         CoreDocument document = new CoreDocument(text);
         mPipeline.annotate(document);
         Assert.assertEquals(mExtractor.extractExpressions(document.annotation().get(CoreAnnotations.SentencesAnnotation.class).get(0)).size(), _b);
