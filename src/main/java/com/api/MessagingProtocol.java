@@ -1,8 +1,14 @@
 package com.api;
 
-import com.message.MessageHelpers;
+import com.config.PrimaryConfig;
 import com.nlp.StatementProcessingPipeline;
-import com.proto.gen.MessageOuterClass;
+import com.proto.gen.MessageOuterClass.Message;
+import com.proto.gen.MessageOuterClass.Conversation;
+
+import com.server.Server;
+import com.session.SessionBase;
+
+import javax.ws.rs.NotFoundException;
 
 /**
  * Messaging API is the main interface to receive/post messages from a source. Currently, we are
@@ -15,30 +21,54 @@ import com.proto.gen.MessageOuterClass;
 public class MessagingProtocol {
 
     /**
-     * Receives a message. Returns a response.
+     * Receives a message. Returns a response. All responses are processed by the chatbot agent, therefore,
+     * We give the chatbot agent a id of 0.
      * @param message
      * @return
      */
-    public static String generateResponse(MessageOuterClass.Message message, StatementProcessingPipeline spp){
+    public static Message generateResponseMessage(Message message, StatementProcessingPipeline spp) {
         String response = spp.process(message);
-        return response;
+        Message msg = Message.newBuilder()
+                .setText(response)
+                .setCreationTime(System.currentTimeMillis())
+                .setConversationId(message.getConversationId())
+                .setSenderUserid(PrimaryConfig.DEFAULT_CHATBOT_USERID)
+                .build();
+        return msg;
     }
 
     /**
      * Convert the message into an response and prepare for post.
      * @param msg
      */
-    public static void respond(MessageOuterClass.Message msg){
-        System.out.println("Responding and posting to " + msg.getConversationId() + " with text " + msg.getText());
+    public static void respond(Message msg, Server server){
+        updateConversation(getConversation(msg, server), msg);
+    }
+
+    private static Conversation getConversation(Message msg, Server server){
+        Conversation convo = null;
+        for(SessionBase sess : server.getSessionList()){
+            if(sess.getConversationMap().containsKey(msg.getConversationId())){
+                convo = sess.getConversationMap().get(msg.getConversationId());
+            } else{
+                throw new NotFoundException("Conversation not found. Counld not update the convo");
+            }
+        };
+        return convo;
+    }
+
+    private static Conversation updateConversation(Conversation convo, Message msg){
+        return convo.toBuilder().addDialog(msg).build();
     }
 
     //Post
-    public static MessageOuterClass.Message post(String response){
+    public static Message post(String response){
         return null;
     }
 
 
     public static void responseController(String message){}{
+
 
     }
 

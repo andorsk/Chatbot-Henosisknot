@@ -11,12 +11,12 @@ import static org.reflections.util.ConfigurationBuilder.build;
 
 public class SessionBase extends SessionInterface{
 
-    HashMap<String, MessageOuterClass.Converation> conversationMap = new HashMap<String,MessageOuterClass.Converation>() ;
+    HashMap<String, MessageOuterClass.Conversation> conversationMap = new HashMap<String,MessageOuterClass.Conversation>() ;
     HashSet<Integer> participants = new HashSet<Integer>();
     private long sessionStartTime;
     private final String SESSION_UUID = UUID.randomUUID().toString();
 
-    public HashMap<String, MessageOuterClass.Converation> getConversationMap(){
+    public HashMap<String, MessageOuterClass.Conversation> getConversationMap(){
         return this.conversationMap;
     }
 
@@ -47,7 +47,7 @@ public class SessionBase extends SessionInterface{
             String id = UUID.randomUUID().toString();
             System.out.println("No conversations found. Loading conversation for client with id." + id);
 
-            MessageOuterClass.Converation conversation = MessageOuterClass.Converation
+            MessageOuterClass.Conversation conversation = MessageOuterClass.Conversation
                     .newBuilder()
                     .setStartTime(System.currentTimeMillis())
                     .setId(id)

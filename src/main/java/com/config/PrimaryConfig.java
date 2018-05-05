@@ -18,5 +18,6 @@ public class PrimaryConfig {
     public final static String tSNEFILE = "/users/andor/workspace/Chatbot-Henosisknot/data/results_tsne.txt";
 
     public final static int PORT = 2222;
+    public final static int DEFAULT_CHATBOT_USERID = 0;
     public final static String HOSTNAME = APP_NAME;
 }

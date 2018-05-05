@@ -5,8 +5,10 @@ import com.proto.gen.MessageOuterClass;
 import com.session.SessionBase;
 import javafx.util.Pair;
 
+import javax.ws.rs.ClientErrorException;
 import java.io.*;
 import java.net.Socket;
+import java.rmi.ServerError;
 import java.util.ArrayList;
 
 
@@ -48,21 +50,28 @@ public class Client extends Sender {
     }
 
 
-    public void sendMessage(String message){
-
+    public String sendMessage(String message) throws ClientErrorException {
+        StringBuffer stb;
         try {
             try (
                     Socket socket = new Socket(this.mHostName, this.mPort);
-                    PrintWriter out =
-                            new PrintWriter(socket.getOutputStream(), true);
+                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                    BufferedReader isr = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             ){
                 MessageOuterClass.Message msg = MessageHelpers.prepareMessage(message, this);
                 out.println(msg.toString());
-                out.close();
 
+                stb = new StringBuffer();
+                String line = "";
+                while((line = isr.readLine()) != null){
+                    stb.append(line);
+                }
+                out.close();
+                return stb.toString();
             }
         } catch (IOException e) {
             e.printStackTrace();
+            throw new ClientErrorException(406);
         }
     }
 }

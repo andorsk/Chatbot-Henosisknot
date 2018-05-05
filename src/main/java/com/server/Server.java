@@ -25,6 +25,7 @@ public class Server extends Sender {
     protected StatementProcessingPipeline mSPP;
     private ArrayList<SessionBase> mSessionList = new ArrayList<SessionBase>();
     private boolean mIsReady = false;
+
     /**
      * Start a threaded server
      * @param portnumber
@@ -33,6 +34,10 @@ public class Server extends Sender {
         this.mPort = portnumber;
         this.setSenderID(0);
         init();
+    }
+
+    public ArrayList<? extends SessionBase> getSessionList(){
+        return mSessionList;
     }
 
     public void init(){

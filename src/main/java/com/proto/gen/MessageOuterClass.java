@@ -413,23 +413,29 @@ public final class MessageOuterClass {
     com.proto.gen.MessageOuterClass.MessageType getMessageType();
 
     /**
-     * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
-     */
-    int getMessageQualifierValue();
-    /**
-     * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
-     */
-    com.proto.gen.MessageOuterClass.MessageQualifier getMessageQualifier();
-
-    /**
-     * <code>optional string LatestSessionId = 13;</code>
+     * <code>optional string LatestSessionId = 12;</code>
      */
     java.lang.String getLatestSessionId();
     /**
-     * <code>optional string LatestSessionId = 13;</code>
+     * <code>optional string LatestSessionId = 12;</code>
      */
     com.google.protobuf.ByteString
         getLatestSessionIdBytes();
+
+    /**
+     * <code>optional bool isUtterance = 13;</code>
+     */
+    boolean getIsUtterance();
+
+    /**
+     * <code>optional bool isResponse = 14;</code>
+     */
+    boolean getIsResponse();
+
+    /**
+     * <code>optional bool isFollowUp = 15;</code>
+     */
+    boolean getIsFollowUp();
   }
   /**
    * Protobuf type {@code com.proto.gen.Message}
@@ -454,8 +460,10 @@ public final class MessageOuterClass {
       serviceType_ = 0;
       conversationId_ = "";
       messageType_ = 0;
-      messageQualifier_ = 0;
       latestSessionId_ = "";
+      isUtterance_ = false;
+      isResponse_ = false;
+      isFollowUp_ = false;
     }
 
     @java.lang.Override
@@ -563,16 +571,25 @@ public final class MessageOuterClass {
               messageType_ = rawValue;
               break;
             }
-            case 96: {
-              int rawValue = input.readEnum();
-
-              messageQualifier_ = rawValue;
-              break;
-            }
-            case 106: {
+            case 98: {
               java.lang.String s = input.readStringRequireUtf8();
 
               latestSessionId_ = s;
+              break;
+            }
+            case 104: {
+
+              isUtterance_ = input.readBool();
+              break;
+            }
+            case 112: {
+
+              isResponse_ = input.readBool();
+              break;
+            }
+            case 120: {
+
+              isFollowUp_ = input.readBool();
               break;
             }
           }
@@ -827,26 +844,10 @@ public final class MessageOuterClass {
       return result == null ? com.proto.gen.MessageOuterClass.MessageType.UNRECOGNIZED : result;
     }
 
-    public static final int MESSAGE_QUALIFIER_FIELD_NUMBER = 12;
-    private int messageQualifier_;
-    /**
-     * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
-     */
-    public int getMessageQualifierValue() {
-      return messageQualifier_;
-    }
-    /**
-     * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
-     */
-    public com.proto.gen.MessageOuterClass.MessageQualifier getMessageQualifier() {
-      com.proto.gen.MessageOuterClass.MessageQualifier result = com.proto.gen.MessageOuterClass.MessageQualifier.valueOf(messageQualifier_);
-      return result == null ? com.proto.gen.MessageOuterClass.MessageQualifier.UNRECOGNIZED : result;
-    }
-
-    public static final int LATESTSESSIONID_FIELD_NUMBER = 13;
+    public static final int LATESTSESSIONID_FIELD_NUMBER = 12;
     private volatile java.lang.Object latestSessionId_;
     /**
-     * <code>optional string LatestSessionId = 13;</code>
+     * <code>optional string LatestSessionId = 12;</code>
      */
     public java.lang.String getLatestSessionId() {
       java.lang.Object ref = latestSessionId_;
@@ -861,7 +862,7 @@ public final class MessageOuterClass {
       }
     }
     /**
-     * <code>optional string LatestSessionId = 13;</code>
+     * <code>optional string LatestSessionId = 12;</code>
      */
     public com.google.protobuf.ByteString
         getLatestSessionIdBytes() {
@@ -875,6 +876,33 @@ public final class MessageOuterClass {
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    public static final int ISUTTERANCE_FIELD_NUMBER = 13;
+    private boolean isUtterance_;
+    /**
+     * <code>optional bool isUtterance = 13;</code>
+     */
+    public boolean getIsUtterance() {
+      return isUtterance_;
+    }
+
+    public static final int ISRESPONSE_FIELD_NUMBER = 14;
+    private boolean isResponse_;
+    /**
+     * <code>optional bool isResponse = 14;</code>
+     */
+    public boolean getIsResponse() {
+      return isResponse_;
+    }
+
+    public static final int ISFOLLOWUP_FIELD_NUMBER = 15;
+    private boolean isFollowUp_;
+    /**
+     * <code>optional bool isFollowUp = 15;</code>
+     */
+    public boolean getIsFollowUp() {
+      return isFollowUp_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -927,11 +955,17 @@ public final class MessageOuterClass {
       if (messageType_ != com.proto.gen.MessageOuterClass.MessageType.RECIEVE.getNumber()) {
         output.writeEnum(11, messageType_);
       }
-      if (messageQualifier_ != com.proto.gen.MessageOuterClass.MessageQualifier.UTTERANCE.getNumber()) {
-        output.writeEnum(12, messageQualifier_);
-      }
       if (!getLatestSessionIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 13, latestSessionId_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 12, latestSessionId_);
+      }
+      if (isUtterance_ != false) {
+        output.writeBool(13, isUtterance_);
+      }
+      if (isResponse_ != false) {
+        output.writeBool(14, isResponse_);
+      }
+      if (isFollowUp_ != false) {
+        output.writeBool(15, isFollowUp_);
       }
     }
 
@@ -995,12 +1029,20 @@ public final class MessageOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(11, messageType_);
       }
-      if (messageQualifier_ != com.proto.gen.MessageOuterClass.MessageQualifier.UTTERANCE.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(12, messageQualifier_);
-      }
       if (!getLatestSessionIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(13, latestSessionId_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(12, latestSessionId_);
+      }
+      if (isUtterance_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(13, isUtterance_);
+      }
+      if (isResponse_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(14, isResponse_);
+      }
+      if (isFollowUp_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(15, isFollowUp_);
       }
       memoizedSize = size;
       return size;
@@ -1038,9 +1080,14 @@ public final class MessageOuterClass {
       result = result && getConversationId()
           .equals(other.getConversationId());
       result = result && messageType_ == other.messageType_;
-      result = result && messageQualifier_ == other.messageQualifier_;
       result = result && getLatestSessionId()
           .equals(other.getLatestSessionId());
+      result = result && (getIsUtterance()
+          == other.getIsUtterance());
+      result = result && (getIsResponse()
+          == other.getIsResponse());
+      result = result && (getIsFollowUp()
+          == other.getIsFollowUp());
       return result;
     }
 
@@ -1080,10 +1127,17 @@ public final class MessageOuterClass {
       hash = (53 * hash) + getConversationId().hashCode();
       hash = (37 * hash) + MESSAGE_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + messageType_;
-      hash = (37 * hash) + MESSAGE_QUALIFIER_FIELD_NUMBER;
-      hash = (53 * hash) + messageQualifier_;
       hash = (37 * hash) + LATESTSESSIONID_FIELD_NUMBER;
       hash = (53 * hash) + getLatestSessionId().hashCode();
+      hash = (37 * hash) + ISUTTERANCE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsUtterance());
+      hash = (37 * hash) + ISRESPONSE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsResponse());
+      hash = (37 * hash) + ISFOLLOWUP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsFollowUp());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1224,9 +1278,13 @@ public final class MessageOuterClass {
 
         messageType_ = 0;
 
-        messageQualifier_ = 0;
-
         latestSessionId_ = "";
+
+        isUtterance_ = false;
+
+        isResponse_ = false;
+
+        isFollowUp_ = false;
 
         return this;
       }
@@ -1271,8 +1329,10 @@ public final class MessageOuterClass {
         result.serviceType_ = serviceType_;
         result.conversationId_ = conversationId_;
         result.messageType_ = messageType_;
-        result.messageQualifier_ = messageQualifier_;
         result.latestSessionId_ = latestSessionId_;
+        result.isUtterance_ = isUtterance_;
+        result.isResponse_ = isResponse_;
+        result.isFollowUp_ = isFollowUp_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1365,12 +1425,18 @@ public final class MessageOuterClass {
         if (other.messageType_ != 0) {
           setMessageTypeValue(other.getMessageTypeValue());
         }
-        if (other.messageQualifier_ != 0) {
-          setMessageQualifierValue(other.getMessageQualifierValue());
-        }
         if (!other.getLatestSessionId().isEmpty()) {
           latestSessionId_ = other.latestSessionId_;
           onChanged();
+        }
+        if (other.getIsUtterance() != false) {
+          setIsUtterance(other.getIsUtterance());
+        }
+        if (other.getIsResponse() != false) {
+          setIsResponse(other.getIsResponse());
+        }
+        if (other.getIsFollowUp() != false) {
+          setIsFollowUp(other.getIsFollowUp());
         }
         onChanged();
         return this;
@@ -1958,53 +2024,9 @@ public final class MessageOuterClass {
         return this;
       }
 
-      private int messageQualifier_ = 0;
-      /**
-       * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
-       */
-      public int getMessageQualifierValue() {
-        return messageQualifier_;
-      }
-      /**
-       * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
-       */
-      public Builder setMessageQualifierValue(int value) {
-        messageQualifier_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
-       */
-      public com.proto.gen.MessageOuterClass.MessageQualifier getMessageQualifier() {
-        com.proto.gen.MessageOuterClass.MessageQualifier result = com.proto.gen.MessageOuterClass.MessageQualifier.valueOf(messageQualifier_);
-        return result == null ? com.proto.gen.MessageOuterClass.MessageQualifier.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
-       */
-      public Builder setMessageQualifier(com.proto.gen.MessageOuterClass.MessageQualifier value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        messageQualifier_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .com.proto.gen.MessageQualifier message_qualifier = 12;</code>
-       */
-      public Builder clearMessageQualifier() {
-        
-        messageQualifier_ = 0;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object latestSessionId_ = "";
       /**
-       * <code>optional string LatestSessionId = 13;</code>
+       * <code>optional string LatestSessionId = 12;</code>
        */
       public java.lang.String getLatestSessionId() {
         java.lang.Object ref = latestSessionId_;
@@ -2019,7 +2041,7 @@ public final class MessageOuterClass {
         }
       }
       /**
-       * <code>optional string LatestSessionId = 13;</code>
+       * <code>optional string LatestSessionId = 12;</code>
        */
       public com.google.protobuf.ByteString
           getLatestSessionIdBytes() {
@@ -2035,7 +2057,7 @@ public final class MessageOuterClass {
         }
       }
       /**
-       * <code>optional string LatestSessionId = 13;</code>
+       * <code>optional string LatestSessionId = 12;</code>
        */
       public Builder setLatestSessionId(
           java.lang.String value) {
@@ -2048,7 +2070,7 @@ public final class MessageOuterClass {
         return this;
       }
       /**
-       * <code>optional string LatestSessionId = 13;</code>
+       * <code>optional string LatestSessionId = 12;</code>
        */
       public Builder clearLatestSessionId() {
         
@@ -2057,7 +2079,7 @@ public final class MessageOuterClass {
         return this;
       }
       /**
-       * <code>optional string LatestSessionId = 13;</code>
+       * <code>optional string LatestSessionId = 12;</code>
        */
       public Builder setLatestSessionIdBytes(
           com.google.protobuf.ByteString value) {
@@ -2067,6 +2089,84 @@ public final class MessageOuterClass {
   checkByteStringIsUtf8(value);
         
         latestSessionId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean isUtterance_ ;
+      /**
+       * <code>optional bool isUtterance = 13;</code>
+       */
+      public boolean getIsUtterance() {
+        return isUtterance_;
+      }
+      /**
+       * <code>optional bool isUtterance = 13;</code>
+       */
+      public Builder setIsUtterance(boolean value) {
+        
+        isUtterance_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool isUtterance = 13;</code>
+       */
+      public Builder clearIsUtterance() {
+        
+        isUtterance_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean isResponse_ ;
+      /**
+       * <code>optional bool isResponse = 14;</code>
+       */
+      public boolean getIsResponse() {
+        return isResponse_;
+      }
+      /**
+       * <code>optional bool isResponse = 14;</code>
+       */
+      public Builder setIsResponse(boolean value) {
+        
+        isResponse_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool isResponse = 14;</code>
+       */
+      public Builder clearIsResponse() {
+        
+        isResponse_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean isFollowUp_ ;
+      /**
+       * <code>optional bool isFollowUp = 15;</code>
+       */
+      public boolean getIsFollowUp() {
+        return isFollowUp_;
+      }
+      /**
+       * <code>optional bool isFollowUp = 15;</code>
+       */
+      public Builder setIsFollowUp(boolean value) {
+        
+        isFollowUp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool isFollowUp = 15;</code>
+       */
+      public Builder clearIsFollowUp() {
+        
+        isFollowUp_ = false;
         onChanged();
         return this;
       }
@@ -2854,8 +2954,8 @@ public final class MessageOuterClass {
 
   }
 
-  public interface ConverationOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.proto.gen.Converation)
+  public interface ConversationOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.proto.gen.Conversation)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -2930,17 +3030,17 @@ public final class MessageOuterClass {
         int index);
   }
   /**
-   * Protobuf type {@code com.proto.gen.Converation}
+   * Protobuf type {@code com.proto.gen.Conversation}
    */
-  public  static final class Converation extends
+  public  static final class Conversation extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.proto.gen.Converation)
-      ConverationOrBuilder {
-    // Use Converation.newBuilder() to construct.
-    private Converation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      // @@protoc_insertion_point(message_implements:com.proto.gen.Conversation)
+      ConversationOrBuilder {
+    // Use Conversation.newBuilder() to construct.
+    private Conversation(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Converation() {
+    private Conversation() {
       startTime_ = 0L;
       id_ = "";
       participants_ = com.google.protobuf.LazyStringArrayList.EMPTY;
@@ -2953,7 +3053,7 @@ public final class MessageOuterClass {
     getUnknownFields() {
       return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
-    private Converation(
+    private Conversation(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3045,14 +3145,14 @@ public final class MessageOuterClass {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Converation_descriptor;
+      return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Conversation_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Converation_fieldAccessorTable
+      return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Conversation_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.proto.gen.MessageOuterClass.Converation.class, com.proto.gen.MessageOuterClass.Converation.Builder.class);
+              com.proto.gen.MessageOuterClass.Conversation.class, com.proto.gen.MessageOuterClass.Conversation.Builder.class);
     }
 
     private int bitField0_;
@@ -3268,10 +3368,10 @@ public final class MessageOuterClass {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.proto.gen.MessageOuterClass.Converation)) {
+      if (!(obj instanceof com.proto.gen.MessageOuterClass.Conversation)) {
         return super.equals(obj);
       }
-      com.proto.gen.MessageOuterClass.Converation other = (com.proto.gen.MessageOuterClass.Converation) obj;
+      com.proto.gen.MessageOuterClass.Conversation other = (com.proto.gen.MessageOuterClass.Conversation) obj;
 
       boolean result = true;
       result = result && (getStartTime()
@@ -3316,58 +3416,58 @@ public final class MessageOuterClass {
       return hash;
     }
 
-    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+    public static com.proto.gen.MessageOuterClass.Conversation parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+    public static com.proto.gen.MessageOuterClass.Conversation parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.proto.gen.MessageOuterClass.Converation parseFrom(byte[] data)
+    public static com.proto.gen.MessageOuterClass.Conversation parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+    public static com.proto.gen.MessageOuterClass.Conversation parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.proto.gen.MessageOuterClass.Converation parseFrom(java.io.InputStream input)
+    public static com.proto.gen.MessageOuterClass.Conversation parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+    public static com.proto.gen.MessageOuterClass.Conversation parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.proto.gen.MessageOuterClass.Converation parseDelimitedFrom(java.io.InputStream input)
+    public static com.proto.gen.MessageOuterClass.Conversation parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.proto.gen.MessageOuterClass.Converation parseDelimitedFrom(
+    public static com.proto.gen.MessageOuterClass.Conversation parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+    public static com.proto.gen.MessageOuterClass.Conversation parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.proto.gen.MessageOuterClass.Converation parseFrom(
+    public static com.proto.gen.MessageOuterClass.Conversation parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3379,7 +3479,7 @@ public final class MessageOuterClass {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.proto.gen.MessageOuterClass.Converation prototype) {
+    public static Builder newBuilder(com.proto.gen.MessageOuterClass.Conversation prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -3394,25 +3494,25 @@ public final class MessageOuterClass {
       return builder;
     }
     /**
-     * Protobuf type {@code com.proto.gen.Converation}
+     * Protobuf type {@code com.proto.gen.Conversation}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.proto.gen.Converation)
-        com.proto.gen.MessageOuterClass.ConverationOrBuilder {
+        // @@protoc_insertion_point(builder_implements:com.proto.gen.Conversation)
+        com.proto.gen.MessageOuterClass.ConversationOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Converation_descriptor;
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Conversation_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Converation_fieldAccessorTable
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Conversation_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.proto.gen.MessageOuterClass.Converation.class, com.proto.gen.MessageOuterClass.Converation.Builder.class);
+                com.proto.gen.MessageOuterClass.Conversation.class, com.proto.gen.MessageOuterClass.Conversation.Builder.class);
       }
 
-      // Construct using com.proto.gen.MessageOuterClass.Converation.newBuilder()
+      // Construct using com.proto.gen.MessageOuterClass.Conversation.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3449,23 +3549,23 @@ public final class MessageOuterClass {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Converation_descriptor;
+        return com.proto.gen.MessageOuterClass.internal_static_com_proto_gen_Conversation_descriptor;
       }
 
-      public com.proto.gen.MessageOuterClass.Converation getDefaultInstanceForType() {
-        return com.proto.gen.MessageOuterClass.Converation.getDefaultInstance();
+      public com.proto.gen.MessageOuterClass.Conversation getDefaultInstanceForType() {
+        return com.proto.gen.MessageOuterClass.Conversation.getDefaultInstance();
       }
 
-      public com.proto.gen.MessageOuterClass.Converation build() {
-        com.proto.gen.MessageOuterClass.Converation result = buildPartial();
+      public com.proto.gen.MessageOuterClass.Conversation build() {
+        com.proto.gen.MessageOuterClass.Conversation result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.proto.gen.MessageOuterClass.Converation buildPartial() {
-        com.proto.gen.MessageOuterClass.Converation result = new com.proto.gen.MessageOuterClass.Converation(this);
+      public com.proto.gen.MessageOuterClass.Conversation buildPartial() {
+        com.proto.gen.MessageOuterClass.Conversation result = new com.proto.gen.MessageOuterClass.Conversation(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         result.startTime_ = startTime_;
@@ -3521,16 +3621,16 @@ public final class MessageOuterClass {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.proto.gen.MessageOuterClass.Converation) {
-          return mergeFrom((com.proto.gen.MessageOuterClass.Converation)other);
+        if (other instanceof com.proto.gen.MessageOuterClass.Conversation) {
+          return mergeFrom((com.proto.gen.MessageOuterClass.Conversation)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.proto.gen.MessageOuterClass.Converation other) {
-        if (other == com.proto.gen.MessageOuterClass.Converation.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.proto.gen.MessageOuterClass.Conversation other) {
+        if (other == com.proto.gen.MessageOuterClass.Conversation.getDefaultInstance()) return this;
         if (other.getStartTime() != 0L) {
           setStartTime(other.getStartTime());
         }
@@ -3596,11 +3696,11 @@ public final class MessageOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.proto.gen.MessageOuterClass.Converation parsedMessage = null;
+        com.proto.gen.MessageOuterClass.Conversation parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.proto.gen.MessageOuterClass.Converation) e.getUnfinishedMessage();
+          parsedMessage = (com.proto.gen.MessageOuterClass.Conversation) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4116,39 +4216,39 @@ public final class MessageOuterClass {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.proto.gen.Converation)
+      // @@protoc_insertion_point(builder_scope:com.proto.gen.Conversation)
     }
 
-    // @@protoc_insertion_point(class_scope:com.proto.gen.Converation)
-    private static final com.proto.gen.MessageOuterClass.Converation DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:com.proto.gen.Conversation)
+    private static final com.proto.gen.MessageOuterClass.Conversation DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.proto.gen.MessageOuterClass.Converation();
+      DEFAULT_INSTANCE = new com.proto.gen.MessageOuterClass.Conversation();
     }
 
-    public static com.proto.gen.MessageOuterClass.Converation getDefaultInstance() {
+    public static com.proto.gen.MessageOuterClass.Conversation getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<Converation>
-        PARSER = new com.google.protobuf.AbstractParser<Converation>() {
-      public Converation parsePartialFrom(
+    private static final com.google.protobuf.Parser<Conversation>
+        PARSER = new com.google.protobuf.AbstractParser<Conversation>() {
+      public Conversation parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Converation(input, extensionRegistry);
+          return new Conversation(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<Converation> parser() {
+    public static com.google.protobuf.Parser<Conversation> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<Converation> getParserForType() {
+    public com.google.protobuf.Parser<Conversation> getParserForType() {
       return PARSER;
     }
 
-    public com.proto.gen.MessageOuterClass.Converation getDefaultInstanceForType() {
+    public com.proto.gen.MessageOuterClass.Conversation getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4871,10 +4971,10 @@ public final class MessageOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_proto_gen_MessageQueue_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_proto_gen_Converation_descriptor;
+    internal_static_com_proto_gen_Conversation_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_proto_gen_Converation_fieldAccessorTable;
+      internal_static_com_proto_gen_Conversation_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_proto_gen_UtterenceMatch_descriptor;
   private static final 
@@ -4889,7 +4989,7 @@ public final class MessageOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rMessage.proto\022\rcom.proto.gen\"\214\003\n\007Messa" +
+      "\n\rMessage.proto\022\rcom.proto.gen\"\215\003\n\007Messa" +
       "ge\022\025\n\rcreation_time\030\001 \001(\004\022\014\n\004text\030\002 \001(\t\022" +
       "\027\n\017sender_username\030\003 \001(\t\022\025\n\rsender_useri" +
       "d\030\004 \001(\005\022\025\n\rtime_recieved\030\005 \001(\004\022\032\n\022receiv" +
@@ -4897,19 +4997,19 @@ public final class MessageOuterClass {
       "\007 \003(\005\022\014\n\004read\030\010 \001(\010\0220\n\014service_type\030\t \001(" +
       "\0162\032.com.proto.gen.ServiceType\022\027\n\017convers" +
       "ation_id\030\n \001(\t\0220\n\014message_type\030\013 \001(\0162\032.c" +
-      "om.proto.gen.MessageType\022:\n\021message_qual" +
-      "ifier\030\014 \001(\0162\037.com.proto.gen.MessageQuali",
-      "fier\022\027\n\017LatestSessionId\030\r \001(\t\"5\n\014Message" +
-      "Queue\022%\n\005queue\030\001 \003(\0132\026.com.proto.gen.Mes" +
-      "sage\"\203\001\n\013Converation\022\022\n\nstart_time\030\001 \001(\004" +
-      "\022\n\n\002id\030\002 \001(\t\022\024\n\014participants\030\003 \003(\t\022\026\n\016pa" +
-      "rticipantids\030\004 \003(\003\022&\n\006dialog\030\005 \003(\0132\026.com" +
-      ".proto.gen.Message\"D\n\016UtterenceMatch\022\021\n\t" +
-      "utterance\030\001 \001(\t\022\020\n\010response\030\002 \001(\t\022\r\n\005sco" +
-      "re\030\003 \001(\002*>\n\020MessageQualifier\022\r\n\tUTTERANC" +
-      "E\020\000\022\014\n\010RESPONSE\020\001\022\r\n\tFOLLOW_UP\020\002*$\n\013Mess" +
-      "ageType\022\013\n\007RECIEVE\020\000\022\010\n\004POST\020\001*\027\n\013Servic",
-      "eType\022\010\n\004TEXT\020\000b\006proto3"
+      "om.proto.gen.MessageType\022\027\n\017LatestSessio" +
+      "nId\030\014 \001(\t\022\023\n\013isUtterance\030\r \001(\010\022\022\n\nisResp",
+      "onse\030\016 \001(\010\022\022\n\nisFollowUp\030\017 \001(\010\"5\n\014Messag" +
+      "eQueue\022%\n\005queue\030\001 \003(\0132\026.com.proto.gen.Me" +
+      "ssage\"\204\001\n\014Conversation\022\022\n\nstart_time\030\001 \001" +
+      "(\004\022\n\n\002id\030\002 \001(\t\022\024\n\014participants\030\003 \003(\t\022\026\n\016" +
+      "participantids\030\004 \003(\003\022&\n\006dialog\030\005 \003(\0132\026.c" +
+      "om.proto.gen.Message\"D\n\016UtterenceMatch\022\021" +
+      "\n\tutterance\030\001 \001(\t\022\020\n\010response\030\002 \001(\t\022\r\n\005s" +
+      "core\030\003 \001(\002*>\n\020MessageQualifier\022\r\n\tUTTERA" +
+      "NCE\020\000\022\014\n\010RESPONSE\020\001\022\r\n\tFOLLOW_UP\020\002*$\n\013Me" +
+      "ssageType\022\013\n\007RECIEVE\020\000\022\010\n\004POST\020\001*\027\n\013Serv",
+      "iceType\022\010\n\004TEXT\020\000b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -4928,18 +5028,18 @@ public final class MessageOuterClass {
     internal_static_com_proto_gen_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_proto_gen_Message_descriptor,
-        new java.lang.String[] { "CreationTime", "Text", "SenderUsername", "SenderUserid", "TimeRecieved", "ReceiversUsername", "ReceiversUserids", "Read", "ServiceType", "ConversationId", "MessageType", "MessageQualifier", "LatestSessionId", });
+        new java.lang.String[] { "CreationTime", "Text", "SenderUsername", "SenderUserid", "TimeRecieved", "ReceiversUsername", "ReceiversUserids", "Read", "ServiceType", "ConversationId", "MessageType", "LatestSessionId", "IsUtterance", "IsResponse", "IsFollowUp", });
     internal_static_com_proto_gen_MessageQueue_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_proto_gen_MessageQueue_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_proto_gen_MessageQueue_descriptor,
         new java.lang.String[] { "Queue", });
-    internal_static_com_proto_gen_Converation_descriptor =
+    internal_static_com_proto_gen_Conversation_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_com_proto_gen_Converation_fieldAccessorTable = new
+    internal_static_com_proto_gen_Conversation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_proto_gen_Converation_descriptor,
+        internal_static_com_proto_gen_Conversation_descriptor,
         new java.lang.String[] { "StartTime", "Id", "Participants", "Participantids", "Dialog", });
     internal_static_com_proto_gen_UtterenceMatch_descriptor =
       getDescriptor().getMessageTypes().get(3);

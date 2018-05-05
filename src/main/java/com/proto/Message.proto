@@ -14,8 +14,11 @@ message Message {
 	ServiceType service_type = 9;
 	string conversation_id = 10;
     MessageType message_type = 11;
-    MessageQualifier message_qualifier = 12;
-    string LatestSessionId = 13;
+    string LatestSessionId = 12;
+    bool isUtterance = 13;
+    bool isResponse = 14;
+    bool isFollowUp = 15;
+
 }
 
 enum MessageQualifier{
@@ -28,7 +31,7 @@ message MessageQueue {
     repeated Message queue = 1;
 }
 
-message Converation {
+message Conversation {
     uint64 start_time = 1;
     string id = 2;
     repeated string participants = 3;
